@@ -11,6 +11,7 @@
     "react-native": "^0.23.0"
   },
   "devDependencies": {
+    "jquery": "^2.2.3",
     "jest-cli": "^0.10.0"
   }
 }
