@@ -22,7 +22,7 @@ module.exports = {
   getMatch: function(req, res) { 
     var responseJSON = {
       restaurant: restaurant,
-      matchedUser = matchedUser
+      matchedUser: matchedUser
     };
 
     var stringifiedResponseJSON = JSON.stringify(responseJSON);
