@@ -9,6 +9,8 @@ var {
   StyleSheet
 } = React;
 
+var Match = require('./match');
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -46,6 +48,22 @@ var styles = StyleSheet.create({
 class Results extends Component{
   constructor(props) {
     super(props);
+    this.state = {
+      onMyWay: true
+    };
+
+    setTimeout(() => {
+      this.setState({
+        onMyWay: false
+      })
+    }, 2000);
+  }
+
+  submitHandler(){
+    this.props.navigator.push({
+      title: 'Match made!',
+      component: Match
+    });
   }
 
   render() {
@@ -61,6 +79,13 @@ class Results extends Component{
         >
         </MapView>
         <Text>Here's the restaurant.Be there in 5 min. or else...</Text>
+        <TouchableHighlight
+          disabled={this.state.onMyWay}
+          style={styles.button}
+          underlayColor="purple"
+          onPress={this.submitHandler.bind(this)}>
+          <Text style={styles.buttonText}>I'm here</Text>
+        </TouchableHighlight>
       </View>
     );
   }
