@@ -8,6 +8,8 @@ var {
   TouchableHighlight
 } = React;
 
+var Welcome = require('./welcome');
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -33,13 +35,13 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
-  },
+  }
 });
 
 class Main extends Component{
@@ -52,12 +54,14 @@ class Main extends Component{
 
   handleSubmit(){
     console.log('insert OAuth integration here');
-    // this.props.navigator.push({
-    //   title: "Welcome",
-    //   component: Welcome,
+    this.props.navigator.push({
+      title: "Welcome",
+      component: Welcome,
+      passProps: {name: 'garbage'}
+      // make it impossible to go back to sign in screen
       // passProps: {userInfo: res} 
       // should pass user ID, other details as received from OAuth
-    // });
+    });
   }
 
   render(){
@@ -66,7 +70,7 @@ class Main extends Component{
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor="white">
+          underlayColor="rgba(255, 255, 255, 0.95)">
           <Text style={styles.buttonText}>Sign in with Facebook</Text>
         </TouchableHighlight>
       </View>
