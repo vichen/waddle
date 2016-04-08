@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
 var restaurant = JSON.parse(fs.readFileSync('../sample_objects/restaurant.json'));
 var matchedUser = JSON.parse(fs.readFileSync('../sample_objects/matched_user.json'));
