@@ -8,15 +8,17 @@ var {
   TouchableHighlight
 } = React;
 
+var Loading = require('./loading');
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
     flexDirection: 'column',
-    marginTop: 30,
     backgroundColor: '#48BBEC'
   },
   welcomeText: {
+    marginTop: 30, 
     fontSize: 80
   },
   button: {
@@ -41,6 +43,11 @@ var styles = StyleSheet.create({
 class Welcome extends Component{
   handleSubmit(){
     console.log('you did it, you pushed the lunch buddy button');
+    // do stuff w/ navigator
+    this.props.navigator.push({
+      title: "Finding you a match",
+      component: Loading
+    });
   }
 
   render(){
