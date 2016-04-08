@@ -8,6 +8,8 @@ var {
   StyleSheet
 } = React;
 
+var Results = require('./results');
+
 var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
@@ -22,18 +24,37 @@ var styles = StyleSheet.create({
   }
 });
 
-var Loading = () => {
-  return (
-    <View style={styles.mainContainer}>
-      <Text style={styles.loadingText}>Finding you your best match...</Text>
-      <ActivityIndicatorIOS
-      animating={true}
-      color="black"
-      size="large"
-      style={{transform: [{scale: 3}]}}>
-      </ActivityIndicatorIOS>
-    </View>
-  )
+class Loading extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true
+    };
+    setTimeout(() => { 
+      /*fetching a match*/
+      this.setState({
+        isLoading: false
+      });
+      this.props.navigator.push({
+        title: 'Results',
+        component: Results
+      });
+    }, 2000); 
+  }
+
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <Text style={styles.loadingText}>Finding you your best match...</Text>
+        <ActivityIndicatorIOS
+        animating={this.state.isLoading}
+        color="black"
+        size="large"
+        style={{transform: [{scale: 3}]}}>
+        </ActivityIndicatorIOS>
+      </View>
+    )    
+  }
 }
 
 module.exports = Loading;
