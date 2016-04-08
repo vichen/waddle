@@ -1,7 +1,9 @@
+var requestHandler = require('./requestHandler.js');
+
 module.exports = function (app, express) {
 
-  app.get('/', function (req, res) { res.send('Hello World!'); });
-  app.get('/signin', function (req, res) { res.send('signing in...'); });
-  app.get('/match', function (req, res) { res.send('Matching...'); });
+  app.get('/', requestHandler.getHome);
+  app.get('/signin', requestHandler.getSignin);
+  app.get('/match', requestHandler.getMatch);
 
 };
