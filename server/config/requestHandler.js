@@ -2,9 +2,8 @@ module.exports = {
   getHome: function(req, res) {
     // TODO:
     // if user is aleady connected with FB
-      // redirect to /welcome
+      res.send('You are home!');  
     // else
-    res.redirect('/signin'); 
   },
 
   getSignin: function(req, res) { 
@@ -21,7 +20,4 @@ module.exports = {
     res.send('Matching...');
   },
 
-  getWelcome: function(req, res) {
-
-  }
 };
