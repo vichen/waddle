@@ -4,6 +4,8 @@
 */
 
 var User = require('./config').User;
+var MatchRequest = require('./config').MatchRequest;
+var SuccessfulMatch = require('./config').SuccessfulMatch;
 var Promise = require('bluebird');
 
 exports.db = {
