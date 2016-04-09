@@ -49,7 +49,11 @@ class Results extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      onMyWay: true
+      onMyWay: true,
+      coordinates: {
+        latitude: this.props.restaurant.location.lat,
+        longitude: this.props.restaurant.location.lng
+      }
     };
 
     setTimeout(() => {
@@ -71,15 +75,15 @@ class Results extends Component{
       <View style={styles.mainContainer}>
         <MapView 
         showsUserLocation={true}
-        region={{
-          latitude: 39.06,
-          longitude: -95.22,
-        }}
-        maxDelta={3}
+        // followUserLocation={true} 
+        // even though default is true, must manually set followUserLocation to get autozoom
+        region={this.state.coordinates}
+        maxDelta={0.15}
         style={styles.map}
+        annotations={[this.state.coordinates]}
         >
         </MapView>
-        <Text>Here's the restaurant. Be there in 5 min. or else...</Text>
+        <Text>Here's the restaurant. Be there in 5 minutes, or else...</Text>
         <Text>{this.props.restaurant.name}</Text>
         <Text>{this.props.restaurant.location.address}</Text>
         <TouchableHighlight
