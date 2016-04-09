@@ -15,6 +15,7 @@ describe('Basic server functionality', () => {
       done();
     });
   });
+
   it('Should not accept and respond to GET requests at the non-existant endpoints', (done) => {
     $.get('http://127.0.0.1:8000/asdfsdf', function(data, status) {
       expect(status).toEqual('error');
@@ -22,6 +23,13 @@ describe('Basic server functionality', () => {
     })
     .fail(function(data, status) {
       expect(status).toEqual('error');
+      done();
+    });
+  });
+  it('Should return a match object when GET request is made to /match endpoint', (done) => {
+    $.get('http://127.0.0.1:8000/match', function(data, status) {
+      expect(data.restaurant).toBeDefined();
+      expect(data.matchedUser).toBeDefined();
       done();
     });
   });
@@ -55,4 +63,3 @@ describe('Basic database functionality', () => {
     });
   });
 });
-
