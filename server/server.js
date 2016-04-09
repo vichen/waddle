@@ -6,6 +6,7 @@ var express = require('express');
 var app = express();
 
 // TODO setup connection to database
+// mongoose.connect('mongodb://localhost:27017/penguin'); // TODO: update to server
 
 // passport middleware configuration
 // app.use(passport.initialize());
