@@ -1,15 +1,16 @@
 var React = require('react-native');
 
 var {
-  View,
-  Text,
-  StyleSheet,
   Component,
-  TouchableHighlight
+  View,
+  StyleSheet,
+  TouchableHighlight,
+  Image,
+  Text
 } = React;
 
+// var Selfie = require('./selfie');
 var Welcome = require('./welcome');
-var Selfie = require('./selfie');
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -20,11 +21,12 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#48BBEC'
   },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
+  image: {
+    alignSelf: 'center',
+    height: 200,
+    width: 200,
+    borderRadius: 40,
+    backgroundColor: "blue"
   },
   buttonText: {
     fontSize: 18,
@@ -45,52 +47,46 @@ var styles = StyleSheet.create({
   }
 });
 
-class Main extends Component{
+class LooksGood extends Component{
   constructor(props){
     super(props);
     this.state = {
-      // ?
-    }
+      picture: props.picture
+    };
   }
 
-  handleSubmit(){
-    console.log('insert OAuth integration here');
+  handleNotLookingGood(){
+    this.props.navigator.pop();
+  }
+
+  handleLookingGood(){
     this.props.navigator.push({
-      title: "Welcome",
+      title: 'Welcome!',
       component: Welcome,
-      passProps: {name: 'garbage'}
-      // make it impossible to go back to sign in screen
-      // passProps: {userInfo: res} 
-      // should pass user ID, other details as received from OAuth
-    });
-  }
-
-  handleNewUser(){
-    console.log('new user!');
-    this.props.navigator.push({
-      title: "Take a selfie!",
-      component: Selfie
+      passProps: {}
     })
   }
 
   render(){
     return (
       <View style={styles.mainContainer}>
+        <Text>How do you look?</Text>
+        <Image 
+          style={styles.image} 
+          source={{uri: this.props.picture}} />
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="rgba(255, 255, 255, 0.95)">
-          <Text style={styles.buttonText}>Sign in with Facebook</Text>
+          onPress={this.handleLookingGood.bind(this)}>
+          <Text style={styles.buttonText}>I look great!</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleNewUser.bind(this)}
-          underlayColor="rgba(255, 255, 255, 0.95)">
-          <Text style={styles.buttonText}>I'm new here</Text>
+          onPress={this.handleNotLookingGood.bind(this)}>
+          <Text style={styles.buttonText}>Let's try that again</Text>
         </TouchableHighlight>
       </View>
     )
   }
 };
 
-module.exports = Main;
+module.exports = LooksGood;
