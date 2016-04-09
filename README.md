@@ -3,29 +3,31 @@
 
 
 ##Introduction
-------
+======
   
 ##Technology Stack
+======
 
 ###Client Framework:
-
+------
 ####React Native
 
 ------
 ###Server Setup:
-
+------
 ####Node.js 
-
 ####Express
 
 ------
 ###Database
+------
 ####Mongodb
 ####Mongoose
 
 ------
 ###Testing
-###Jest
+------
+####Jest
 
 ------
 ###Continuous Integration 
