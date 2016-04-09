@@ -60,10 +60,12 @@ class LooksGood extends Component{
   }
 
   handleLookingGood(){
+    // do fetch POST request that includes photo
+    // photo is at filepath described in this.props.picture
     this.props.navigator.push({
       title: 'Welcome!',
-      component: Welcome,
-      passProps: {}
+      component: Welcome
+      // passProps: {}
     })
   }
 
