@@ -23,4 +23,18 @@ var userSchema = mongoose.Schema({
   profileImage: String
 });
 
+var matchRequestSchema = mongoose.Schema({
+  username: String,
+  timeStamp: { type: Date, default: Date.now }, // When did this user start looking for a match
+  isActive: { type: Boolean, default: true }
+});
+
+var successfulMatchSchema = mongoose.Schema({
+  firstMatchedUsername: String,
+  secondMatchedUsername: String,
+  matchTime: { type: Date, default: Date.now } // When did the match happen
+});
+
 exports.User = mongoose.model('User', userSchema);
+exports.MatchRequest = mongoose.model('MatchRequest', matchRequestSchema);
+exports.SuccessfulMatch = mongoose.model('SuccessfulMatch', successfulMatchSchema);
