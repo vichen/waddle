@@ -2,8 +2,8 @@
 ![](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
 
 ##Introduction
-------
->>>>>>> outline readme
+======
+>>>>>>> Adjust header assignment
   
 ##Technology Stack
 ======
