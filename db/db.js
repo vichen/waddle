@@ -78,7 +78,7 @@ exports.db = {
     return new Promise(function(resolve, reject) {
       User.remove(dbQueryObject, function(error) {
         if(error) {
-          reject(error)
+          reject(error);
         } else {
           resolve();
         }
