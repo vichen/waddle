@@ -3,7 +3,6 @@
 
 
 ##Introduction
-======
   
 ##Technology Stack
 ======
