@@ -29,12 +29,12 @@ exports.db = {
     });
   },
 
-  addUser: function(username, email, funfact, profileimage) {
+  addUser: function(username, email, funFact, profileImage) {
     var newDbEntry = {
       username: username,
       email: email,
-      funfact: funfact,
-      profileimage: profileimage
+      funFact: funFact,
+      profileImage: profileImage
     };
 
     var  newUser = new User(newDbEntry);

@@ -19,8 +19,8 @@ dbConnection.once('open', function() {
 var userSchema = mongoose.Schema({
   username: String,
   email: String,
-  funfact: String,
-  profileimage: String
+  funFact: String,
+  profileImage: String
 });
 
 exports.User = mongoose.model('User', userSchema);
