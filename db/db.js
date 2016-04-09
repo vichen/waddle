@@ -53,7 +53,7 @@ exports.db = {
 
   getAllUsers: function() {
     return new Promise(function(resolve, reject) {
-      User.find(function(error, users) {
+      User.find({}, function(error, users) {
         if (error) {
           console.log('ERROR calling getAll function', error);
           reject(error);
