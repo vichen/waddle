@@ -26,7 +26,7 @@ describe('Basic server functionality', () => {
       done();
     });
   });
-  xit('Should return a match object when GET request is made to /match endpoint', (done) => {
+  it('Should return a match object when GET request is made to /match endpoint', (done) => {
     $.get('http://127.0.0.1:8000/match', function(data, status) {
       expect(data.restaurant).toBeDefined();
       expect(data.matchedUser).toBeDefined();

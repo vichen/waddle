@@ -3,7 +3,8 @@ var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
 
-// var foursquare = require('./foursquare.js');
+// TODO update this to foursquare.js for deploy
+var foursquare = require('./foursquare.example.js');
 
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
@@ -54,10 +55,15 @@ module.exports = {
 
   getMatch: function(req, res) {
 
-    // TODO: remove the below 2 lines when we deploy. The below foursquare integration will not work becase we cannot upload API keys to 
-    // Github. As such, I am 'short-circuiting' this function be sending a 200 response. When we deploy, we should manually test the foursquare integration.
-    res.send(200);
-    return;
+    // This if statement will 'short-circuit' the getMatch function if we are not in deploy.
+    if (foursquare.client_id === '') {
+      var responseJSON = {
+        restaurant: restaurant,
+        matchedUser: matchedUser
+      };
+      res.send(200, responseJSON);
+      return;
+    }
 
     // Data will be sent as a JSON with the below keys
     var longitude = req.body.longitude;
