@@ -81,7 +81,6 @@ class LooksGood extends Component{
     xhr.open('POST', 'http://localhost:8000/upload');
     xhr.send(formdata);
 
-    
     this.props.navigator.push({
       title: 'Welcome!',
       component: Welcome
