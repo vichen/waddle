@@ -8,7 +8,8 @@ module.exports = function (app, express) {
   app.post('/signin', requestHandler.postSignin);
   app.post('/signup', requestHandler.postSignup);
   app.get('/match', requestHandler.getMatch);
-
+  app.get('/photos', requestHandler.getPhotos);
+  app.post('/photos', requestHandler.postPhotos);
 
   // facebook authentication
   app.get('/auth/facebook',
