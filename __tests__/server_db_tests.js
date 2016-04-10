@@ -36,7 +36,7 @@ describe('Basic server functionality', () => {
 });
 
 // Tests for database sign-in
-describe('Basic database functionality', () => {
+xdescribe('Basic database functionality', () => {
   it('Should be able to add new user to database and sign-in with that user', (done) => {
     var newUser = { username: 'test' };
     $.ajax({
