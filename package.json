@@ -17,14 +17,15 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "passport": "^0.3.2",
-    "passport-facebook": "^2.1.0", 
+    "passport-facebook": "^2.1.0",
     "bluebird": "^3.3.4",
     "mongoose": "^4.4.10",
     "react": "^0.14.8",
     "react-native": "^0.23.0"
   },
   "devDependencies": {
+    "jest-cli": "^0.10.0",
     "jquery": "^2.2.3",
-    "jest-cli": "^0.10.0"
+    "mockgoose": "^6.0.0"
   }
 }
