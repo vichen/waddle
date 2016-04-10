@@ -1,22 +1,6 @@
 // Require depedencies needed for testing
 jest.unmock('jquery');
 var $ = require('jquery');
- 
-jest.unmock('bluebird');
-var Promise = require('bluebird');
-
-jest.unmock('mongoose');
-var mongoose = require('mongoose');
-
-jest.unmock('../server/server.js');
-jest.unmock('express');
-jest.unmock('../server/config/routes.js');
-jest.unmock('../server/config/requestHandler.js');
-jest.unmock('passport');
-jest.unmock('fs');
-jest.unmock('../db/db.js');
-jest.unmock('../db/config.js');
-var server = require('../server/server.js');
 
 describe('Basic server functionality', () => {
   it('Should accept and respond to GET requests at the /match endpoint', (done) => {
