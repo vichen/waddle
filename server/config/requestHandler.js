@@ -3,8 +3,7 @@ var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
 
-//Foursquare API keys
-var foursquare = require('./foursquare.js');
+// var foursquare = require('./foursquare.js');
 
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
