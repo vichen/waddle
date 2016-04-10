@@ -20,26 +20,26 @@ module.exports = {
   getHome: function(req, res) {
     // TODO:
     // if user is aleady connected with FB
-      res.send('You are home!');  
+      res.send('You are home!');
     // else
   },
 
-  getSignin: function(req, res) { 
-    res.send('get signing in...'); 
+  getSignin: function(req, res) {
+    res.send('get signing in...');
   },
 
-  postSignin: function(req, res) { 
+  postSignin: function(req, res) {
     // check user exist in the database
     var username = req.body.username;
     var password = req.body.password;
     // if user exist
     if (Users[username]) {
       // send ok response and send to welcome
-      res.send('going to welcome page'); 
+      res.send('going to welcome page');
     } else {
     // else !exit
       // send user to signup page with username provided
-      res.send('user doesn\'t exist'); 
+      res.send('user doesn\'t exist');
     }
   },
 
@@ -47,7 +47,7 @@ module.exports = {
     // username, 
   },
 
-  getMatch: function(req, res) { 
+  getMatch: function(req, res) {
     var responseJSON = {
       restaurant: restaurant,
       matchedUser: matchedUser
