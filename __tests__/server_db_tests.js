@@ -6,10 +6,7 @@ jest.unmock('bluebird');
 var Promise = require('bluebird');
 
 jest.unmock('mongoose');
-jest.unmock('../db/config.js');
-var User = require('../db/config.js').User;
-
-jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+var mongoose = require('mongoose');
 
 describe('Basic server functionality', () => {
   it('Should accept and respond to GET requests at the /match endpoint', (done) => {
@@ -33,6 +30,12 @@ describe('Basic server functionality', () => {
       expect(status).toEqual('error');
       done();
     });
+  });
+});
+
+describe('Basic database functionality', () => {
+  it('...', (done) => {
+
   });
 });
 
