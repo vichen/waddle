@@ -18,7 +18,6 @@ var SuccessfulMatch = require('../../db/db').SuccessfulMatch;
 
 // Bluebird promises used for interacting with database
 var Promise = require('bluebird');
-
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
@@ -111,7 +110,7 @@ module.exports = {
 
   getProfilePhoto: function(req, res) {
     var username = req.params.username;
-    var file = username + '_' + 'profile.jpg' // profile image name
+    var file = username + '_' + 'profile.jpg'; // profile image name
 
     var options = {
       'Content-Type': 'image/jpeg',
@@ -147,5 +146,6 @@ module.exports = {
       res.writeHead(200, {'content-type': 'text/plain'});
       res.end(util.inspect({fields: fields, files: files})); // Like a console.dir
     });
-  }
+  }  
+
 };
