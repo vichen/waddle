@@ -53,6 +53,12 @@ module.exports = {
   },
 
   getMatch: function(req, res) {
+
+    // TODO: remove the below 2 lines when we deploy. The below foursquare integration will not work becase we cannot upload API keys to 
+    // Github. As such, I am 'short-circuiting' this function be sending a 200 response. When we deploy, we should manually test the foursquare integration.
+    res.send(200);
+    return;
+
     // Data will be sent as a JSON with the below keys
     var longitude = req.body.longitude;
     var latitude = req.body.latitude;
