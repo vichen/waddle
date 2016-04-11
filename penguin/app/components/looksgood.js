@@ -69,7 +69,8 @@ class LooksGood extends Component{
     var photo = {
       uri: this.props.picture,
       type: 'image/jpeg',
-      name: 'nthaniel' + '_' + 'profile.jpg' // hardcoded to a specific user; CHANGE
+      name: this.props.name + '_' + 'profile.jpg', // hardcoded to a specific user; CHANGE
+      username: this.props.name
     };
 
     var xhr = new XMLHttpRequest();
