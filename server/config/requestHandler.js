@@ -11,9 +11,10 @@ var restaurant = {"id":"513a4806c84c60d09153e2cc","name":"SQwers Izakaya & Sushi
 var matchedUser = {"username":"Nathaniel","email":"nedwards@gmail.com","funfact":"I can code all the things","profileimage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"};
 
 // Mongoose models
-var User = require('../../db/db').User;
-var MatchRequest = require('../../db/db').MatchRequest;
-var SuccessfulMatch = require('../../db/db').SuccessfulMatch;
+var db = require('../../db/db.js').db;
+var MatchRequest = require('../../db/config.js').MatchRequest;
+var SuccessfulMatch = require('../../db/config.js').SuccessfulMatch;
+
 
 // Bluebird promises used for interacting with database
 var Promise = require('bluebird');
@@ -75,50 +76,90 @@ module.exports = {
     res.status(200).send(responseJSON);
     return;
 
-    // Data will be sent as a JSON with the below keys
-    var longitude = req.body.longitude;
-    var latitude = req.body.latitude;
-    var username = req.body.username;
+    /*
+     * How the getMatch function works:
+     * Client will send a GET request to /match with 4 headers: username, longitude, latitude, requestType
+     *      - username is the username string
+     *      - longitude/latitude are user's location
+     *      - requestType is should equal either 'request-match' or 'retrieve-match'. 
+     *            >The first request made by the client should have a type of 'request-match'. This will instruct the server to start 
+     *             looking for a match. A '200' response means that the server has received the request and will start searching for a match. 
+     *            > After 60s, the client should send a follow-up request with the type 'retrieve-match'. 
+     *              This will instruct the server to return the match, if available.
+     */
 
-    var maxResults = 50; // max # of results to return
-    var searchRadius = 500; // # of meters from the specified longitude/latitude to search
+    // Request should contain the below headers
+    var longitude = req.headers.longitude;
+    var latitude = req.headers.latitude;
+    var username = req.headers.username;
+    var requestType = req.headers.requestType;
 
-    // This is the foursquare category id for 'food'. More categories can be found at https://developer.foursquare.com/categorytree. 
-    // We may want to pick a more strict category in the future as 'food' also includes some bars. If passing in multiple IDs, they
-    // should be comma separated.
-    var categoryId = '4d4b7105d754a06374d81259';
+    if (requestType === 'request-match') {
+      // Check for active requests
+      db.getMatchRequests()
+        .then(function(matchRequests) {
+          if (matchRequests.length > 0) {
+            // Match with the first available active request
+            var matchedUser = matchRequests[0];
+            matchedUser.isActive = false;
+            matchedUser.save(function(error) {
+              if (error) {
+                console.log('Could not update isActive status of matched user', matchedUser, error);
+                response.status(500).send();
+              } else {
+                foursquare.getRestaurant(longitude, latitude)
+                  .then(function(restaurant) {
+                    // Save the new match to the SuccessfulMatch table
+                    var newMatch = new SuccessfulMatch({
+                      firstMatchedUsername: matchedUser.username ,
+                      secondMatchedUsername: username,
+                      restaurant: restaurant
+                    });
+                    newMatch.save(function(error) {
+                      if (error) {
+                        console.log('Could not add match to SuccessfulMatch table', newMatch, error);
+                        response.status(500).send();
+                      } else {
+                        response.status(200).send();
+                      }
+                    });
+                  })
+                  .catch(function(error) {
+                    console.log('There was an error connecting to the Foursquare api', error);
+                    res.send(500);
+                  });
+              }
+            });
+          } else {
+            var newMatchRequest = new MatchRequest({ username: username });
+            newMatchRequest.save(function(error) {
+              if (error) {
+                console.log('Could not save user to MatchRequest table', username, error);
+                response.status(500).send();
+              } else {
+                response.status(200).send();
+              }
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log('Could not retrieve active match requests', error);
+          response.status(500).send();
+        });
 
-    var requestOptions = {
-      method: 'GET',
-      uri: 'https://api.foursquare.com/v2/venues/search',
-      qs: {
-        client_id: foursquare.client_id,
-        client_secret: foursquare.client_secret,
-        v: 20160405,
-        ll: '37.7835, -122.4089', // Hard-coding longitude for now. Should update with the above longitude/latitude variables once app can provide this data
-        limit: maxResults,
-        categoryId: categoryId,
-        radius: searchRadius
-      }
-    };
-
-    request(requestOptions, function(error, response, body) {
-      if (error) {
-        console.log('There was an error making a request to the Foursquare API', error);
-      } else {
-        var parsedBody = JSON.parse(body);
-        var restaurantList = parsedBody.response.venues;
-        // Picking a random restaurant from the list returned by Foursquare
-        var randomRestaurantIndex = Math.floor(Math.random() * restaurantList.length);
-        // JSON object that will be sent back to the client
-        var responseJSON = {
-          restaurant: restaurantList[randomRestaurantIndex],
-          matchedUser: matchedUser
-        };
-        var stringifiedResponseJSON = JSON.stringify(responseJSON);
-        res.send(responseJSON);
-      }
-    });
+    } else if (requestType === 'retrieve-match') {
+      getSuccessfulMatchForUser(username)
+        .then(function(match) {
+          match = JSON.stringify(match.toObject());
+          response.send(match);
+        })
+        .catch(function(error) {
+          console.log('Could not retrieve match for user', error);
+          response.status(500).send();
+        });
+    } else {
+      response.status(400).send();
+    }
   },
 
   getProfilePhoto: function(req, res) {
