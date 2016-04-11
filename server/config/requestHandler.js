@@ -164,22 +164,28 @@ module.exports = {
 
   getProfilePhoto: function(req, res) {
     var username = req.params.username;
-    var file = username + '_' + 'profile.jpg'; // profile image name
+    // var file = username + '_' + 'profile.jpg'; // profile image name
 
-    var options = {
-      'Content-Type': 'image/jpeg',
-      'root': __dirname + '/../uploads/' // directory which houses images
-    };
+    db.getUsers(username)
+      .then(function(user) {
+        console.log(user.profileImage);
+        var file  = user.profileImage;
+        var options = {
+          'Content-Type': 'image/jpeg',
+          'root': __dirname + '/../uploads/' // directory which houses images
+        };
 
-    res.sendFile(file, options, function(err) {
-      if (err) {
-        console.error(err);
-        res.status(err.status).end();
-      }
-      else {
-        console.log('Sent:', file);
-      }
-    });
+        res.sendFile(file, options, function(err) {
+          if (err) {
+            console.error(err);
+            res.status(err.status).end();
+          }
+          else {
+            console.log('Sent:', file);
+          }
+        });
+        
+      });
   },
 
   upload: function(req, res) {
@@ -187,16 +193,22 @@ module.exports = {
     form.uploadDir = "./server/uploads";
     form.keepExtensions = true;
 
-    form.on('file', function(field, file) {
-        //rename the incoming file to the file's name
-        console.log(file.path, form.uploadDir, file.name);
-          fs.rename(file.path, form.uploadDir + "/" + file.name);
-    });
+    // TODO: delete following renaming function
+    // form.on('file', function(field, file) {
+    //     //rename the incoming file to the file's name
+    //     console.log(file.path, form.uploadDir, file.name);
+    //       // fs.rename(file.path, form.uploadDir + "/" + file.name);
+    // });
 
     form.parse(req, function(err, fields, files) {
-      // TODO:
       // Associate files.photo.path [location of img on FS] with the appropriate user in database
-      // console.log(files.photo.path);
+      var username = files.photo.username;
+      var fileName = files.photo.path.replace('server/uploads/', '');
+      db.updateUser(username, {profileImage: fileName})
+        .then(function(user){
+          console.log('user updated: ', user);
+        });
+
       res.writeHead(200, {'content-type': 'text/plain'});
       res.end(util.inspect({fields: fields, files: files})); // Like a console.dir
     });
