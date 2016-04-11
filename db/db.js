@@ -31,10 +31,11 @@ exports.db = {
     });
   },
 
-  addUser: function(username, email, funFact, profileImage) {
+  addUser: function(username, firstName, email, funFact, profileImage) {
     var newDbEntry = {
       username: username,
       email: email,
+      firstName: firstName,
       funFact: funFact,
       profileImage: profileImage
     };
