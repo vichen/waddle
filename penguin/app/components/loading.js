@@ -33,18 +33,59 @@ class Loading extends Component{
       match: false
     };
 
-    fetch('http://159.203.254.178:8000/match')
-      .then((res) => res.json())
-      .then((json) => {
-        this.setState({restaurant: json.restaurant});
-        this.setState({match: json.matchedUser});
-        this.handleMatch();
-      });
+    // When the loading page opens, find user location and send it in GET headers to server
+    this.requestMatch();
+
+    // 5 seconds later, retrieve match from server and setState to include it
+    setTimeout(() => {
+      this.retrieveMatch();
+    }, 5000);
 
   }
 
+  requestMatch() {
+    // NOTE: React Native / Xcode / Xcode simulator are all a bit weird about location...
+    // If you see errors when first trying to get a user's current location:
+      // open the simulator, go to Debug menu > Location > Custom Location > 37.783610, -122.409002 (Hack Reactor's coordinates)
+    // You can also try messing with the Xcode location settings:
+      // open Xcode, go to Debug menu > Simulate Location > SF
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position);
+      fetch('http://159.203.254.178:8000/match', {
+        headers: {
+          requestType: 'request-match',
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude,
+          username: 'garbagio'
+        }
+      })
+        .catch((err) => {
+          console.log('error requesting match', err);
+        });
+    });
+  }
+
+  retrieveMatch() {
+    fetch('http://159.203.254.178:8000/match', {
+      headers: {
+        username: 'garbagio',
+        requestType: 'retrieve-match'
+      }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({restaurant: json.restaurant});
+        // NOTE: replace 'garbagio' with this.props.username when that's implemented
+        this.setState({match: json.firstMatchedUserName !== 'garbagio' ? json.firstMatchedUserName : json.secondMatchedUserName});
+        this.handleMatch();
+      })
+      .catch((err) => {
+        console.log('error retrieving match', err);
+      });
+  }
+
   handleMatch() {
-    setTimeout(() => { 
       this.setState({isLoading: false});
       this.props.navigator.push({
         title: 'Results',
@@ -54,7 +95,6 @@ class Loading extends Component{
           match: this.state.match
         }
       });
-    }, 2000); 
   }
 
   render() {
@@ -62,10 +102,10 @@ class Loading extends Component{
       <View style={styles.mainContainer}>
         <Text style={styles.loadingText}>Finding you your best match...</Text>
         <ActivityIndicatorIOS
-        animating={this.state.isLoading}
-        color="black"
-        size="large"
-        style={{transform: [{scale: 3}]}}>
+          animating={this.state.isLoading}
+          color="black"
+          size="large"
+          style={{transform: [{scale: 3}]}}>
         </ActivityIndicatorIOS>
       </View>
     )    
