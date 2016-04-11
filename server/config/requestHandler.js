@@ -113,23 +113,13 @@ module.exports = {
               } else {
                 foursquare.getRestaurant(longitude, latitude)
                   .then(function(restaurant) {
-                    // Stringifying for storage in mongodb
-                    var stringifiedMatchedUserObject = JSON.stringify(matchedUser.toObject());
-
-                    var userObject;
-                    db.getUsers(username)
-                      .then(function(users) {
-                        userObject = users[0].toObject();
-                      });
-                    var stringifiedUserObject = JSON.stringify(userObject);
-
-                    restaurant = JSON.stringify(restaurant);
-
                     // Save the new match to the SuccessfulMatch table
+                    var stringifiedRestaurant = JSON.stringify(restaurant);
+
                     var newMatch = new SuccessfulMatch({
-                      firstMatchedUsername: stringifiedMatchedUserObject,
-                      secondMatchedUsername: stringifiedUserObject,
-                      restaurant: restaurant
+                      firstMatchedUsername: matchedUser.username,
+                      secondMatchedUsername: username,
+                      restaurant: stringifiedRestaurant
                     });
                     newMatch.save(function(error) {
                       if (error) {
@@ -166,8 +156,25 @@ module.exports = {
     } else if (requestType === 'retrieve-match') {
       getSuccessfulMatchForUser(username)
         .then(function(match) {
-          match = JSON.stringify(match.toObject());
-          response.send(match);
+          var firstMatchedUser; // Will store user object matching first user in match
+          var secondMatchedUser; // Will store user object matching second user in match
+
+          db.getUsers(match.firstMatchedUsername)
+            .then(function(users) {
+              firstMatchedUser = users[0].toObject();
+
+              db.getUsers(match.secondMatchedUsername)
+                .then(function(users) {
+                  secondMatchedUser = users[0].toObject();
+                  var responseObject = {
+                    firstMatchedUsername: firstMatchedUsername,
+                    secondMatchedUsername: secondMatchedUsername,
+                    restaurant: JSON.parse(match.restaurant)
+                  };
+                  stringifiedResponseObject = JSON.stringify(responseObject);
+                  res.send(stringifiedResponseObject);
+                });
+            });
         })
         .catch(function(error) {
           console.log('Could not retrieve match for user', error);
