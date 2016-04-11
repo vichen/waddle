@@ -55,15 +55,13 @@ module.exports = {
 
   getMatch: function(req, res) {
 
-    // This if statement will 'short-circuit' the getMatch function if we are not in deploy.
-    if (foursquare.client_id === '') {
-      var responseJSON = {
-        restaurant: restaurant,
-        matchedUser: matchedUser
-      };
-      res.status(200).send(responseJSON);
-      return;
-    }
+    // Remove lines 59 through 64 when we deploy
+    var responseJSON = {
+      restaurant: restaurant,
+      matchedUser: matchedUser
+    };
+    res.status(200).send(responseJSON);
+    return;
 
     // Data will be sent as a JSON with the below keys
     var longitude = req.body.longitude;
