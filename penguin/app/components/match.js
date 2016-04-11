@@ -1,3 +1,7 @@
+// Displays a picture of the user's match once the user has indicated that they're at the restaurant. Also shows the
+// match's name and fun fact. There is a button to indicate that you've found your match, which will eventually take you
+// to an icebreaker / enjoy your lunch screen.
+
 var React = require('react-native');
 
 var {

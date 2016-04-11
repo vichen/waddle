@@ -1,3 +1,8 @@
+// This scene displays the results of the server's matching algorithm. Shows a mapview of a restaurant that is convenient
+// for both matches, as well as the name and address. There is also a button users can use to indicate that they've reached
+// the restaurant. In the future, we may want to augment this with geofencing (e.g. disable the button until the user
+// is close enough, or even automatically move on to the next screen).
+
 var React = require('react-native');
 
 var {

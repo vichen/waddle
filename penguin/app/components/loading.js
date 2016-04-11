@@ -1,3 +1,7 @@
+// The loading page once a match has been requested. This page makes an immediate GET request to the server
+// requesting a match. Then, after a period of time, it makes a second GET request to see if a match was found.
+// Currently, there is no flow for when a match is not found.
+
 var React = require('react-native');
 
 var {

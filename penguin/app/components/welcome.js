@@ -1,3 +1,5 @@
+// The landing page after login / new user flow. Greets the user and lets them request a match.
+
 var React = require('react-native');
 
 var {

@@ -1,3 +1,8 @@
+// Let users see the selfie they just took. If they don't like it, they can take another one.
+// If they're looking good, they can accept the selfie. This POSTS the image to the server's filesystem
+// and lets the user move on to the welcome page. Currently there is no way for a user to retake a selfie
+// once they've accepted it.
+
 var React = require('react-native');
 
 var {
@@ -9,7 +14,6 @@ var {
   Text
 } = React;
 
-// var Selfie = require('./selfie');
 var Welcome = require('./welcome');
 
 var styles = StyleSheet.create({
@@ -56,6 +60,7 @@ class LooksGood extends Component{
   }
 
   handleNotLookingGood(){
+    // For some reason, trying to push Selfie here did not work at all. But pop makes more sense anyway.
     this.props.navigator.pop();
   }
 
