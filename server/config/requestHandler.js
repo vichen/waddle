@@ -36,7 +36,6 @@ module.exports = {
     // check user exist in the database
     console.log('postSignin fired!', req.body);
     var username = req.body.username;
-
     var email = req.body.email;
     db.getUsers(username, email)
       .then(function(users){
