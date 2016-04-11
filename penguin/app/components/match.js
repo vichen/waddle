@@ -52,7 +52,7 @@ class Match extends Component{
     return (
       <View style={styles.mainContainer}>
         <Image 
-        source={{uri: 'http://vignette4.wikia.nocookie.net/animalcrossing/images/5/51/Rubber-duck.png'}}
+        source={{uri: 'http://localhost:8000/users/nthaniel/profilePhoto'}}
         // resizeMode="cover"
         onLoadEnd={()=>{console.log('image actually loaded, so........')}}
         style={styles.image}
