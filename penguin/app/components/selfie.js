@@ -78,7 +78,10 @@ class Selfie extends Component{
     this.props.navigator.push({
       title: "Looking Good!",
       component: LooksGood,
-      passProps: {picture: this.state.picture}
+      passProps: {
+        picture: this.state.picture,
+        name: this.props.name
+      }
     });
   }
 };

@@ -69,7 +69,8 @@ class LooksGood extends Component{
     var photo = {
       uri: this.props.picture,
       type: 'image/jpeg',
-      name: 'nthaniel' + '_' + 'profile.jpg' // hardcoded to a specific user; CHANGE
+      name: this.props.name + '_' + 'profile.jpg', // hardcoded to a specific user; CHANGE
+      username: this.props.name
     };
 
     var xhr = new XMLHttpRequest();
@@ -83,8 +84,10 @@ class LooksGood extends Component{
 
     this.props.navigator.push({
       title: 'Welcome!',
-      component: Welcome
-      // passProps: {}
+      component: Welcome,
+      passProps: {
+        name: this.props.name
+      }
     });
   }
 

@@ -5,6 +5,7 @@ var {
   Text,
   StyleSheet,
   Component,
+  TextInput,
   TouchableHighlight
 } = React;
 
@@ -25,6 +26,16 @@ var styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
+  },
+  textInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 8,
+    color: 'white'
   },
   buttonText: {
     fontSize: 18,
@@ -49,8 +60,14 @@ class Main extends Component{
   constructor(props){
     super(props);
     this.state = {
-      // ?
+      username: ''
     }
+  }
+
+  handleChange(e) {
+    this.setState({
+      username: e.nativeEvent.text
+    })
   }
 
   handleSubmit(){
@@ -58,7 +75,7 @@ class Main extends Component{
     this.props.navigator.push({
       title: "Welcome",
       component: Welcome,
-      passProps: {name: 'garbage'}
+      passProps: {name: this.state.username}
       // make it impossible to go back to sign in screen
       // passProps: {userInfo: res} 
       // should pass user ID, other details as received from OAuth
@@ -69,13 +86,19 @@ class Main extends Component{
     console.log('new user!');
     this.props.navigator.push({
       title: "Take a selfie!",
-      component: Selfie
+      component: Selfie,
+      passProps: {name: this.state.username}
     })
   }
 
   render(){
     return (
       <View style={styles.mainContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder='Username'
+          onChange={this.handleChange.bind(this)}
+        />
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
