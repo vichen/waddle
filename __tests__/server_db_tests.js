@@ -55,7 +55,8 @@ describe('Basic server functionality', () => {
       } else {
         body = JSON.parse(body);
         expect(body.restaurant).toBeDefined();
-        expect(body.matchedUser).toBeDefined();
+        expect(body.firstMatchedUser).toBeDefined();
+        expect(body.secondMatchedUser).toBeDefined();
         done();
       }
     });
