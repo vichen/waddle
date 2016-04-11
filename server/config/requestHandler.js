@@ -164,12 +164,13 @@ module.exports = {
 
   getProfilePhoto: function(req, res) {
     var username = req.params.username;
+    console.log(username);
     // var file = username + '_' + 'profile.jpg'; // profile image name
 
     db.getUsers(username)
-      .then(function(user) {
-        console.log(user.profileImage);
-        var file  = user.profileImage;
+      .then(function(users) {
+        console.log(users[0]);
+        var file  = users[0].profileImage;
         var options = {
           'Content-Type': 'image/jpeg',
           'root': __dirname + '/../uploads/' // directory which houses images
