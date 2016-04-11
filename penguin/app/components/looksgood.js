@@ -62,7 +62,7 @@ class LooksGood extends Component{
   handleLookingGood(){
     // do fetch POST request that includes photo
     // photo is at filepath described in this.props.picture
-  
+
     // Create a special object with a
     // uri property. This will be appended
     // to formdata and sent with our post
