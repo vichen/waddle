@@ -62,18 +62,10 @@ class LooksGood extends Component{
   handleLookingGood(){
     // do fetch POST request that includes photo
     // photo is at filepath described in this.props.picture
-    // 
-    // fetch('http://localhost:8000/photos', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     uri: this.props.picture,
-    //   })
-    // });
-
+    
+    // Create a special object with a
+    // uri property. This will be appended
+    // to formdata and sent with our post
     var photo = {
       uri: this.props.picture,
       type: 'image/jpeg',
