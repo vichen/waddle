@@ -1,3 +1,5 @@
 node_modules/
 server/config/facebook.js
 server/config/foursquare.js
+server/uploads/
+.DS_Store
