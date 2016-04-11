@@ -98,38 +98,79 @@ class Main extends Component{
   constructor(props){
     super(props);
     this.state = {
-      username: ''
-    }
+      username: '',
+      error: false
+    };
   }
 
   handleChange(e) {
     this.setState({
       username: e.nativeEvent.text
-    })
+    });
   }
 
   handleSubmit(){
     console.log('insert OAuth integration here');
-    this.props.navigator.push({
-      title: "Welcome",
-      component: Welcome,
-      passProps: {name: this.state.username}
-      // make it impossible to go back to sign in screen
-      // passProps: {userInfo: res} 
-      // should pass user ID, other details as received from OAuth
-    });
+    var url = 'http://localhost:8000/signin';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username
+      })
+    })
+    .then(function(res){
+      if (res.status == 200) {
+        this.setState({
+          error: false
+        });
+        this.props.navigator.push({
+          title: "Welcome",
+          component: Welcome,
+          passProps: {name: this.state.username}
+          // make it impossible to go back to sign in screen
+          // passProps: {userInfo: res} 
+          // should pass user ID, other details as received from OAuth
+        });
+      } else {
+        this.setState({
+          error: 'Invalid Username'
+        });
+      }
+    }.bind(this));
+
   }
 
   handleNewUser(){
     console.log('new user!');
-    this.props.navigator.push({
-      title: "Take a selfie!",
-      component: Selfie,
-      passProps: {name: this.state.username}
+
+    var url = 'http://localhost:8000/signup';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username
+      })
     })
+    .then(function(res){
+      console.log('this is the response: ', res);
+      // TODO: handle duplicate usernames
+      this.props.navigator.push({
+        title: "Take a selfie!",
+        component: Selfie,
+        passProps: {name: this.state.username}
+      });
+    }.bind(this));
+
   }
 
   render(){
+    var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
     return (
       <View style={styles.mainContainer}>
         <TextInput
@@ -141,7 +182,7 @@ class Main extends Component{
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
           underlayColor="rgba(255, 255, 255, 0.95)">
-          <Text style={styles.buttonText}>Sign in with Facebook</Text>
+          <Text style={styles.buttonText}>Sign in</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
@@ -149,6 +190,7 @@ class Main extends Component{
           underlayColor="rgba(255, 255, 255, 0.95)">
           <Text style={styles.buttonText}>I'm new here</Text>
         </TouchableHighlight>
+        {showErr}
       </View>
     )
   }

@@ -56,7 +56,7 @@ class Match extends Component{
     return (
       <View style={styles.mainContainer}>
         <Image 
-        source={{uri: 'http://localhost:8000/users/nthaniel/profilePhoto'}}
+        source={{uri: 'http://localhost:8000/users/allen/profilePhoto'}}
         // resizeMode="cover"
         onLoadEnd={()=>{console.log('image actually loaded, so........')}}
         style={styles.image}

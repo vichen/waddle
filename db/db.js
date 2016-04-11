@@ -31,10 +31,11 @@ exports.db = {
     });
   },
 
-  addUser: function(username, email, funFact, profileImage) {
+  addUser: function(username, firstName, email, funFact, profileImage) {
     var newDbEntry = {
       username: username,
       email: email,
+      firstName: firstName,
       funFact: funFact,
       profileImage: profileImage
     };
@@ -118,6 +119,19 @@ exports.db = {
             }
           }
           resolve(latestMatch);
+        }
+      });
+    });
+  },
+
+  updateUser: function(username, newInfo) {
+    return new Promise(function(resolve, reject) {
+      User.update({username: username}, newInfo, function(error, resp) {
+        if (error) {
+          console.log('ERROR calling updateUser', error);
+          reject(error);
+        } else {
+          resolve(resp);
         }
       });
     });
