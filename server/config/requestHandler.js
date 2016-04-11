@@ -110,9 +110,9 @@ module.exports = {
                 foursquare.getRestaurant(longitude, latitude)
                   .then(function(restaurant) {
                     // Save the new match to the SuccessfulMatch table
-                    var newMatch = new SuccessfulMatch({ 
-                      firstMatchedUsername: matchedUser.username , 
-                      secondMatchedUsername: username, 
+                    var newMatch = new SuccessfulMatch({
+                      firstMatchedUsername: matchedUser.username ,
+                      secondMatchedUsername: username,
                       restaurant: restaurant
                     });
                     newMatch.save(function(error) {
@@ -150,6 +150,7 @@ module.exports = {
     } else if (requestType === 'retrieve-match') {
       getSuccessfulMatchForUser(username)
         .then(function(match) {
+          match = JSON.stringify(match.toObject());
           response.send(match);
         })
         .catch(function(error) {
