@@ -5,7 +5,6 @@ var formidable = require('formidable')
 var restaurant = {"id":"513a4806c84c60d09153e2cc","name":"SQwers Izakaya & Sushi BAR","contact":{"phone":"4157029979","formattedPhone":"(415) 702-9979"},"location":{"address":"3015 Geary Blvd","crossStreet":"bwtn Cook St & Blake St","lat":37.781747440661505,"lng":-122.45133876800537,"distance":418,"postalCode":"94118","mayNotNeedAddress":false,"cc":"US","city":"San Francisco","state":"CA","country":"United States","formattedAddress":["3015 Geary Blvd (bwtn Cook St & Blake St)","San Francisco, CA 94118","United States"]},"categories":[{"id":"4bf58dd8d48988d1d2941735","name":"Sushi Restaurant","pluralName":"Sushi Restaurants","shortName":"Sushi","icon":{"prefix":"https://ss3.4sqi.net/img/categories_v2/food/sushi_","suffix":".png"},"primary":true}],"verified":false,"stats":{"checkinsCount":313,"usersCount":199,"tipCount":10},"url":"http://sqwers.eat24hour.com","delivery":{"id":"27042","url":"http://www.seamless.com/food-delivery/restaurant.27042.r?a=1026&utm_source=Foursquare&utm_medium=affiliate&utm_campaign=SeamlessOrderDeliveryLink","provider":{"name":"seamless"}},"allowMenuUrlEdit":true,"specials":{"count":0,"items":[]},"hereNow":{"count":0,"summary":"Nobody here","groups":[]},"referralId":"v-1460144909","venueChains":[]};
 var matchedUser = {"username":"Nathaniel","email":"nedwards@gmail.com","funfact":"I can code all the things","profileimage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"};
 
-var Photos = [{uri: matchedUser.profileimage}];
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
@@ -59,20 +58,16 @@ module.exports = {
   },
 
   postPhotos: function(req, res) {
-    // var photo = req.body
-    // Photos.push(photo);
-
-    // res.json(photo);
     var form = new formidable.IncomingForm();
     form.uploadDir = "./server/uploads";
     form.keepExtensions = true;
 
     form.parse(req, function(err, fields, files) {
-      // res.writeHead(200, {'content-type': 'text/plain'});
-      console.log(fields);
-      console.log(files.photo.path);
+      // TODO:
+      // Associate files.photo.path [location of img on FS] with the appropriate user in database
 
-      res.end(util.inspect({fields: fields, files: files}));
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.end(util.inspect({fields: fields, files: files})); // Like a console.dir
     });
   }
 };
