@@ -22,28 +22,34 @@ module.exports = {
 
   postSignin: function(req, res) { 
     // check user exist in the database
+    console.log('postSignin fired!', req.body);
     var username = req.body.username;
-    // if user exist
-    if (Users[username]) {
-      // send ok response and send to welcome
-      res.status(200).send('Acceptable');
-    } else {
-    // else !exist
-      // send user to signup page with username provided
-      res.status(401).send('Unauthorized');
-    }
+    var email = req.body.email;
+    db.getUsers(username, email)
+      .then(function(users){
+        if (users.length) {
+          res.status(200).send('Sign in successful');
+        } else {
+          res.status(401).send('incorrect username or email');
+        }
+      })
+      .catch(function(err){
+        console.log(err);
+      });
   },
 
   postSignup: function(req, res) {
-    var username= req.body.username;
-    var email= req.body.email;
-    var funFact= req.body.funFact;
-    var profileImage= req.body.profileImage;
+    var username = req.body.username;
+    var email = req.body.email;
+    var funFact = req.body.funFact;
+    var profileImage = req.body.profileImage;
 
     db.addUser(username, email, funFact, profileImage)
       .then(function(user){
-        console.log('login successful');
         res.status(201).send('User Created');
+      })
+      .catch(function(err){
+        console.log(err);
       });
   },
 
