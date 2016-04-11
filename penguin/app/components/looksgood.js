@@ -78,7 +78,7 @@ class LooksGood extends Component{
     formdata.append('photo', photo);
 
 
-    xhr.open('POST', 'http://localhost:8000/photos');
+    xhr.open('POST', 'http://localhost:8000/upload');
     xhr.send(formdata);
 
     

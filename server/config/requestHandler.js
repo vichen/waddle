@@ -49,15 +49,17 @@ module.exports = {
     res.send(responseJSON);
   },
 
-  getPhotos: function(req, res) {
-    var responseJSON = {
-      photos: Photos
-    }
+  getProfilePhoto: function(req, res) {
+    var name = req.params.name;
 
-    res.send(responseJSON);
+    // Build path to user profile photo
+    // server/uploads/name/profile.jpg
+
+    // Temporary-- Eventually respond with userPhoto
+    res.sendStatus(200);
   },
 
-  postPhotos: function(req, res) {
+  upload: function(req, res) {
     var form = new formidable.IncomingForm();
     form.uploadDir = "./server/uploads";
     form.keepExtensions = true;
