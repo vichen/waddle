@@ -78,7 +78,6 @@ class Loading extends Component{
         this.setState({restaurant: json.restaurant});
         // NOTE: replace 'garbagio' with this.props.username when that's implemented
         this.setState({match: json.firstMatchedUserName !== 'garbagio' ? json.firstMatchedUserName : json.secondMatchedUserName});
-        this.setState({match: json.matchedUser});
         this.handleMatch();
       })
       .catch((err) => {
