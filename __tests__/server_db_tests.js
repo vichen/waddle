@@ -63,29 +63,33 @@ describe('Basic server functionality', () => {
 });
 
 // Tests for database sign-in
-xdescribe('Basic database functionality', () => {
+xdescribe('Basic sign-in/sign-up functionality', () => {
   it('Should be able to add new user to database and sign-in with that user', (done) => {
     var newUser = { username: 'test' };
-    $.ajax({
-      method: 'POST',
+    request({
       url: '127.0.0.1:8000/signup',
-      data: newUser,
-      success: function(data) {
-        $.post('127.0.0.1:8000/signin', newUser, function(data) {
-          // TODO update the below based on your actual implementation of the sign-in request handler
-          expect(data).toEqual('going to welcome page');
-          done();
-        })
-        .fail(function() {
-          // Automatically failing if the request does not go through
-          expect(true).toEqual(false);
-          done();
-        });
-      },
-      error: function() {
-        // Automatically failing if there is an error
+      method: 'POST',
+      json: newUser
+    }, function(error, response, body) {
+      if (error) {
+        // Automatically failing if the request does not go through
         expect(true).toEqual(false);
         done();
+      } else {
+        request({
+          url: '127.0.0.1:8000/signin',
+          method: 'POST',
+          json: newUser
+        }, function(error, response, body) {
+          if (error) {
+            // Automatically failing if the request does not go through
+            expect(true).toEqual(false);
+            done();
+          } else {
+            // TODO update the below based on your actual implementation of the sign-in request handler
+            expect('body').toEqual('going to welcome page');
+          }
+        });
       }
     });
   });
