@@ -98,7 +98,7 @@ module.exports = {
       // Check for active requests
       db.getMatchRequests()
         .then(function(matchRequests) {
-          if (matchRequests.length !== 0) {
+          if (matchRequests.length > 0) {
             // Match with the first available active request
             var matchedUser = matchRequests[0];
             matchedUser.isActive = false;
@@ -107,16 +107,27 @@ module.exports = {
                 console.log('Could not update isActive status of matched user', matchedUser, error);
                 response.status(500).send();
               } else {
-                // Save the new match to the SuccessfulMatch table
-                var newMatch = new SuccessfulMatch({ firstMatchedUsername: matchedUser.username , secondMatchedUsername: username});
-                newMatch.save(function(error) {
-                  if (error) {
-                    console.log('Could not add match to SuccessfulMatch table', newMatch, error);
-                    response.status(500).send();
-                  } else {
-                    response.status(200).send();
-                  }
-                });
+                foursquare.getRestaurant(longitude, latitude)
+                  .then(function(restaurant) {
+                    // Save the new match to the SuccessfulMatch table
+                    var newMatch = new SuccessfulMatch({ 
+                      firstMatchedUsername: matchedUser.username , 
+                      secondMatchedUsername: username, 
+                      restaurant: restaurant
+                    });
+                    newMatch.save(function(error) {
+                      if (error) {
+                        console.log('Could not add match to SuccessfulMatch table', newMatch, error);
+                        response.status(500).send();
+                      } else {
+                        response.status(200).send();
+                      }
+                    });
+                  })
+                  .catch(function(error) {
+                    console.log('There was an error connecting to the Foursquare api', error);
+                    res.send(500);
+                  });
               }
             });
           } else {
@@ -137,17 +148,14 @@ module.exports = {
         });
 
     } else if (requestType === 'retrieve-match') {
-      var matchedRestaurant;
-      foursquare.getRestaurant(longitude, latitude)
-        .then(function(restaurant) {
-          matchedRestaurant = restaurant;
+      getSuccessfulMatchForUser(username)
+        .then(function(match) {
+          response.send(match);
         })
         .catch(function(error) {
-          console.log('There was an error connecting to the Foursquare api', error);
-          res.send(500);
+          console.log('Could not retrieve match for user', error);
+          response.status(500).send();
         });
-
-
     } else {
       response.status(400).send();
     }
