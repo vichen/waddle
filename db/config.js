@@ -18,6 +18,7 @@ dbConnection.once('open', function() {
 // Database schema
 var userSchema = mongoose.Schema({
   username: String,
+  firstName: String,
   email: String,
   funFact: String,
   profileImage: String
