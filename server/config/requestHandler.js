@@ -35,20 +35,30 @@ module.exports = {
   postSignin: function(req, res) {
     // check user exist in the database
     var username = req.body.username;
-    var password = req.body.password;
     // if user exist
     if (Users[username]) {
       // send ok response and send to welcome
       res.send('going to welcome page');
     } else {
-    // else !exit
+    // else !exist
       // send user to signup page with username provided
-      res.send('user doesn\'t exist');
+      res.status(401).send('Unauthorized');
     }
   },
 
   postSignup: function(req, rep) {
-    // username, 
+    console.log(req.body);
+    var user = {
+      username: req.body.username,
+      email: req.body.email,
+      funFact: req.body.funFact,
+      profileImage: req.body.profileImage
+    };
+
+    User.create(user, function (err, user) {
+      if (err) return handleError(err);
+      res.status(201).send('User Created');
+    });
   },
 
   getMatch: function(req, res) {
