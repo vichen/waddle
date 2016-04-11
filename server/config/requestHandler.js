@@ -12,6 +12,7 @@ var firstMatchedUser = {"username":"Nathaniel","email":"nedwards@gmail.com","fun
 var secondMatchedUser = {"username":"Sloth","email":"sloth@slothmail.com","funfact":"I am a sloth","profileimage":"https://i.ytimg.com/vi/x6VgzTsToyY/hqdefault.jpg"};
 
 // Mongoose models
+var mongoose = require('mongoose');
 var db = require('../../db/db.js').db;
 var MatchRequest = require('../../db/config.js').MatchRequest;
 var SuccessfulMatch = require('../../db/config.js').SuccessfulMatch;
@@ -112,10 +113,22 @@ module.exports = {
               } else {
                 foursquare.getRestaurant(longitude, latitude)
                   .then(function(restaurant) {
+                    // Stringifying for storage in mongodb
+                    var stringifiedMatchedUserObject = JSON.stringify(matchedUser.toObject());
+
+                    var userObject;
+                    db.getUsers(username)
+                      .then(function(users) {
+                        userObject = users[0].toObject();
+                      });
+                    var stringifiedUserObject = JSON.stringify(userObject);
+
+                    restaurant = JSON.stringify(restaurant);
+
                     // Save the new match to the SuccessfulMatch table
                     var newMatch = new SuccessfulMatch({
-                      firstMatchedUsername: matchedUser.username ,
-                      secondMatchedUsername: username,
+                      firstMatchedUsername: stringifiedMatchedUserObject,
+                      secondMatchedUsername: stringifiedUserObject,
                       restaurant: restaurant
                     });
                     newMatch.save(function(error) {

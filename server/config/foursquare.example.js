@@ -36,7 +36,7 @@ exports.getRestaurant = function(longitude, latitude) {
         // Picking a random restaurant from the list returned by Foursquare
         var randomRestaurantIndex = Math.floor(Math.random() * restaurantList.length);
         // JSON object that will be sent back to the client
-        resolve(JSON.stringify(restaurantList[randomRestaurantIndex]));
+        resolve(restaurantList[randomRestaurantIndex]);
       }
     });
   });
