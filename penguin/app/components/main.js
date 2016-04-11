@@ -84,13 +84,10 @@ class Main extends Component{
       })
     })
     .then(function(res){
-      console.log('this is the response: ', res);
-      // if 200
       if (res.status == 200) {
         this.setState({
           error: false
         });
-        // push to welcome
         this.props.navigator.push({
           title: "Welcome",
           component: Welcome,
@@ -99,19 +96,33 @@ class Main extends Component{
           // passProps: {userInfo: res} 
           // should pass user ID, other details as received from OAuth
         });
-      // else 401
       } else {
         this.setState({
           error: 'Invalid Username'
         });
       }
-        // username doesn't exist
     }.bind(this));
 
   }
 
   handleNewUser(){
     console.log('new user!');
+
+    var url = 'http://localhost:8000/signup';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username
+      })
+    })
+    .then(function(res){
+      console.log('this is the response: ', res);
+    }.bind(this));
+
     this.props.navigator.push({
       title: "Take a selfie!",
       component: Selfie,
@@ -132,7 +143,7 @@ class Main extends Component{
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
           underlayColor="rgba(255, 255, 255, 0.95)">
-          <Text style={styles.buttonText}>Sign in with Facebook</Text>
+          <Text style={styles.buttonText}>Sign in</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
