@@ -3,14 +3,16 @@ var bodyParser = require('body-parser');
 // var facebook = require('./config/facebook.js');
 // var passport = require('passport');
 // var FacebookStrategy = require('passport-facebook').Strategy;
-var bodyParser = require('body-parser');
 var app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
 app.use(bodyParser.json());
 
 // TODO setup connection to database
-// mongoose.connect('mongodb://localhost:27017/penguin'); // TODO: update to server
-
+// mongoose.connect('mongodb://localhost/penguin'); // TODO: update to server
 // passport middleware configuration
 // app.use(passport.initialize());
 // app.use(passport.session());
