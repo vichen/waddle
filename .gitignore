@@ -1,5 +1,5 @@
 node_modules/
 server/config/facebook.js
 server/config/foursquare.js
-server/uploads/
+server/uploads/*.jpg
 .DS_Store
