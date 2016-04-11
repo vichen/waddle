@@ -84,5 +84,20 @@ exports.db = {
         }
       });
     });
+  },
+
+  getMatchRequests: function() {
+    // Will only look for requests made in the last 2 minutes
+    var requestTimeCutoff = new Date() - (2 * 60 * 1000); // = 2min * 60s/min * 1000ms/s
+    return new Promise(function(resolve, reject) {
+      MatchRequest.find({ isActive: true, timeStamp: { $gt: requestTimeCutoff } }, function(error, matchRequests) {
+        if (error) {
+          console.log('Could not retrieve active match requests', error);
+          reject(error);
+        } else {
+          resolve(matchRequests);
+        }
+      });
+    });
   }
 };
