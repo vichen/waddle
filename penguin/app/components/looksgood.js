@@ -63,22 +63,38 @@ class LooksGood extends Component{
     // do fetch POST request that includes photo
     // photo is at filepath described in this.props.picture
     // 
-    fetch('http://localhost:8000/photos', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        uri: this.props.picture,
-      })
-    });
+    // fetch('http://localhost:8000/photos', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     uri: this.props.picture,
+    //   })
+    // });
+
+    var photo = {
+      uri: this.props.picture,
+      type: 'image/jpeg',
+      name: 'photo.jpg',
+    };
+
+    var xhr = new XMLHttpRequest();
+    var formdata = new FormData();
+    formdata.append('Content-Type', 'multipart/form-data');
+    formdata.append('photo', photo);
+
+
+    xhr.open('POST', 'http://localhost:8000/photos');
+    xhr.send(formdata);
+
     
     this.props.navigator.push({
       title: 'Welcome!',
       component: Welcome
       // passProps: {}
-    })
+    });
   }
 
   render(){
