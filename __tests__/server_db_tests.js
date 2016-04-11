@@ -43,11 +43,21 @@ describe('Basic server functionality', () => {
         done();
       });
   });
-  xit('Should return a match object when GET request is made to /match endpoint', (done) => {
-    $.get('http://127.0.0.1:8000/match', function(data, status) {
-      expect(data.restaurant).toBeDefined();
-      expect(data.matchedUser).toBeDefined();
-      done();
+  it('Should return a match object when GET request is made to /match endpoint', (done) => {
+    request({
+      url: 'http://127.0.0.1:8000/match',
+      method: 'GET',
+    }, function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /arglebargle', error);
+        done();
+      } else {
+        body = JSON.parse(body);
+        expect(body.restaurant).toBeDefined();
+        expect(body.matchedUser).toBeDefined();
+        done();
+      }
     });
   });
 });
