@@ -64,6 +64,12 @@ class Main extends Component{
     }
   }
 
+  handleChange(e) {
+    this.setState({
+      username: e.nativeEvent.text
+    })
+  }
+
   handleSubmit(){
     console.log('insert OAuth integration here');
     this.props.navigator.push({
@@ -91,6 +97,7 @@ class Main extends Component{
         <TextInput
           style={styles.textInput}
           placeholder='Username'
+          onChange={this.handleChange.bind(this)}
         />
         <TouchableHighlight
           style={styles.button}
