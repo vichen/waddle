@@ -63,11 +63,11 @@ describe('Basic server functionality', () => {
 });
 
 // Tests for database sign-in
-xdescribe('Basic sign-in/sign-up functionality', () => {
+describe('Basic sign-in/sign-up functionality', () => {
   it('Should be able to add new user to database and sign-in with that user', (done) => {
     var newUser = { username: 'test' };
     request({
-      url: '127.0.0.1:8000/signup',
+      url: 'http://127.0.0.1:8000/signup',
       method: 'POST',
       json: newUser
     }, function(error, response, body) {
@@ -77,9 +77,9 @@ xdescribe('Basic sign-in/sign-up functionality', () => {
         done();
       } else {
         request({
-          url: '127.0.0.1:8000/signin',
+          url: 'http://127.0.0.1:8000/signin',
           method: 'POST',
-          json: newUser
+          json: newUser,
         }, function(error, response, body) {
           if (error) {
             // Automatically failing if the request does not go through
@@ -87,7 +87,8 @@ xdescribe('Basic sign-in/sign-up functionality', () => {
             done();
           } else {
             // TODO update the below based on your actual implementation of the sign-in request handler
-            expect('body').toEqual('going to welcome page');
+            expect(response.statusCode).toEqual(200);
+            done();
           }
         });
       }

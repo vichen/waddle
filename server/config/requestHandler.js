@@ -59,7 +59,7 @@ module.exports = {
 
     db.addUser(username, email, funFact, profileImage)
       .then(function(user){
-        res.status(201).send('User Created');
+        res.status(201).send('User Create!');
       })
       .catch(function(err){
         console.log(err);
