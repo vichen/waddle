@@ -8,9 +8,11 @@ var db = require('../../db/db.js').db;
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
 var restaurant = {"id":"513a4806c84c60d09153e2cc","name":"SQwers Izakaya & Sushi BAR","contact":{"phone":"4157029979","formattedPhone":"(415) 702-9979"},"location":{"address":"3015 Geary Blvd","crossStreet":"bwtn Cook St & Blake St","lat":37.781747440661505,"lng":-122.45133876800537,"distance":418,"postalCode":"94118","mayNotNeedAddress":false,"cc":"US","city":"San Francisco","state":"CA","country":"United States","formattedAddress":["3015 Geary Blvd (bwtn Cook St & Blake St)","San Francisco, CA 94118","United States"]},"categories":[{"id":"4bf58dd8d48988d1d2941735","name":"Sushi Restaurant","pluralName":"Sushi Restaurants","shortName":"Sushi","icon":{"prefix":"https://ss3.4sqi.net/img/categories_v2/food/sushi_","suffix":".png"},"primary":true}],"verified":false,"stats":{"checkinsCount":313,"usersCount":199,"tipCount":10},"url":"http://sqwers.eat24hour.com","delivery":{"id":"27042","url":"http://www.seamless.com/food-delivery/restaurant.27042.r?a=1026&utm_source=Foursquare&utm_medium=affiliate&utm_campaign=SeamlessOrderDeliveryLink","provider":{"name":"seamless"}},"allowMenuUrlEdit":true,"specials":{"count":0,"items":[]},"hereNow":{"count":0,"summary":"Nobody here","groups":[]},"referralId":"v-1460144909","venueChains":[]};
-var matchedUser = {"username":"Nathaniel","email":"nedwards@gmail.com","funfact":"I can code all the things","profileimage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"};
+var firstMatchedUser = {"username":"Nathaniel","email":"nedwards@gmail.com","funfact":"I can code all the things","profileimage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"};
+var secondMatchedUser = {"username":"Sloth","email":"sloth@slothmail.com","funfact":"I am a sloth","profileimage":"https://i.ytimg.com/vi/x6VgzTsToyY/hqdefault.jpg"};
 
 // Mongoose models
+var mongoose = require('mongoose');
 var db = require('../../db/db.js').db;
 var MatchRequest = require('../../db/config.js').MatchRequest;
 var SuccessfulMatch = require('../../db/config.js').SuccessfulMatch;
@@ -71,7 +73,9 @@ module.exports = {
     // Remove lines 59 through 64 when we deploy
     var responseJSON = {
       restaurant: restaurant,
-      matchedUser: matchedUser
+      firstMatchedUser: firstMatchedUser,
+      secondMatchedUser: secondMatchedUser,
+      matchTime: new Date()
     };
     res.status(200).send(responseJSON);
     return;
@@ -110,10 +114,12 @@ module.exports = {
                 foursquare.getRestaurant(longitude, latitude)
                   .then(function(restaurant) {
                     // Save the new match to the SuccessfulMatch table
+                    var stringifiedRestaurant = JSON.stringify(restaurant);
+
                     var newMatch = new SuccessfulMatch({
-                      firstMatchedUsername: matchedUser.username ,
+                      firstMatchedUsername: matchedUser.username,
                       secondMatchedUsername: username,
-                      restaurant: restaurant
+                      restaurant: stringifiedRestaurant
                     });
                     newMatch.save(function(error) {
                       if (error) {
@@ -150,8 +156,25 @@ module.exports = {
     } else if (requestType === 'retrieve-match') {
       getSuccessfulMatchForUser(username)
         .then(function(match) {
-          match = JSON.stringify(match.toObject());
-          response.send(match);
+          var firstMatchedUser; // Will store user object matching first user in match
+          var secondMatchedUser; // Will store user object matching second user in match
+
+          db.getUsers(match.firstMatchedUsername)
+            .then(function(users) {
+              firstMatchedUser = users[0].toObject();
+
+              db.getUsers(match.secondMatchedUsername)
+                .then(function(users) {
+                  secondMatchedUser = users[0].toObject();
+                  var responseObject = {
+                    firstMatchedUsername: firstMatchedUsername,
+                    secondMatchedUsername: secondMatchedUsername,
+                    restaurant: JSON.parse(match.restaurant)
+                  };
+                  stringifiedResponseObject = JSON.stringify(responseObject);
+                  res.send(stringifiedResponseObject);
+                });
+            });
         })
         .catch(function(error) {
           console.log('Could not retrieve match for user', error);
