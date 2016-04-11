@@ -1,3 +1,41 @@
+// The first page you see when you open the app. Lets you log in (eventually with facebook),
+// then directs you to the welcome page (if you're already in our db) or through the new user flow.
+
+// Flowchart of scenes in the app:
+// (made on http://asciiflow.com/)
+
+// +------------+
+// |Main / login|
+// +-----+------+
+//       |
+//       |   new user    +------------+
+//       +--------------->Tell us more+-----+
+//       |               +------------+     |
+//       |                                  |
+//       |                                  |
+//   +---v---+                           +--v---+
+//   |Welcome<-----+                     |Selfie|
+//   +---+---+     |                     +--+---+
+//       |         |      +---------+       |
+//       |         +------+LooksGood<-------+
+//       |                +---------+
+//   +---v---+
+//   |Loading|
+//   +---+---+
+//       |
+//       |
+//       |
+//   +---v---+
+//   |Results|
+//   +---+---+
+//       |
+//       |
+//       |
+//    +--v--+
+//    |Match|
+//    +-----+
+
+
 var React = require('react-native');
 
 var {

@@ -1,3 +1,10 @@
+// New users have to take a selfie so that their match can recognize them once they're both at the place
+
+// NOTE: react-native-camera is not an official react module, it's from the open source community.
+  // As such, it may take some setting up to work correctly. Follow the directions here:
+    // https://github.com/lwansbrough/react-native-camera#mostly-automatic-install
+  // You may want to do step 5 of the manual ios install section as well (not sure if necessary).
+
 var React = require('react-native');
 
 var {
@@ -7,8 +14,6 @@ var {
   TouchableHighlight,
   Image
 } = React;
-
-// import Camera from 'react-native-camera';
 
 var Camera = require('react-native-camera').default;
 
@@ -37,7 +42,7 @@ class Selfie extends Component{
     super(props);
     this.state = {
       picture: false
-    }
+    };
   }
 
   render() {
