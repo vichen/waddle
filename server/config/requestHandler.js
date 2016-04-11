@@ -111,12 +111,22 @@ module.exports = {
 
   getProfilePhoto: function(req, res) {
     var username = req.params.username;
+    var file = username + '_' + 'profile.jpg' // profile image name
 
-    // Build path to user profile photo
-    // server/uploads/username_profile.jpg
+    var options = {
+      'Content-Type': 'image/jpeg',
+      'root': __dirname + '/../uploads/' // directory which houses images
+    };
 
-    // Temporary-- Eventually respond with userPhoto
-    res.sendStatus(200);
+    res.sendFile(file, options, function(err) {
+      if (err) {
+        console.error(err);
+        res.status(err.status).end();
+      }
+      else {
+        console.log('Sent:', file);
+      }
+    });
   },
 
   upload: function(req, res) {
