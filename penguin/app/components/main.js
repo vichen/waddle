@@ -60,26 +60,54 @@ class Main extends Component{
   constructor(props){
     super(props);
     this.state = {
-      username: ''
-    }
+      username: '',
+      error: false
+    };
   }
 
   handleChange(e) {
     this.setState({
       username: e.nativeEvent.text
-    })
+    });
   }
 
   handleSubmit(){
     console.log('insert OAuth integration here');
-    this.props.navigator.push({
-      title: "Welcome",
-      component: Welcome,
-      passProps: {name: this.state.username}
-      // make it impossible to go back to sign in screen
-      // passProps: {userInfo: res} 
-      // should pass user ID, other details as received from OAuth
-    });
+    var url = 'http://localhost:8000/signin';
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: this.state.username
+      })
+    })
+    .then(function(res){
+      console.log('this is the response: ', res);
+      // if 200
+      if (res.status == 200) {
+        this.setState({
+          error: false
+        });
+        // push to welcome
+        this.props.navigator.push({
+          title: "Welcome",
+          component: Welcome,
+          passProps: {name: this.state.username}
+          // make it impossible to go back to sign in screen
+          // passProps: {userInfo: res} 
+          // should pass user ID, other details as received from OAuth
+        });
+      // else 401
+      } else {
+        this.setState({
+          error: 'Invalid Username'
+        });
+      }
+        // username doesn't exist
+    }.bind(this));
+
   }
 
   handleNewUser(){
@@ -88,10 +116,11 @@ class Main extends Component{
       title: "Take a selfie!",
       component: Selfie,
       passProps: {name: this.state.username}
-    })
+    });
   }
 
   render(){
+    var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
     return (
       <View style={styles.mainContainer}>
         <TextInput
@@ -111,6 +140,7 @@ class Main extends Component{
           underlayColor="rgba(255, 255, 255, 0.95)">
           <Text style={styles.buttonText}>I'm new here</Text>
         </TouchableHighlight>
+        {showErr}
       </View>
     )
   }

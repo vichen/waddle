@@ -36,9 +36,9 @@ module.exports = {
   postSignin: function(req, res) {
     // check user exist in the database
     console.log('postSignin fired!', req.body);
-    var username = req.body.username;
-    var email = req.body.email;
-    db.getUsers(username, email)
+    var username = req.body.username.toLowerCase();
+    // var email = req.body.email;
+    db.getUsers(username)
       .then(function(users){
         if (users.length) {
           res.status(200).send('Sign in successful');
