@@ -52,7 +52,7 @@ module.exports = {
   },
 
   postSignup: function(req, res) {
-    var username = req.body.username;
+    var username = req.body.username.toLowerCase();
     var email = req.body.email;
     var funFact = req.body.funFact;
     var profileImage = req.body.profileImage;
@@ -202,8 +202,9 @@ module.exports = {
 
     form.parse(req, function(err, fields, files) {
       // Associate files.photo.path [location of img on FS] with the appropriate user in database
-      var username = files.photo.username;
+      var username = files.photo.name.replace('_profile.jpg', '').toLowerCase();
       var fileName = files.photo.path.replace('server/uploads/', '');
+      console.log('files.photo: ', username);
       db.updateUser(username, {profileImage: fileName})
         .then(function(user){
           console.log('user updated: ', user);

@@ -125,7 +125,7 @@ exports.db = {
 
   updateUser: function(username, newInfo) {
     return new Promise(function(resolve, reject) {
-      User.update({username: 'kevin'}, newInfo, function(error, resp) {
+      User.update({username: username}, newInfo, function(error, resp) {
         if (error) {
           console.log('ERROR calling updateUser', error);
           reject(error);

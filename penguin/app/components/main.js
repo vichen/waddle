@@ -121,13 +121,14 @@ class Main extends Component{
     })
     .then(function(res){
       console.log('this is the response: ', res);
+      // TODO: handle duplicate usernames
+      this.props.navigator.push({
+        title: "Take a selfie!",
+        component: Selfie,
+        passProps: {name: this.state.username}
+      });
     }.bind(this));
 
-    this.props.navigator.push({
-      title: "Take a selfie!",
-      component: Selfie,
-      passProps: {name: this.state.username}
-    });
   }
 
   render(){
