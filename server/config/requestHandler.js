@@ -61,7 +61,7 @@ module.exports = {
         restaurant: restaurant,
         matchedUser: matchedUser
       };
-      res.send(200, responseJSON);
+      res.status(200).send(responseJSON);
       return;
     }
 
