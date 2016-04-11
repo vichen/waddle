@@ -2,7 +2,6 @@ var fs = require('fs');
 var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
-
 // TODO update this to foursquare.js for deploy
 var foursquare = require('./foursquare.example.js');
 var db = require('../../db/db.js').db;

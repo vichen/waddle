@@ -3,7 +3,6 @@
 
 ##Introduction
 ======
->>>>>>> Adjust header assignment
   
 ##Technology Stack
 ======
