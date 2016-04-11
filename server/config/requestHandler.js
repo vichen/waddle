@@ -128,7 +128,6 @@ module.exports = {
   },
 
   upload: function(req, res) {
-
     var form = new formidable.IncomingForm();
     form.uploadDir = "./server/uploads";
     form.keepExtensions = true;
