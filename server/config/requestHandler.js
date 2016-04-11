@@ -50,10 +50,10 @@ module.exports = {
   },
 
   getProfilePhoto: function(req, res) {
-    var name = req.params.name;
+    var username = req.params.username;
 
     // Build path to user profile photo
-    // server/uploads/name/profile.jpg
+    // server/uploads/username_profile.jpg
 
     // Temporary-- Eventually respond with userPhoto
     res.sendStatus(200);
