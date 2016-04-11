@@ -83,8 +83,10 @@ class LooksGood extends Component{
 
     this.props.navigator.push({
       title: 'Welcome!',
-      component: Welcome
-      // passProps: {}
+      component: Welcome,
+      passProps: {
+        name: this.props.name
+      }
     });
   }
 
