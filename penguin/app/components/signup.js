@@ -124,14 +124,17 @@ class Signup extends Component {
         <Text style={styles.title}>Tell us a little about yourself</Text>
         <TextInput
           style={styles.textInput}
+          autoCapitalize='none'
           placeholder={'First name'}
           onChange={this.handleNameChange.bind(this)}/>
         <TextInput
           style={styles.textInput}
+          autoCapitalize='none'
           placeholder='A fun fact'
           onChange={this.handleFunFactChange.bind(this)}/>
           <TextInput
             style={styles.textInput}
+            autoCapitalize='none'
             placeholder='Email'
             onChange={this.handleEmailChange.bind(this)}/>          
         <TouchableHighlight
