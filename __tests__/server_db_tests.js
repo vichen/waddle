@@ -3,19 +3,6 @@ jest.unmock('request');
 var request = require('request');
 
 describe('Basic server functionality', () => {
-  it('Should accept and respond to GET requests at the /match endpoint', (done) => {
-    request
-      .get('http://127.0.0.1:8000/match')
-      .on('response', function(response) {
-        expect(response.statusCode).toEqual(200);
-        done();
-      })
-      .on('error', function(error) {
-        expect(true).toEqual(false);
-        console.log('Error sending GET request to /match');
-        done();
-      });
-  });
   it('Should accept and respond to GET requests at the /signin endpoint', (done) => {
     request
       .get('http://127.0.0.1:8000/signin')
@@ -42,24 +29,6 @@ describe('Basic server functionality', () => {
         console.log('Error sending GET request to /arglebargle', error);
         done();
       });
-  });
-  it('Should return a match object when GET request is made to /match endpoint', (done) => {
-    request({
-      url: 'http://127.0.0.1:8000/match',
-      method: 'GET',
-    }, function(error, response, body) {
-      if(error) {
-        expect(true).toEqual(false);
-        console.log('Error sending GET request to /arglebargle', error);
-        done();
-      } else {
-        body = JSON.parse(body);
-        expect(body.restaurant).toBeDefined();
-        expect(body.firstMatchedUser).toBeDefined();
-        expect(body.secondMatchedUser).toBeDefined();
-        done();
-      }
-    });
   });
 });
 
@@ -92,6 +61,113 @@ describe('Basic sign-in/sign-up functionality', () => {
             done();
           }
         });
+      }
+    });
+  });
+});
+
+// Tests for matching function/endpoint
+describe('Matching algo functionality', () => {
+  it('Should respond with a 400 if proper headers are not provided with GET request at /match', (done) => {
+    request
+      .get('http://127.0.0.1:8000/match')
+      .on('response', function(response) {
+        expect(response.statusCode).toEqual(400);
+        done();
+      })
+      .on('error', function(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /match');
+        done();
+      });
+  });
+  it('Should not respond with a 401 if username does not exist', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/match',
+      headers: {
+        'longitude': 999,
+        'latitude': 999,
+        'username': 'arglebargle',
+        'requesttype': 'request-match'
+      }
+    };
+    request
+      .get(requestOptions)
+      .on('response', function(response) {
+        expect(response.statusCode).toEqual(401);
+        done();
+      })
+      .on('error', function(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /match');
+        done();
+      });
+  });
+  it('Should not respond with a 400 if requesttype incorrect', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/match',
+      headers: {
+        'longitude': 999,
+        'latitude': 999,
+        'username': 'test',
+        'requesttype': 'arglebargle'
+      }
+    };
+    request
+      .get(requestOptions)
+      .on('response', function(response) {
+        expect(response.statusCode).toEqual(400);
+        done();
+      })
+      .on('error', function(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /match');
+        done();
+      });
+  });
+  it('Should return a match object when GET request is made to /match endpoint with a requesttype of retrieve-match', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/match',
+      headers: {
+        'longitude': 999,
+        'latitude': 999,
+        'username': 'test',
+        'requesttype': 'retrieve-match'
+      }
+    };
+    request.get(requestOptions, function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /match', error);
+        done();
+      } else {
+        body = JSON.parse(body);
+        expect(body.restaurant).toBeDefined();
+        expect(body.firstMatchedUser).toBeDefined();
+        expect(body.secondMatchedUser).toBeDefined();
+        done();
+      }
+    });
+  });
+  it('Should respond with 200 when GET request is made to /match with valid username and requesttype of request-match', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/match',
+      headers: {
+        'longitude': 999,
+        'latitude': 999,
+        'username': 'test',
+        'requesttype': 'retrieve-match'
+      }
+    };
+    request.get(requestOptions, function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /match', error);
+        done();
+      } else {
+        body = JSON.parse(body);
+        expect(response.statusCode).toEqual(200);
+        done();
       }
     });
   });

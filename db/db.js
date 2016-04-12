@@ -31,6 +31,25 @@ exports.db = {
     });
   },
 
+  checkIfUserExists: function(username) {
+    return new Promise(function(resolve, reject) {
+      if (!username) {
+        resolve(false);
+      } else {
+        User.find({ username: username }, function(error, users) {
+          if (error) {
+            console.log('Unable to query for user with checkIfUserExists function', error);
+            reject(error);
+          } else if (users.length > 0) {
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+      }
+    });
+  },
+
   addUser: function(username, firstName, email, funFact, profileImage) {
     var newDbEntry = {
       username: username,
