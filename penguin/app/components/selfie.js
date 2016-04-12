@@ -85,7 +85,10 @@ class Selfie extends Component{
       component: LooksGood,
       passProps: {
         picture: this.state.picture,
-        name: this.props.name
+        username: this.props.username,
+        firstName: this.props.firstName,
+        funFact: this.props.funFact,
+        email: this.props.email
       }
     });
   }

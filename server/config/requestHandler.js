@@ -38,7 +38,7 @@ module.exports = {
   postSignin: function(req, res) {
     // check user exist in the database
     console.log('postSignin fired!', req.body);
-    var username = req.body.username.toLowerCase();
+    var username = req.body.username;
     // var email = req.body.email;
     db.getUsers(username)
       .then(function(users){
@@ -54,7 +54,7 @@ module.exports = {
   },
 
   postSignup: function(req, res) {
-    var username = req.body.username.toLowerCase();
+    var username = req.body.username;
     var email = req.body.email;
     var funFact = req.body.funFact;
     var profileImage = req.body.profileImage;
@@ -186,7 +186,7 @@ module.exports = {
   },
 
   getProfilePhoto: function(req, res) {
-    var username = req.params.username;
+    var username = req.params.username.toLowerCase();
     console.log(username);
     // var file = username + '_' + 'profile.jpg'; // profile image name
 
@@ -226,10 +226,22 @@ module.exports = {
 
     form.parse(req, function(err, fields, files) {
       // Associate files.photo.path [location of img on FS] with the appropriate user in database
-      var username = files.photo.name.replace('_profile.jpg', '').toLowerCase();
+      var username = fields.username.toLowerCase();
+      var firstName = fields.firstName;
+      var funFact = fields.funFact;
+      var email = fields.email;
       var fileName = files.photo.path.replace('server/uploads/', '');
-      console.log('files.photo: ', username);
-      db.updateUser(username, {profileImage: fileName})
+
+      var newInfo = {
+        username: username,
+        profileImage: fileName,
+        firstName: firstName,
+        funFact: funFact,
+        email: email
+      };
+
+
+      db.updateUser(username, newInfo)
         .then(function(user){
           console.log('user updated: ', user);
         });
