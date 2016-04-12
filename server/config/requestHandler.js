@@ -145,9 +145,10 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                if (matchRequests.length > 0) {
-                  // Match with the first available active request
-                  var matchedUser = matchRequests[0];
+                return getFirstValidMatch(username, matchRequests);
+              })
+              .then(function(matchedUser) {
+                if (matchedUser) {
                   matchedUser.isActive = false;
                   matchedUser.save(function(error) {
                     if (error) {
