@@ -168,7 +168,7 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude, longitude });
+                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
               })
               .then(function(matchedUser) {
                 if (matchedUser) {
