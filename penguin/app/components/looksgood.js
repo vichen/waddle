@@ -94,7 +94,8 @@ class LooksGood extends Component{
       title: 'Welcome!',
       component: Welcome,
       passProps: {
-        name: this.props.name
+        username: this.props.username,
+        firstName: this.props.firstName
       }
     });
   }
