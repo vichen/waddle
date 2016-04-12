@@ -43,7 +43,7 @@ class Loading extends Component{
     // 5 seconds later, retrieve match from server and setState to include it
     setTimeout(() => {
       this.retrieveMatch();
-    }, 5000);
+    }, 10000);
 
   }
 
@@ -79,9 +79,10 @@ class Loading extends Component{
     })
       .then((res) => res.json())
       .then((json) => {
+        console.log('this is the json:', json)
         this.setState({restaurant: json.restaurant});
-        this.setState({match: json.firstMatchedUserName !== this.props.username ? json.firstMatchedUserName : json.secondMatchedUserName});
-        console.log(json.firstMatchedUserName);
+        this.setState({match: json.firstMatchedUsername !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
+        console.log(json.firstMatchedUsername);
         this.handleMatch();
       })
       .catch((err) => {
