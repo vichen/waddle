@@ -1,3 +1,5 @@
+var request = require('request');
+
 exports.client_id = '';
 exports.client_secret = '';
 
