@@ -23,7 +23,7 @@ var Promise = require('bluebird');
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
 // Function to calculate distance from longitude and latitude
-var getDistanceFromLatLonInKm = function(lat1,lon1,lat2,lon2) {
+var getDistanceFromLatLonInM = function(lat1,lon1,lat2,lon2) {
   var deg2rad = function(deg) {
     return deg * (Math.PI/180);
   };
@@ -41,9 +41,15 @@ var getDistanceFromLatLonInKm = function(lat1,lon1,lat2,lon2) {
 // userLocation is an object-literal with properties longitude and latitude
 var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   var validMatch;
+  var lat1 = userLocation.latitude;
+  var lon1 = userLocation.longitude;
+  var distanceCutoff = 500; // Only find potential matches within 500m
+
   for (var i = 0; i < matchRequestsArray.length; i++) {
+    var lat2 = matchRequests[i].latitude;
+    var lon2 = matchRequests[i].longitude;
     // Check if the match request was not made by the same user
-    if (matchRequestsArray[i].username !== username) {
+    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= 500) {
       validMatch = matchRequestsArray[i];
       break;
     }
