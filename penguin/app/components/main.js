@@ -143,7 +143,6 @@ class Main extends Component{
               }
             });
           }.bind(this));
-
           // make it impossible to go back to sign in screen
           // passProps: {userInfo: res} 
           // should pass user ID, other details as received from OAuth
