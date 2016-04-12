@@ -98,91 +98,100 @@ module.exports = {
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
 
-    if (requestType === 'request-match') {
-      // Check for active requests
-      db.getMatchRequests()
-        .then(function(matchRequests) {
-          if (matchRequests.length > 0) {
-            // Match with the first available active request
-            var matchedUser = matchRequests[0];
-            matchedUser.isActive = false;
-            matchedUser.save(function(error) {
-              if (error) {
-                console.log('Could not update isActive status of matched user', matchedUser, error);
-                res.status(500).send();
-              } else {
-                foursquare.getRestaurant(longitude, latitude)
-                  .then(function(restaurant) {
-                    // Save the new match to the SuccessfulMatch table
-                    var stringifiedRestaurant = JSON.stringify(restaurant);
+    // Check if the username exists before trying to make a match
+    db.checkIfUserExists(username)
+      .then(function(exists) {
+        if (exists) {
+          if (requestType === 'request-match') {
+            // Check for active requests
+            db.getMatchRequests()
+              .then(function(matchRequests) {
+                if (matchRequests.length > 0) {
+                  // Match with the first available active request
+                  var matchedUser = matchRequests[0];
+                  matchedUser.isActive = false;
+                  matchedUser.save(function(error) {
+                    if (error) {
+                      console.log('Could not update isActive status of matched user', matchedUser, error);
+                      res.status(500).send();
+                    } else {
+                      foursquare.getRestaurant(longitude, latitude)
+                        .then(function(restaurant) {
+                          // Save the new match to the SuccessfulMatch table
+                          var stringifiedRestaurant = JSON.stringify(restaurant);
 
-                    var newMatch = new SuccessfulMatch({
-                      firstMatchedUsername: matchedUser.username,
-                      secondMatchedUsername: username,
-                      restaurant: stringifiedRestaurant
-                    });
-                    newMatch.save(function(error) {
-                      if (error) {
-                        console.log('Could not add match to SuccessfulMatch table', newMatch, error);
-                        res.status(500).send();
-                      } else {
-                        res.status(200).send();
-                      }
-                    });
-                  })
-                  .catch(function(error) {
-                    console.log('There was an error connecting to the Foursquare api', error);
-                    res.status(500).send();
+                          var newMatch = new SuccessfulMatch({
+                            firstMatchedUsername: matchedUser.username,
+                            secondMatchedUsername: username,
+                            restaurant: stringifiedRestaurant
+                          });
+                          newMatch.save(function(error) {
+                            if (error) {
+                              console.log('Could not add match to SuccessfulMatch table', newMatch, error);
+                              res.status(500).send();
+                            } else {
+                              res.status(200).send();
+                            }
+                          });
+                        })
+                        .catch(function(error) {
+                          console.log('There was an error connecting to the Foursquare api', error);
+                          res.status(500).send();
+                        });
+                    }
                   });
-              }
-            });
-          } else {
-            var newMatchRequest = new MatchRequest({ username: username });
-            newMatchRequest.save(function(error) {
-              if (error) {
-                console.log('Could not save user to MatchRequest table', username, error);
+                } else {
+                  var newMatchRequest = new MatchRequest({ username: username });
+                  newMatchRequest.save(function(error) {
+                    if (error) {
+                      console.log('Could not save user to MatchRequest table', username, error);
+                      res.status(500).send();
+                    } else {
+                      res.status(200).send();
+                    }
+                  });
+                }
+              })
+              .catch(function(error) {
+                console.log('Could not retrieve active match requests', error);
                 res.status(500).send();
-              } else {
-                res.status(200).send();
-              }
-            });
+              });
+
+          } else if (requestType === 'retrieve-match') {
+            db.getSuccessfulMatchForUser(username)
+              .then(function(match) {
+                var firstMatchedUser; // Will store user object matching first user in match
+                var secondMatchedUser; // Will store user object matching second user in match
+
+                db.getUsers(match.firstMatchedUsername)
+                  .then(function(users) {
+                    firstMatchedUser = users[0].toObject();
+
+                    db.getUsers(match.secondMatchedUsername)
+                      .then(function(users) {
+                        secondMatchedUser = users[0].toObject();
+                        var responseObject = {
+                          firstMatchedUsername: firstMatchedUser,
+                          secondMatchedUsername: secondMatchedUser,
+                          restaurant: JSON.parse(match.restaurant)
+                        };
+                        stringifiedResponseObject = JSON.stringify(responseObject);
+                        res.send(stringifiedResponseObject);
+                      });
+                  });
+              })
+              .catch(function(error) {
+                console.log('Could not retrieve match for user', error);
+                res.status(500).send();
+              });
+          } else {
+            res.status(400).send();
           }
-        })
-        .catch(function(error) {
-          console.log('Could not retrieve active match requests', error);
-          res.status(500).send();
-        });
 
-    } else if (requestType === 'retrieve-match') {
-      db.getSuccessfulMatchForUser(username)
-        .then(function(match) {
-          var firstMatchedUser; // Will store user object matching first user in match
-          var secondMatchedUser; // Will store user object matching second user in match
-
-          db.getUsers(match.firstMatchedUsername)
-            .then(function(users) {
-              firstMatchedUser = users[0].toObject();
-
-              db.getUsers(match.secondMatchedUsername)
-                .then(function(users) {
-                  secondMatchedUser = users[0].toObject();
-                  var responseObject = {
-                    firstMatchedUsername: firstMatchedUser,
-                    secondMatchedUsername: secondMatchedUser,
-                    restaurant: JSON.parse(match.restaurant)
-                  };
-                  stringifiedResponseObject = JSON.stringify(responseObject);
-                  res.send(stringifiedResponseObject);
-                });
-            });
-        })
-        .catch(function(error) {
-          console.log('Could not retrieve match for user', error);
-          res.status(500).send();
-        });
-    } else {
-      res.status(400).send();
-    }
+        } else {
+          res.status(401).send();
+        }
+      });
   },
 
   getProfilePhoto: function(req, res) {
@@ -237,5 +246,5 @@ module.exports = {
       res.writeHead(200, {'content-type': 'text/plain'});
       res.end(util.inspect({fields: fields, files: files})); // Like a console.dir
     });
-  }  
+  }
 };
