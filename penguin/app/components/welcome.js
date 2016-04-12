@@ -48,7 +48,8 @@ class Welcome extends Component{
     // do stuff w/ navigator
     this.props.navigator.push({
       title: "Finding you a match",
-      component: Loading
+      component: Loading,
+      passProps: {username: this.props.username}
     });
   }
 

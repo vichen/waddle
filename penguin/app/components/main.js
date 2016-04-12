@@ -163,7 +163,7 @@ class Main extends Component{
       this.props.navigator.push({
         title: "Take a selfie!",
         component: Selfie,
-        passProps: {name: this.state.username}
+        passProps: {username: this.state.username}
       });
     }.bind(this));
 
