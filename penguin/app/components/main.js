@@ -48,7 +48,7 @@ var {
 } = React;
 
 var Welcome = require('./welcome');
-var Selfie = require('./selfie');
+var Signup = require('./signup');
 
 var styles = StyleSheet.create({
   mainContainer: {
@@ -122,6 +122,7 @@ class Main extends Component{
       })
     })
     .then(function(res){
+      var isInvalid = /[\s&<>"'`=\/]/g.test(this.state.username);
       if (res.status == 200) {
         this.setState({
           error: false
@@ -134,40 +135,21 @@ class Main extends Component{
           // passProps: {userInfo: res} 
           // should pass user ID, other details as received from OAuth
         });
-      } else {
+      } else if (isInvalid) {
         this.setState({
-          error: 'Invalid Username'
+          error: 'Invalid Username\n Please only use alphanumeric characters'
         });
+      } else {
+        this.props.navigator.push({
+          title: 'Signup',
+          component: Signup,
+          passProps: {username: this.state.username}
+        })
       }
     }.bind(this));
 
   }
 
-  handleNewUser(){
-    console.log('new user!');
-
-    var url = 'http://localhost:8000/signup';
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: this.state.username
-      })
-    })
-    .then(function(res){
-      console.log('this is the response: ', res);
-      // TODO: handle duplicate usernames
-      this.props.navigator.push({
-        title: "Take a selfie!",
-        component: Selfie,
-        passProps: {username: this.state.username}
-      });
-    }.bind(this));
-
-  }
 
   render(){
     var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
@@ -183,12 +165,6 @@ class Main extends Component{
           onPress={this.handleSubmit.bind(this)}
           underlayColor="rgba(255, 255, 255, 0.95)">
           <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleNewUser.bind(this)}
-          underlayColor="rgba(255, 255, 255, 0.95)">
-          <Text style={styles.buttonText}>I'm new here</Text>
         </TouchableHighlight>
         {showErr}
       </View>
