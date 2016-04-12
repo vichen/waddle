@@ -73,15 +73,15 @@ class Loading extends Component{
   retrieveMatch() {
     fetch('http://159.203.254.178:8000/match', {
       headers: {
-        username: 'garbagio',
+        username: this.props.username,
         requestType: 'retrieve-match'
       }
     })
       .then((res) => res.json())
       .then((json) => {
         this.setState({restaurant: json.restaurant});
-        // NOTE: replace 'garbagio' with this.props.username when that's implemented
-        this.setState({match: json.firstMatchedUserName !== 'garbagio' ? json.firstMatchedUserName : json.secondMatchedUserName});
+        this.setState({match: json.firstMatchedUserName !== this.props.username ? json.firstMatchedUserName : json.secondMatchedUserName});
+        console.log(json.firstMatchedUserName);
         this.handleMatch();
       })
       .catch((err) => {
