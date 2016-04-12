@@ -4,10 +4,6 @@
 // once they've accepted it.
 
 var React = require('react-native');
-var env = {
-  'development': 'http://localhost:8000/',
-  'production': 'http://159.203.254.178:8000/'
-}[process.env.NODE_ENV];
 
 var {
   Component,
@@ -91,7 +87,7 @@ class LooksGood extends Component{
     formdata.append('photo', photo);
 
 
-    xhr.open('POST', env + 'upload');
+    xhr.open('POST', 'http://localhost:8000/upload');
     xhr.send(formdata);
 
     this.props.navigator.push({

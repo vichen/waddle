@@ -1,8 +1,4 @@
 var React = require('react-native');
-var env = {
-  'development': 'http://localhost:8000/',
-  'production': 'http://159.203.254.178:8000/'
-}[process.env.NODE_ENV];
 
 var {
   View,
@@ -75,7 +71,7 @@ class Signup extends Component {
   handleNewUser(){
     console.log('new user!');
 
-    var url = env + 'signup';
+    var url = 'http://localhost:8000/signup';
 
     fetch(url, {
       method: 'POST',
