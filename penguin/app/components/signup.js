@@ -125,6 +125,7 @@ class Signup extends Component {
         <TextInput
           style={styles.textInput}
           autoCapitalize='none'
+          autoCorrect={false}
           placeholder={'First name'}
           onChange={this.handleNameChange.bind(this)}/>
         <TextInput
