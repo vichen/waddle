@@ -95,14 +95,18 @@ module.exports = {
         if (exists) {
 
           // TODO: Remove lines 98 through 105 when we deploy
-          var responseJSON = {
-            restaurant: restaurant,
-            firstMatchedUser: firstMatchedUser,
-            secondMatchedUser: secondMatchedUser,
-            matchTime: new Date()
-          };
-          res.status(200).send(responseJSON);
-          return;
+          if (requestType === 'retrieve-match'){
+            var responseJSON = {
+              restaurant: restaurant,
+              firstMatchedUser: firstMatchedUser,
+              secondMatchedUser: secondMatchedUser,
+              matchTime: new Date()
+            };
+            res.status(200).send(responseJSON);
+            return;      
+          } else if (requestType === 'request-match') {
+            res.status(200).send();
+          }
 
           if (requestType === 'request-match') {
             // Check for active requests
