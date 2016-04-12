@@ -68,11 +68,11 @@ describe('Basic sign-in/sign-up functionality', () => {
 
 // Tests for matching function/endpoint
 describe('Matching algo functionality', () => {
-  it('Should respond with a 401 if proper headers are not provided with GET request at /match', (done) => {
+  it('Should respond with a 400 if proper headers are not provided with GET request at /match', (done) => {
     request
       .get('http://127.0.0.1:8000/match')
       .on('response', function(response) {
-        expect(response.statusCode).toEqual(401);
+        expect(response.statusCode).toEqual(400);
         done();
       })
       .on('error', function(error) {
@@ -95,27 +95,6 @@ describe('Matching algo functionality', () => {
       .get(requestOptions)
       .on('response', function(response) {
         expect(response.statusCode).toEqual(401);
-        done();
-      })
-      .on('error', function(error) {
-        expect(true).toEqual(false);
-        console.log('Error sending GET request to /match');
-        done();
-      });
-  });
-  it('Should not respond with a 400 if requesttype not provided', (done) => {
-    var requestOptions = {
-      url: 'http://127.0.0.1:8000/match',
-      headers: {
-        'longitude': 999,
-        'latitude': 999,
-        'username': 'test',
-      }
-    };
-    request
-      .get(requestOptions)
-      .on('response', function(response) {
-        expect(response.statusCode).toEqual(400);
         done();
       })
       .on('error', function(error) {
@@ -159,7 +138,7 @@ describe('Matching algo functionality', () => {
     request.get(requestOptions, function(error, response, body) {
       if(error) {
         expect(true).toEqual(false);
-        console.log('Error sending GET request to /arglebargle', error);
+        console.log('Error sending GET request to /match', error);
         done();
       } else {
         body = JSON.parse(body);
@@ -183,7 +162,7 @@ describe('Matching algo functionality', () => {
     request.get(requestOptions, function(error, response, body) {
       if(error) {
         expect(true).toEqual(false);
-        console.log('Error sending GET request to /arglebargle', error);
+        console.log('Error sending GET request to /match', error);
         done();
       } else {
         body = JSON.parse(body);
