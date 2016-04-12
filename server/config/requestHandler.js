@@ -2,7 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
-// TODO update this to foursquare.js for deploy
+// TODO: The require statement on line 6 should be replaced with the file containing the real API keys.
 var foursquare = require('./foursquare.example.js');
 var db = require('../../db/db.js').db;
 
@@ -100,7 +100,12 @@ module.exports = {
       .then(function(exists) {
         if (exists) {
 
-          // TODO: Remove lines 98 through 109 when we deploy
+          /*
+           * Lines 108 through 119 are 'dummy code' that will allow us to pass the unit tests. It should be removed when we deploy.
+           * This code is necessary because the continuous integration on Travis-CI does not have access to our Foursquare API keys. 
+           * As such, the below vode (i.e., lines 120 onwards) will always fail the unit tests during continuous integration. 
+           * Although all the code below has not been unit tested, it has been manually tested and is functional.
+          */
           if (requestType === 'retrieve-match'){
             var responseJSON = {
               restaurant: restaurant,
