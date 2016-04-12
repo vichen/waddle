@@ -38,7 +38,7 @@ exports.getRestaurant = function(longitude, latitude) {
       client_id: exports.client_id,
       client_secret: exports.client_secret,
       v: 20160405,
-      ll: longitude + ', ' + latitude,
+      ll: latitude + ', ' + longitude,
       limit: maxResults,
       categoryId: categoryId,
       radius: searchRadius
