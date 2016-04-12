@@ -135,8 +135,8 @@ module.exports = {
     console.log('Received match request with options....');
     console.log('Request Type', requestType);
     console.log('Username', username);
-    console.log('longitude', longitude);
     console.log('latitude', latitude);
+    console.log('longitude', longitude);
     console.log('---------------------------------------');
 
     // Send 400 if headers not provided
