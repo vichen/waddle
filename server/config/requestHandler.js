@@ -2,8 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
-// TODO: The require statement on line 6 should be replaced with the file containing the real API keys.
-var foursquare = require('./foursquare.example.js');
+var foursquare = require('./foursquare.js');
 var db = require('../../db/db.js').db;
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
