@@ -44,6 +44,13 @@ var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   var lat1 = userLocation.latitude;
   var lon1 = userLocation.longitude;
   var distanceCutoff = 500; // Only find potential matches within 500m
+  
+  console.log('-----------------------');
+  console.log('Finding valid match for');
+  console.log('username', username);
+  console.log('latitude', lat1);
+  console.log('longitude', lon1);
+  console.log('-----------------------');
 
   for (var i = 0; i < matchRequestsArray.length; i++) {
     var lat2 = matchRequestsArray[i].latitude;
