@@ -4,9 +4,10 @@
  */
 
 var request = require('request');
+var keys = require('./foursquarekeys.js');
 
-exports.client_id = '';
-exports.client_secret = '';
+client_id = keys.client_id || '';
+client_secret = keys.client_secret || '';
 
 exports.getRestaurant = function(longitude, latitude) {
   var maxResults = 50; // max # of results to return
@@ -28,8 +29,8 @@ exports.getRestaurant = function(longitude, latitude) {
     method: 'GET',
     uri: 'https://api.foursquare.com/v2/venues/search',
     qs: {
-      client_id: exports.client_id,
-      client_secret: exports.client_secret,
+      client_id: client_id,
+      client_secret: client_secret,
       v: 20160405,
       ll: longitude + ', ' + latitude,
       limit: maxResults,
