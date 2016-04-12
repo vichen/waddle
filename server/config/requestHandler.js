@@ -70,7 +70,7 @@ module.exports = {
 
   getMatch: function(req, res) {
 
-    Remove lines 59 through 64 when we deploy
+    // Remove lines 59 through 64 when we deploy
     var responseJSON = {
       restaurant: restaurant,
       firstMatchedUser: firstMatchedUser,
