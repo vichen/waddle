@@ -89,12 +89,18 @@ module.exports = {
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
 
+    // Send 400 if headers not provided
+    if (!longitude || !latitude || !username || !requestType) {
+      res.status(400).send();
+      return;
+    }
+
     // Check if the username exists before trying to make a match
     db.checkIfUserExists(username)
       .then(function(exists) {
         if (exists) {
 
-          // TODO: Remove lines 98 through 105 when we deploy
+          // TODO: Remove lines 98 through 109 when we deploy
           if (requestType === 'retrieve-match'){
             var responseJSON = {
               restaurant: restaurant,
@@ -103,7 +109,7 @@ module.exports = {
               matchTime: new Date()
             };
             res.status(200).send(responseJSON);
-            return;      
+            return;
           } else if (requestType === 'request-match') {
             res.status(200).send();
           }
