@@ -56,7 +56,7 @@ class Welcome extends Component{
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.welcomeText}>welcome, {this.props.name || 'rando'}</Text>
+        <Text style={styles.welcomeText}>welcome, {this.props.firstName || 'rando'}</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
