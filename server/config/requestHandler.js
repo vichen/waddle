@@ -22,8 +22,24 @@ var Promise = require('bluebird');
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
-// Iterates through potential matches and returns the first valid one found
-var getFirstValidMatch = function(username, matchRequestsArray) {
+// Function to calculate distance from longitude and latitude
+var getDistanceFromLatLonInKm = function(lat1,lon1,lat2,lon2) {
+  var deg2rad = function(deg) {
+    return deg * (Math.PI/180);
+  };
+
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);
+  var dLon = deg2rad(lon2-lon1);
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in km
+  return d * 1000; // Return distance in meters
+};
+
+// Iterates through potential matches and returns the first valid one found.
+// userLocation is an object-literal with properties longitude and latitude
+var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   var validMatch;
   for (var i = 0; i < matchRequestsArray.length; i++) {
     // Check if the match request was not made by the same user
@@ -34,6 +50,7 @@ var getFirstValidMatch = function(username, matchRequestsArray) {
   }
   return validMatch;
 };
+
 
 module.exports = {
   getHome: function(req, res) {
