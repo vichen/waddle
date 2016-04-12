@@ -4,7 +4,13 @@
  */
 
 var request = require('request');
-var keys = require('./foursquarekeys.js');
+var keys;
+try {
+  keys = require('./foursquarekeys.js');
+}
+catch(e) {
+  console.log('./foursquarekeys.js does not exist', e);
+}
 
 client_id = keys.client_id || '';
 client_secret = keys.client_secret || '';
