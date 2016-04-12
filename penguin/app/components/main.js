@@ -130,7 +130,7 @@ class Main extends Component{
         this.props.navigator.push({
           title: "Welcome",
           component: Welcome,
-          passProps: {name: this.state.username}
+          passProps: {username: this.state.username}
           // make it impossible to go back to sign in screen
           // passProps: {userInfo: res} 
           // should pass user ID, other details as received from OAuth
