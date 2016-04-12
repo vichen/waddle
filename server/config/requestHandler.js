@@ -70,7 +70,7 @@ module.exports = {
 
   getMatch: function(req, res) {
 
-    // Remove lines 59 through 64 when we deploy
+    Remove lines 59 through 64 when we deploy
     var responseJSON = {
       restaurant: restaurant,
       firstMatchedUser: firstMatchedUser,
@@ -167,8 +167,8 @@ module.exports = {
                 .then(function(users) {
                   secondMatchedUser = users[0].toObject();
                   var responseObject = {
-                    firstMatchedUsername: firstMatchedUsername,
-                    secondMatchedUsername: secondMatchedUsername,
+                    firstMatchedUsername: firstMatchedUser,
+                    secondMatchedUsername: secondMatchedUser,
                     restaurant: JSON.parse(match.restaurant)
                   };
                   stringifiedResponseObject = JSON.stringify(responseObject);
