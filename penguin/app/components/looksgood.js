@@ -75,12 +75,15 @@ class LooksGood extends Component{
       uri: this.props.picture,
       type: 'image/jpeg',
       name: this.props.name + '_' + 'profile.jpg', // hardcoded to a specific user; CHANGE
-      username: this.props.name
     };
 
     var xhr = new XMLHttpRequest();
     var formdata = new FormData();
     formdata.append('Content-Type', 'multipart/form-data');
+    formdata.append('username', this.props.username);
+    formdata.append('firstName', this.props.firstName);
+    formdata.append('funFact', this.props.funFact);
+    formdata.append('email', this.props.email);
     formdata.append('photo', photo);
 
 
