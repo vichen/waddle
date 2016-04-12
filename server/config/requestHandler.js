@@ -97,7 +97,7 @@ module.exports = {
     console.log('---------------------------------------');
 
     // Send 400 if headers not provided
-    if (!longitude || !latitude || !username || !requestType) {
+    if ( ( (!longitude || !latitude || !username) && requestType === 'request-match') || !requestType) {
       res.status(400).send();
       return;
     }
