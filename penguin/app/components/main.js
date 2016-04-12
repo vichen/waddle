@@ -157,6 +157,8 @@ class Main extends Component{
       <View style={styles.mainContainer}>
         <TextInput
           style={styles.textInput}
+          autoCapitalize='none'
+          autoCorrect={false}
           placeholder='Username'
           onChange={this.handleChange.bind(this)}
         />
