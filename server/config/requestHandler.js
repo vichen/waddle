@@ -224,6 +224,18 @@ module.exports = {
       });
   },
 
+  getUserInfo: function(req, res) {
+    var username = req.params.username.toLowerCase();
+
+    db.getUsers(username)
+      .then(function(users) {
+        var user = users[0];
+        console.log(users);
+        res.setHeader('userInfo', JSON.stringify(users));
+        res.status(200).json(users[0]);
+      });
+  },
+
   getProfilePhoto: function(req, res) {
     var username = req.params.username.toLowerCase();
     console.log(username);
