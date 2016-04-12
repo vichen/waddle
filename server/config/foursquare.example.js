@@ -15,8 +15,8 @@ exports.getRestaurant = function(longitude, latitude) {
     method: 'GET',
     uri: 'https://api.foursquare.com/v2/venues/search',
     qs: {
-      client_id: foursquare.client_id,
-      client_secret: foursquare.client_secret,
+      client_id: exports.client_id,
+      client_secret: exports.client_secret,
       v: 20160405,
       ll: '37.7835, -122.4089', // Hard-coding longitude, latitude for now. Should update with the longitude/latitude arguments once app can provide this data
       limit: maxResults,
