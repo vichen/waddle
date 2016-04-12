@@ -4,6 +4,10 @@
 // once they've accepted it.
 
 var React = require('react-native');
+var env = {
+  'development': 'http://localhost:8000/',
+  'production': 'http://159.203.254.178:8000/'
+}[process.env.NODE_ENV];
 
 var {
   Component,
