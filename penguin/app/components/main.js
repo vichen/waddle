@@ -111,7 +111,7 @@ class Main extends Component{
 
   handleSubmit(){
     console.log('insert OAuth integration here');
-    var url = 'http://localhost:8000/signin';
+    var url = 'http://159.203.254.178:8000/signin';
     fetch(url, {
       method: 'POST',
       headers: {

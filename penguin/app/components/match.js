@@ -53,10 +53,12 @@ class Match extends Component{
   }
 
   render(){
+    var imageLink = 'http://159.203.254.178:8000/users/' + this.props.match.username +'/profilePhoto';
+    console.log(imageLink);
     return (
       <View style={styles.mainContainer}>
         <Image 
-        source={{uri: 'http://localhost:8000/users/' + this.props.match.username +'/profilePhoto'}}
+        source={{uri: imageLink}}
         // resizeMode="cover"
         onLoadEnd={()=>{console.log('image actually loaded, so........')}}
         style={styles.image}

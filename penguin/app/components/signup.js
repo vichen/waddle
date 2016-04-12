@@ -71,7 +71,7 @@ class Signup extends Component {
   handleNewUser(){
     console.log('new user!');
 
-    var url = 'http://localhost:8000/signup';
+    var url = 'http://159.203.254.178:8000/signup';
 
     fetch(url, {
       method: 'POST',
