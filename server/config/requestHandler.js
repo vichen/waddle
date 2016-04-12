@@ -70,15 +70,6 @@ module.exports = {
 
   getMatch: function(req, res) {
 
-    // Remove lines 59 through 64 when we deploy
-    var responseJSON = {
-      restaurant: restaurant,
-      firstMatchedUser: firstMatchedUser,
-      secondMatchedUser: secondMatchedUser,
-      matchTime: new Date()
-    };
-    res.status(200).send(responseJSON);
-    return;
 
     /*
      * How the getMatch function works:
@@ -102,6 +93,17 @@ module.exports = {
     db.checkIfUserExists(username)
       .then(function(exists) {
         if (exists) {
+
+          // TODO: Remove lines 98 through 105 when we deploy
+          var responseJSON = {
+            restaurant: restaurant,
+            firstMatchedUser: firstMatchedUser,
+            secondMatchedUser: secondMatchedUser,
+            matchTime: new Date()
+          };
+          res.status(200).send(responseJSON);
+          return;
+
           if (requestType === 'request-match') {
             // Check for active requests
             db.getMatchRequests()
@@ -160,25 +162,29 @@ module.exports = {
           } else if (requestType === 'retrieve-match') {
             db.getSuccessfulMatchForUser(username)
               .then(function(match) {
-                var firstMatchedUser; // Will store user object matching first user in match
-                var secondMatchedUser; // Will store user object matching second user in match
+                if (match) {
+                  var firstMatchedUser; // Will store user object matching first user in match
+                  var secondMatchedUser; // Will store user object matching second user in match
 
-                db.getUsers(match.firstMatchedUsername)
-                  .then(function(users) {
-                    firstMatchedUser = users[0].toObject();
+                  db.getUsers(match.firstMatchedUsername)
+                    .then(function(users) {
+                      firstMatchedUser = users[0].toObject();
 
-                    db.getUsers(match.secondMatchedUsername)
-                      .then(function(users) {
-                        secondMatchedUser = users[0].toObject();
-                        var responseObject = {
-                          firstMatchedUsername: firstMatchedUser,
-                          secondMatchedUsername: secondMatchedUser,
-                          restaurant: JSON.parse(match.restaurant)
-                        };
-                        stringifiedResponseObject = JSON.stringify(responseObject);
-                        res.send(stringifiedResponseObject);
-                      });
-                  });
+                      db.getUsers(match.secondMatchedUsername)
+                        .then(function(users) {
+                          secondMatchedUser = users[0].toObject();
+                          var responseObject = {
+                            firstMatchedUsername: firstMatchedUser,
+                            secondMatchedUsername: secondMatchedUser,
+                            restaurant: JSON.parse(match.restaurant)
+                          };
+                          stringifiedResponseObject = JSON.stringify(responseObject);
+                          res.send(stringifiedResponseObject);
+                        });
+                    });
+                } else {
+                  res.status(400).send();
+                }
               })
               .catch(function(error) {
                 console.log('Could not retrieve match for user', error);
