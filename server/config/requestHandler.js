@@ -46,8 +46,8 @@ var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   var distanceCutoff = 500; // Only find potential matches within 500m
 
   for (var i = 0; i < matchRequestsArray.length; i++) {
-    var lat2 = matchRequests[i].latitude;
-    var lon2 = matchRequests[i].longitude;
+    var lat2 = matchRequestsArray[i].latitude;
+    var lon2 = matchRequestsArray[i].longitude;
     // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
     if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
       validMatch = matchRequestsArray[i];
