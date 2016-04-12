@@ -128,14 +128,26 @@ class Main extends Component{
         this.setState({
           error: false
         });
-        this.props.navigator.push({
-          title: "Welcome",
-          component: Welcome,
-          passProps: {username: this.state.username}
+        fetch('http://localhost:8000/users/' + this.state.username, {
+          method: 'GET'
+        })
+        .then(function(response) {
+          response.json().then(function(user) {
+            console.log(user);
+            this.props.navigator.push({
+              title: "Welcome",
+              component: Welcome,
+              passProps: {
+                username: this.state.username,
+                firstName: user.firstName
+              }
+            });
+          }.bind(this));
+
           // make it impossible to go back to sign in screen
           // passProps: {userInfo: res} 
           // should pass user ID, other details as received from OAuth
-        });
+        }.bind(this));
       } else if (isInvalid) {
         this.setState({
           error: 'Invalid Username\n Please only use alphanumeric characters'
