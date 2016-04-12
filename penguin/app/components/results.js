@@ -58,7 +58,8 @@ class Results extends Component{
       coordinates: {
         latitude: this.props.restaurant.location.lat,
         longitude: this.props.restaurant.location.lng
-      }
+      },
+      match: this.props.match
     };
 
     setTimeout(() => {
@@ -71,7 +72,8 @@ class Results extends Component{
   submitHandler(){
     this.props.navigator.push({
       title: 'Match made!',
-      component: Match
+      component: Match,
+      passProps: {match: this.props.match}
     });
   }
 
