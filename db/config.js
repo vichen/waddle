@@ -26,8 +26,8 @@ var userSchema = mongoose.Schema({
 
 var matchRequestSchema = mongoose.Schema({
   username: String,
-  latitude: Number,
-  longitude: Number,
+  latitude: String,
+  longitude: String,
   timeStamp: { type: Date, default: Date.now }, // When did this user start looking for a match
   isActive: { type: Boolean, default: true }
 });
