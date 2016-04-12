@@ -132,7 +132,7 @@ module.exports = {
                   })
                   .catch(function(error) {
                     console.log('There was an error connecting to the Foursquare api', error);
-                    res.send(500);
+                    res.status(500).send();
                   });
               }
             });
@@ -154,7 +154,7 @@ module.exports = {
         });
 
     } else if (requestType === 'retrieve-match') {
-      getSuccessfulMatchForUser(username)
+      db.getSuccessfulMatchForUser(username)
         .then(function(match) {
           var firstMatchedUser; // Will store user object matching first user in match
           var secondMatchedUser; // Will store user object matching second user in match
