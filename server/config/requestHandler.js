@@ -96,7 +96,7 @@ module.exports = {
     var longitude = req.headers.longitude;
     var latitude = req.headers.latitude;
     var username = req.headers.username;
-    var requestType = req.headers.requestType;
+    var requestType = req.headers.requesttype;
 
     if (requestType === 'request-match') {
       // Check for active requests
