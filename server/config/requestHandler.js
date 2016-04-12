@@ -48,8 +48,8 @@ var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   for (var i = 0; i < matchRequestsArray.length; i++) {
     var lat2 = matchRequests[i].latitude;
     var lon2 = matchRequests[i].longitude;
-    // Check if the match request was not made by the same user
-    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= 500) {
+    // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
+    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
       validMatch = matchRequestsArray[i];
       break;
     }
@@ -168,7 +168,7 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                return getFirstValidMatch(username, matchRequests);
+                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude, longitude });
               })
               .then(function(matchedUser) {
                 if (matchedUser) {
