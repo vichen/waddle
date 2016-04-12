@@ -89,6 +89,14 @@ module.exports = {
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
 
+    console.log('---------------------------------------');
+    console.log('Received match request with options....');
+    console.log('Request Type', requestType);
+    console.log('Username', username);
+    console.log('longitude', longitude);
+    console.log('latitude', latitude);
+    console.log('---------------------------------------');
+
     // Send 400 if headers not provided
     if (!longitude || !latitude || !username || !requestType) {
       res.status(400).send();

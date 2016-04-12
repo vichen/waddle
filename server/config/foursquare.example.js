@@ -38,6 +38,8 @@ exports.getRestaurant = function(longitude, latitude) {
     }
   };
 
+  console.log('Getting restaurant with following request options', requestOptions);
+
   return new Promise(function(resolve, reject) {
     request(requestOptions, function(error, response, body) {
       if (error) {
