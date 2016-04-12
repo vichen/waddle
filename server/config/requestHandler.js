@@ -38,7 +38,7 @@ module.exports = {
   postSignin: function(req, res) {
     // check user exist in the database
     console.log('postSignin fired!', req.body);
-    var username = req.body.username.toLowerCase();
+    var username = req.body.username;
     // var email = req.body.email;
     db.getUsers(username)
       .then(function(users){
@@ -54,7 +54,7 @@ module.exports = {
   },
 
   postSignup: function(req, res) {
-    var username = req.body.username.toLowerCase();
+    var username = req.body.username;
     var email = req.body.email;
     var funFact = req.body.funFact;
     var profileImage = req.body.profileImage;
