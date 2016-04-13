@@ -17,24 +17,24 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
+    marginTop: 0,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#424D73'
   },
   title: {
     marginBottom: 20,
-    fontSize: 25,
+    fontSize: 26,
     textAlign: 'center',
-    color: '#fff',
     fontFamily: 'Raleway-Bold'
+    color: '#E89C51'
   },
   textInput: {
     height: 50,
-    padding: 4,
+    padding: 10,
     marginRight: 5,
     marginBottom: 10,
-    fontSize: 23,
+    fontSize: 20,
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 8,
@@ -42,9 +42,9 @@ var styles = StyleSheet.create({
     fontFamily: 'Raleway-Light'
   },
   buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
+    fontSize: 22,
+    color: '#DD8342',
+    alignSelf: 'center'
     fontFamily: 'Raleway-Bold'
   },
   button: {
@@ -124,6 +124,7 @@ class Signup extends Component {
   }
 
   render() {
+    var placeholderColor = '#888FA7';
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Tell us a little about yourself</Text>
@@ -132,19 +133,19 @@ class Signup extends Component {
           autoCapitalize='none'
           autoCorrect={false}
           placeholder={'First name'}
-          placeholderTextColor='white'
+          placeholderTextColor={placeholderColor}
           onChange={this.handleNameChange.bind(this)}/>
         <TextInput
           style={styles.textInput}
           autoCapitalize='none'
           placeholder='A fun fact'
-          placeholderTextColor='white'
+          placeholderTextColor={placeholderColor}
           onChange={this.handleFunFactChange.bind(this)}/>
           <TextInput
             style={styles.textInput}
             autoCapitalize='none'
             placeholder='Email'
-            placeholderTextColor='white'
+            placeholderTextColor={placeholderColor}
             onChange={this.handleEmailChange.bind(this)}/>          
         <TouchableHighlight
           style={styles.button}
