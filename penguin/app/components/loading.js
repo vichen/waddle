@@ -3,6 +3,7 @@
 // Currently, there is no flow for when a match is not found.
 
 var React = require('react-native');
+var IP_address = require('../../environment.js').IP_address;
 
 var {
   ActivityIndicatorIOS,
@@ -55,8 +56,9 @@ class Loading extends Component{
       // open Xcode, go to Debug menu > Simulate Location > SF
 
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log(position);
-      fetch('http://159.203.254.178:8000/match', {
+      console.log('loading.js user current location is', position);
+      console.log('loading.js request a match end point: ',`${IP_address}/match`);
+      fetch(`${IP_address}/match`, {
         headers: {
           requestType: 'request-match',
           longitude: position.coords.longitude,
@@ -71,7 +73,8 @@ class Loading extends Component{
   }
 
   retrieveMatch() {
-    fetch('http://159.203.254.178:8000/match', {
+    console.log('loading.js retrieving a match end point: ',`${IP_address}/match`);
+    fetch(`${IP_address}/match`, {
       headers: {
         username: this.props.username,
         requestType: 'retrieve-match'
@@ -79,10 +82,10 @@ class Loading extends Component{
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log('this is the json:', json)
+        console.log('this is the json:', json);
         this.setState({restaurant: json.restaurant});
-        this.setState({match: json.firstMatchedUsername !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
-        console.log(json.firstMatchedUsername);
+        this.setState({match: json.firstMatchedUsername.username !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
+        console.log('the important thing:', this.state.match);
         this.handleMatch();
       })
       .catch((err) => {

@@ -297,7 +297,7 @@ module.exports = {
         res.sendFile(file, options, function(err) {
           if (err) {
             console.error(err);
-            res.status(err.status).end();
+            res.status(400).send();
           }
           else {
             console.log('Sent:', file);
