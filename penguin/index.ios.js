@@ -15,7 +15,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
-var Looksgood = require('./app/components/looksgood');
+var Temp = require('./app/components/welcome');
 
 class penguin extends Component {
   render() {
@@ -24,7 +24,7 @@ class penguin extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Looksgood
+          component: Temp
         }}
       />
     );

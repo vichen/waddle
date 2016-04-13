@@ -17,43 +17,6 @@ var {
   Text
 } = React;
 
-
-// var styles = StyleSheet.create({
-//   mainContainer: {
-//     flex: 1,
-//     padding: 30,
-//     marginTop: 65,
-//     flexDirection: 'column',
-//     justifyContent: 'center',
-//     backgroundColor: '#48BBEC'
-//   },
-//   image: {
-//     alignSelf: 'center',
-//     height: 200,
-//     width: 200,
-//     borderRadius: 40,
-//     backgroundColor: "blue"
-//   },
-//   buttonText: {
-//     fontSize: 18,
-//     color: '#111',
-//     alignSelf: 'center',
-//     fontFamily: 'Raleway-Bold'
-//   },
-//   button: {
-//     height: 45,
-//     flexDirection: 'row',
-//     backgroundColor: 'white',
-//     borderColor: 'white',
-//     borderWidth: 0,
-//     borderRadius: 8,
-//     marginBottom: 10,
-//     marginTop: 10,
-//     alignSelf: 'stretch',
-//     justifyContent: 'center'
-//   }
-// });
-
 class LooksGood extends Component{
   constructor(props){
     super(props);

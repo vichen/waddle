@@ -68,5 +68,11 @@ module.exports = StyleSheet.create({
     backgroundColor: "blue",
     padding: 30
   },
+  welcomeText: {
+    marginTop: 30, 
+    fontSize: 48,
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  },
 });
 
