@@ -1,4 +1,5 @@
 var React = require('react-native');
+var IP_address = require('../../environment.js').IP_address;
 
 var {
   View,
@@ -71,7 +72,8 @@ class Signup extends Component {
   handleNewUser(){
     console.log('new user!');
 
-    var url = 'http://159.203.254.178:8000/signup';
+    var url = `${IP_address}/signup`;
+    console.log('signup.js handleNewUser end point: ', url);
 
     fetch(url, {
       method: 'POST',

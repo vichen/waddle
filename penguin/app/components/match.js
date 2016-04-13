@@ -3,6 +3,7 @@
 // to an icebreaker / enjoy your lunch screen.
 
 var React = require('react-native');
+var IP_address = require('../../environment.js').IP_address;
 
 var {
   Component,
@@ -53,7 +54,8 @@ class Match extends Component{
   }
 
   render(){
-    var imageLink = 'http://159.203.254.178:8000/users/' + this.props.match.username +'/profilePhoto';
+    var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    console.log('match.js link to image: ', imageLink);
     console.log(imageLink);
     return (
       <View style={styles.mainContainer}>

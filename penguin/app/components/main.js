@@ -37,6 +37,7 @@
 
 
 var React = require('react-native');
+var IP_address = require('../../environment.js').IP_address;
 
 var {
   View,
@@ -111,7 +112,8 @@ class Main extends Component{
 
   handleSubmit(){
     console.log('insert OAuth integration here');
-    var url = 'http://159.203.254.178:8000/signin';
+    var url = `${IP_address}/signin`;
+    console.log('main.js handleSubmit POST to signin: ', url);
     fetch(url, {
       method: 'POST',
       headers: {
@@ -127,7 +129,8 @@ class Main extends Component{
         this.setState({
           error: false
         });
-        fetch('http://159.203.254.178:8000/users/' + this.state.username, {
+        console.log('main.js handleSubmit GET userInfo end point: ', `${IP_address}/users/${this.state.username}`);
+        fetch(`${IP_address}/users/${this.state.username}`, {
           method: 'GET'
         })
         .then(function(response) {
@@ -161,7 +164,6 @@ class Main extends Component{
     }.bind(this));
 
   }
-
 
   render(){
     var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
