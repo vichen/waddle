@@ -114,6 +114,7 @@ class Main extends Component{
     console.log('insert OAuth integration here');
 
     var url = `${IP_address}/signin`;
+    console.log('main.js handleSubmit POST to signin: ', url);
     fetch(url, {
       method: 'POST',
       headers: {
@@ -129,6 +130,7 @@ class Main extends Component{
         this.setState({
           error: false
         });
+        console.log('main.js handleSubmit GET userInfo end point: ', `${IP_address}/users/${this.state.username}`);
         fetch(`${IP_address}/users/${this.state.username}`, {
           method: 'GET'
         })
@@ -163,9 +165,7 @@ class Main extends Component{
 
   }
 
-
   render(){
-    var url = `${IP_address}`;
     var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
     return (
       <View style={styles.mainContainer}>
