@@ -176,14 +176,16 @@ describe('Username endpoint functionality', () => {
     });
   });
   it('Should not respond made to the /users/:username endpoint when the username is invalid', (done) => {
-    if (error) {
-      expect(true).toEqual(false);
-      console.log('Error sending GET request to /users/:username', error);
-      done();
-    } else {
-      expect(response.statusCode).toEqual(500);
-      done();
-    }
+    request.get('http://127.0.0.1:8000/users/test', (error, response, body) => {
+      if (error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /users/:username', error);
+        done();
+      } else {
+        expect(response.statusCode).toEqual(500);
+        done();
+      }
+    });
   });
 });
 
