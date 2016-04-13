@@ -18,24 +18,6 @@ import React, {
 var Main = require('./app/components/main');
 var Temp = require('./app/components/results');
 
-var NavigationBarRouteMapper = { 
-  LeftButton: function( route, navigator, index, navState ){
-    return(
-      <Text style={styles.navBarText} onPress={navigator.pop}>{ route.leftButton }</Text>
-    )
-  },
-  Title: function( route, navigator, index, navState ){
-    return(
-      <Text style={styles.navBarText}>{ route.title }</Text>
-    )
-  },
-  RightButton: function( route, navigator, index, navState ){
-    return(
-      <Text style={styles.navBarText}>{ route.rightButton }</Text>
-    )
-  }
-}
-
 class penguin extends Component {
   render() {
 
@@ -56,12 +38,6 @@ class penguin extends Component {
             return React.createElement(route.component, { navigator });
           }
         }}
-        navigationBar={
-          <Navigator.NavigationBar 
-            routeMapper={ NavigationBarRouteMapper } 
-            style={styles.navBar}
-          />
-        } 
      />
     );
   }
