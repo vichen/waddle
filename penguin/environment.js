@@ -1,6 +1,4 @@
-// var env = require('./.env');
-
-// console.log(env);
+var env = require('./env.js');
 
 var _Environments = {
   development: {
@@ -12,7 +10,7 @@ var _Environments = {
 };
 
 var getEnvironment = function() {
-  var platform = 'development';
+  var platform = env;
   return _Environments[platform];
 };
 
