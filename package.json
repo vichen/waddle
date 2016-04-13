@@ -23,6 +23,7 @@
     "passport-facebook": "^2.1.0",
     "react": "^0.14.8",
     "react-native": "^0.23.0",
+    "react-native-video": "^0.7.1",
     "request": "^2.70.0",
     "util": "^0.10.3"
   },

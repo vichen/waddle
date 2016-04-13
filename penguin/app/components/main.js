@@ -48,6 +48,7 @@ var {
   TouchableHighlight
 } = React;
 
+import Video from 'react-native-video'
 var Welcome = require('./welcome');
 var Signup = require('./signup');
 
@@ -92,6 +93,13 @@ var styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   }
 });
 
@@ -102,6 +110,26 @@ class Main extends Component{
       username: '',
       error: false
     };
+  }
+
+  onLoad() {
+    console.log('setting duration');
+  }
+
+  loadStart() {
+    console.log('loading');
+  }
+
+  setTime() {
+    console.log('making progress');
+  }
+
+  onEnd() {
+    console.log('ending');
+  }
+
+  videoError(e) {
+    console.log('error', e);
   }
 
   handleChange(e) {
@@ -169,6 +197,18 @@ class Main extends Component{
     var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
     return (
       <View style={styles.mainContainer}>
+        <Video source={{uri:"background"}}
+          style={styles.backgroundVideo}
+          onLoadStart={this.loadStart} // Callback when video starts to load
+          onLoad={this.setDuration}    // Callback when video loads
+          onProgress={this.setTime}    // Callback every ~250ms with currentTime
+          onEnd={this.onEnd}           // Callback when playback finishes
+          onError={this.videoError} 
+          paused={false}
+          rate={1} volume={1} muted={true}
+          resizeMode="cover" repeat={true}
+
+        />
         <TextInput
           style={styles.textInput}
           autoCapitalize='none'
