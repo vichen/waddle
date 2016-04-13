@@ -170,6 +170,7 @@ describe('Username endpoint functionality', () => {
       } else {
         body = JSON.parse(body);
         expect(response.statusCode).toEqual(200);
+        expect(body.username).toEqual('test');
         done();
       }
     });
