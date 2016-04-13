@@ -26,7 +26,8 @@ var styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    color: '#fff',
+    fontFamily: 'Raleway-Bold'
   },
   textInput: {
     height: 50,
@@ -37,12 +38,14 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 8,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Raleway-Light'
   },
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Bold'
   },
   button: {
     height: 45,
@@ -129,16 +132,19 @@ class Signup extends Component {
           autoCapitalize='none'
           autoCorrect={false}
           placeholder={'First name'}
+          placeholderTextColor='white'
           onChange={this.handleNameChange.bind(this)}/>
         <TextInput
           style={styles.textInput}
           autoCapitalize='none'
           placeholder='A fun fact'
+          placeholderTextColor='white'
           onChange={this.handleFunFactChange.bind(this)}/>
           <TextInput
             style={styles.textInput}
             autoCapitalize='none'
             placeholder='Email'
+            placeholderTextColor='white'
             onChange={this.handleEmailChange.bind(this)}/>          
         <TouchableHighlight
           style={styles.button}

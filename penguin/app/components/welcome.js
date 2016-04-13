@@ -21,7 +21,8 @@ var styles = StyleSheet.create({
   },
   welcomeText: {
     marginTop: 30, 
-    fontSize: 80
+    fontSize: 80,
+    fontFamily: 'Raleway-Light'
   },
   button: {
     height: 45,
@@ -38,7 +39,8 @@ var styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Bold'
   }
 });
 

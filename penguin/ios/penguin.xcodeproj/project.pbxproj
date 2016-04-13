@@ -14,6 +14,8 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* penguinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* penguinTests.m */; };
 		0AB1CDCF1CBEBDAC006820EB /* background.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0AB1CDCE1CBEBDAC006820EB /* background.mp4 */; };
+		0AB1CE291CBECD5D006820EB /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB1CE281CBECD5D006820EB /* Raleway-Bold.ttf */; };
+		0AB1CE2B1CBECD84006820EB /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB1CE2A1CBECD84006820EB /* Raleway-Light.ttf */; };
 		0C6E1824C9C64160AF602C9C /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F250EDCBF61F4C6C8C7436F0 /* libRCTVideo.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -132,6 +134,8 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* penguinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = penguinTests.m; sourceTree = "<group>"; };
 		0AB1CDCE1CBEBDAC006820EB /* background.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.mp4; sourceTree = "<group>"; };
+		0AB1CE281CBECD5D006820EB /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		0AB1CE2A1CBECD84006820EB /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* penguin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = penguin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +256,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		0AB1CE1B1CBECCEE006820EB /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0AB1CE281CBECD5D006820EB /* Raleway-Bold.ttf */,
+				0AB1CE2A1CBECD84006820EB /* Raleway-Light.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		139105B71AF99BAD00B5F7CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +341,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				0AB1CE1B1CBECCEE006820EB /* Fonts */,
 				0AB1CDCE1CBEBDAC006820EB /* background.mp4 */,
 				0AB1CDC71CBEA28A006820EB /* Resources */,
 				13B07FAE1A68108700A75B9A /* penguin */,
@@ -588,8 +602,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AB1CDCF1CBEBDAC006820EB /* background.mp4 in Resources */,
+				0AB1CE2B1CBECD84006820EB /* Raleway-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				0AB1CE291CBECD5D006820EB /* Raleway-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
