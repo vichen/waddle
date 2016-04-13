@@ -3,8 +3,6 @@ var passport = require('passport');
 
 module.exports = function (app, express) {
 
-  app.get('/', requestHandler.getHome);
-  app.get('/signin', requestHandler.getSignin);
   app.post('/signin', requestHandler.postSignin);
   app.post('/signup', requestHandler.postSignup);
   app.get('/match', requestHandler.getMatch);

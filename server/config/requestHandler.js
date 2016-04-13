@@ -66,16 +66,6 @@ var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
 
 
 module.exports = {
-  getHome: function(req, res) {
-    // TODO:
-    // if user is aleady connected with FB
-      res.send('You are home!');
-    // else
-  },
-
-  getSignin: function(req, res) {
-    res.send('get signing in...');
-  },
 
   postSignin: function(req, res) {
     // check user exist in the database
@@ -91,7 +81,8 @@ module.exports = {
         }
       })
       .catch(function(err){
-        console.log(err);
+        console.log('There was an error calling db.getUsers from postSignin for user: ' + username, err);
+        res.status(500).send();
       });
   },
 
@@ -106,7 +97,8 @@ module.exports = {
         res.status(201).send('User Create!');
       })
       .catch(function(err){
-        console.log(err);
+        console.log('There was an error calling db.addUser from postSignup for user: ' + username, err);
+        res.status(500).send();
       });
   },
 
@@ -205,7 +197,7 @@ module.exports = {
                           });
                         })
                         .catch(function(error) {
-                          console.log('There was an error connecting to the Foursquare api', error);
+                          console.log('There was an error calling foursquare.getRestaurant from getMatch', error);
                           res.status(500).send();
                         });
                     }
@@ -214,7 +206,7 @@ module.exports = {
                   var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
                   newMatchRequest.save(function(error) {
                     if (error) {
-                      console.log('Could not save user to MatchRequest table', username, error);
+                      console.log('Could not save user to MatchRequest table: ' + username, error);
                       res.status(500).send();
                     } else {
                       res.status(200).send();
@@ -223,7 +215,7 @@ module.exports = {
                 }
               })
               .catch(function(error) {
-                console.log('Could not retrieve active match requests', error);
+                console.log('There was an error calling db.getMatchRequests from getMatch for user: ' + username, error);
                 res.status(500).send();
               });
 
@@ -248,23 +240,34 @@ module.exports = {
                           };
                           stringifiedResponseObject = JSON.stringify(responseObject);
                           res.send(stringifiedResponseObject);
+                        })
+                        .catch(function(error) {
+                          console.log('There was an error calling db.getUsers from getMatch', error);
+                          res.status(500).send();
                         });
+                    })
+                    .catch(function(error) {
+                      console.log('There was an error calling db.getUsers from getMatch', error);
+                      res.status(500).send();
                     });
                 } else {
                   res.status(400).send();
                 }
               })
               .catch(function(error) {
-                console.log('Could not retrieve match for user', error);
+                console.log('There was an error calling db.getSuccessfulMatchForUser from getMatch for user: ' + username, error);
                 res.status(500).send();
               });
           } else {
             res.status(400).send();
           }
-
         } else {
           res.status(401).send();
         }
+      })
+      .catch(function(error) {
+        console.log('Error calling db.checkIfUserExists from getMatch for user: ', username, error);
+        res.status(500).send();
       });
   },
 
@@ -277,6 +280,10 @@ module.exports = {
         console.log(users);
         res.setHeader('userInfo', JSON.stringify(users));
         res.status(200).json(users[0]);
+      })
+      .catch(function(error) {
+        console.log('There was an error calling db.getUsers from getUserInfo for user: ' + username, error);
+        res.status(500).send();
       });
   },
 
@@ -304,6 +311,10 @@ module.exports = {
           }
         });
         
+      })
+      .catch(function(error) {
+        console.log('There was an error calling db.getUsers from getProfilePhoto for user: ' + username, error);
+        res.status(500).send();
       });
   },
 
@@ -339,6 +350,10 @@ module.exports = {
       db.updateUser(username, newInfo)
         .then(function(user){
           console.log('user updated: ', user);
+        })
+        .catch(function(error) {
+          console.log('There was an error calling db.updateUser from upload for user: ' + username, error);
+          res.status(500).send();
         });
 
       res.writeHead(200, {'content-type': 'text/plain'});

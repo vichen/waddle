@@ -3,19 +3,6 @@ jest.unmock('request');
 var request = require('request');
 
 describe('Basic server functionality', () => {
-  it('Should accept and respond to GET requests at the /signin endpoint', (done) => {
-    request
-      .get('http://127.0.0.1:8000/signin')
-      .on('response', function(response) {
-        expect(response.statusCode).toEqual(200);
-        done();
-      })
-      .on('error', function(error) {
-        expect(true).toEqual(false);
-        console.log('Error sending GET request to /signin', error);
-        done();
-      });
-  });
 
   it('Should not accept and respond to GET requests at the non-existant endpoints', (done) => {
     request
