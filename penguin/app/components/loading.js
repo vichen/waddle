@@ -10,7 +10,8 @@ var {
   View,
   Text,
   Component,
-  StyleSheet
+  StyleSheet,
+  AlertIOS
 } = React;
 
 var Results = require('./results');
@@ -42,10 +43,14 @@ class Loading extends Component{
     // When the loading page opens, find user location and send it in GET headers to server
     this.requestMatch();
 
-    // 5 seconds later, retrieve match from server and setState to include it
-    setTimeout(() => {
-      this.retrieveMatch();
+    // Will check for match every 10 seconds. If not match found after 30 seconds.
+    var checkInterval = setInterval(() => {
+      this.retrieveMatch(false);
     }, 10000);
+    setTimeout(() => {
+      clearInterval(checkInterval);
+      this.retrieveMatch(true);
+    }, 30000);
 
   }
 
@@ -73,7 +78,8 @@ class Loading extends Component{
     });
   }
 
-  retrieveMatch() {
+  // isLastCheck will tell the function whether or not this is the last time the app will check of a match. 
+  retrieveMatch(isLastCheck) {
     console.log('loading.js retrieving a match end point: ',`${IP_address}/match`);
     fetch(`${IP_address}/match`, {
       headers: {
@@ -91,6 +97,12 @@ class Loading extends Component{
       })
       .catch((err) => {
         console.log('error retrieving match', err);
+        // If this is the last time the client will check for a match, the user will be sent back to the welcome screen
+        if (isLastCheck) {
+          this.setState({isLoading: false});
+          AlertIOS.alert('Sorry, we were unable to find a match for you');
+          this.props.navigator.pop(); 
+        }
       });
   }
 
