@@ -25,7 +25,7 @@ All files for the server can be found in the server folder. The server also make
 The uploads folder is used to store users' profile images.
 
 ------
-###Database
+###Database:
 ------
 ####Mongodb & Mongoose
 The Mongodb database has 3 tables: users, matchrequests, and successfulmatches (schema can be found in db/config.js). 
@@ -48,8 +48,8 @@ Database helper functions can be found in db/db.js. These helper functions are u
 ------
 ###Testing
 ------
-####Jest
-
+####Jest/Jasmine
+Jest/Jasmine are used as the unit testing suite for this app. All tests can be found in __tests__/server_db_tests.js. Run the tests with the command 'npm test'.
 ------
 
 ###Continuous Integration 
