@@ -25,7 +25,8 @@ var styles = StyleSheet.create({
   loadingText: {
     marginTop: 100,
     marginBottom: 150,
-    fontSize: 40
+    fontSize: 40,
+    fontFamily: 'Raleway-Light'
   }
 });
 
