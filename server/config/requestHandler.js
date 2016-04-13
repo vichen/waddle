@@ -22,6 +22,19 @@ var Promise = require('bluebird');
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
+// Iterates through potential matches and returns the first valid one found
+var getFirstValidMatch = function(username, matchRequestsArray) {
+  var validMatch;
+  for (var i = 0; i < matchRequestsArray.length; i++) {
+    // Check if the match request was not made by the same user
+    if (matchRequestsArray[i].username !== username) {
+      validMatch = matchRequestsArray[i];
+      break;
+    }
+  }
+  return validMatch;
+};
+
 module.exports = {
   getHome: function(req, res) {
     // TODO:
@@ -132,9 +145,10 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                if (matchRequests.length > 0) {
-                  // Match with the first available active request
-                  var matchedUser = matchRequests[0];
+                return getFirstValidMatch(username, matchRequests);
+              })
+              .then(function(matchedUser) {
+                if (matchedUser) {
                   matchedUser.isActive = false;
                   matchedUser.save(function(error) {
                     if (error) {
