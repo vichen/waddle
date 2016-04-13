@@ -15,6 +15,14 @@
 ###Server Setup:
 ------
 ####Node.js & Express
+All files for the server can be found in the server folder. The server also makes use of the database helper functions in db/db.js.
+  - server/sever.js: Configures the server and listens on port 8000.
+  - server/config/requestHandler.js: Majority of server processes are handled by this file. It contains handler functions for all requests that come into the server.
+  - server/config/routes.js: Defines the routes for the various types of requests.
+  - server/config/foursquare.js: Makes requests to the foursquare API. Used in the request handlers.
+  - server/config/foursquarekeys.example.js: An example file that you will need to update with your Foursquare API keys to. It goes without saying that you should not push your API keys to github or anywhere else that may compromise their security.
+
+The uploads folder is used to store users' profile images.
 
 ------
 ###Database
