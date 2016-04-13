@@ -24,7 +24,7 @@ class penguin extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Temp
+          component: Main
         }}
       />
     );
