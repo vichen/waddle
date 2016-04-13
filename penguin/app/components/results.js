@@ -15,40 +15,7 @@ var {
 } = React;
 
 var Match = require('./match');
-
-var styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 0,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-  map: {
-    height: 300,
-    margin: 10,
-    marginTop: -100,
-    borderRadius: 15,
-  }
-});
+var styles = require('./Styles');
 
 class Results extends Component{
   constructor(props) {
@@ -79,7 +46,7 @@ class Results extends Component{
 
   render() {
     return (
-      <View style={styles.mainContainer}>
+      <View>
         <MapView 
         showsUserLocation={true}
         // followUserLocation={true} 
@@ -90,16 +57,18 @@ class Results extends Component{
         annotations={[this.state.coordinates]}
         >
         </MapView>
-        <Text>Here's the restaurant. Be there in 5 minutes, or else...</Text>
-        <Text>{this.props.restaurant.name}</Text>
-        <Text>{this.props.restaurant.location.address}</Text>
-        <TouchableHighlight
-          disabled={this.state.onMyWay}
-          style={styles.button}
-          underlayColor="purple"
-          onPress={this.submitHandler.bind(this)}>
-          <Text style={styles.buttonText}>I'm here</Text>
-        </TouchableHighlight>
+        <View style={styles.mainContainer}>
+          <Text style={styles.title}>Here's the restaurant. Be there in 5 minutes, or else...</Text>
+          <Text style={styles.resultsText}>Restaurant: {this.props.restaurant.name}</Text>
+          <Text style={styles.resultsText}>Address: {this.props.restaurant.location.address}</Text>
+          <TouchableHighlight
+            disabled={this.state.onMyWay}
+            style={styles.button}
+            underlayColor="purple"
+            onPress={this.submitHandler.bind(this)}>
+            <Text style={styles.buttonText}>I'm here</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }

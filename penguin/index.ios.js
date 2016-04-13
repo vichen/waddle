@@ -15,6 +15,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
+var Temp = require('./app/components/results');
 
 class penguin extends Component {
   render() {
@@ -22,7 +23,7 @@ class penguin extends Component {
       <NavigatorIOS 
         style={styles.container}
         initialRoute={{
-          title: 'Sign in with Facebook',
+          title: 'Sign in with Waddle',
           component: Main
         }}
       />

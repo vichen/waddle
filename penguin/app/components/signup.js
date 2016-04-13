@@ -1,5 +1,7 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
+var Selfie = require('./selfie');
+var styles = require('./Styles');
 
 var {
   View,
@@ -10,56 +12,6 @@ var {
   Image,
   TouchableHighlight
 } = React;
-
-var Selfie = require('./selfie');
-
-var styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
-  },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff',
-    fontFamily: 'Raleway-Bold'
-  },
-  textInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white',
-    fontFamily: 'Raleway-Light'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
-    fontFamily: 'Raleway-Bold'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 0,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 class Signup extends Component {
   constructor(props) {
@@ -124,6 +76,8 @@ class Signup extends Component {
   }
 
   render() {
+    var placeholderColor = '#888FA7';
+    console.log(styles.mainContainer);
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.title}>Tell us a little about yourself</Text>
@@ -132,19 +86,19 @@ class Signup extends Component {
           autoCapitalize='none'
           autoCorrect={false}
           placeholder={'First name'}
-          placeholderTextColor='white'
+          placeholderTextColor={placeholderColor}
           onChange={this.handleNameChange.bind(this)}/>
         <TextInput
           style={styles.textInput}
           autoCapitalize='none'
           placeholder='A fun fact'
-          placeholderTextColor='white'
+          placeholderTextColor={placeholderColor}
           onChange={this.handleFunFactChange.bind(this)}/>
           <TextInput
             style={styles.textInput}
             autoCapitalize='none'
             placeholder='Email'
-            placeholderTextColor='white'
+            placeholderTextColor={placeholderColor}
             onChange={this.handleEmailChange.bind(this)}/>          
         <TouchableHighlight
           style={styles.button}

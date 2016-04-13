@@ -5,6 +5,8 @@
 
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
+var Welcome = require('./welcome');
+var styles = require('./Styles');
 
 var {
   Component,
@@ -14,44 +16,6 @@ var {
   Image,
   Text
 } = React;
-
-var Welcome = require('./welcome');
-
-var styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
-  },
-  image: {
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-    borderRadius: 40,
-    backgroundColor: "blue"
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
-    fontFamily: 'Raleway-Bold'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 0,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
 
 class LooksGood extends Component{
   constructor(props){
@@ -105,10 +69,10 @@ class LooksGood extends Component{
   render(){
     return (
       <View style={styles.mainContainer}>
-        <Text>How do you look?</Text>
         <Image 
           style={styles.image} 
           source={{uri: this.props.picture}} />
+        <Text style={styles.title}>How do you look?</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleLookingGood.bind(this)}>

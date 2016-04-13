@@ -15,21 +15,7 @@ var {
 } = React;
 
 var Results = require('./results');
-
-var styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    flexDirection: 'column',
-    backgroundColor: '#48BBEC'
-  },
-  loadingText: {
-    marginTop: 100,
-    marginBottom: 150,
-    fontSize: 40,
-    fontFamily: 'Raleway-Light'
-  }
-});
+var styles = require('./Styles');
 
 class Loading extends Component{
   constructor(props) {
