@@ -75,12 +75,14 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 8,
-    color: 'white'
+    color: 'white',
+    fontFamily: 'Raleway-Light'
   },
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Bold'
   },
   button: {
     height: 45,
@@ -214,6 +216,7 @@ class Main extends Component{
           autoCapitalize='none'
           autoCorrect={false}
           placeholder='Username'
+          placeholderTextColor='white'
           onChange={this.handleChange.bind(this)}
         />
         <TouchableHighlight
