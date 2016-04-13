@@ -9,6 +9,7 @@ import React, {
   StyleSheet,
   Text,
   NavigatorIOS,
+  Navigator,
   View
 } from 'react-native';
 
@@ -17,16 +18,51 @@ import React, {
 var Main = require('./app/components/main');
 var Temp = require('./app/components/results');
 
+var NavigationBarRouteMapper = { 
+  LeftButton: function( route, navigator, index, navState ){
+    return(
+      <Text style={styles.navBarText} onPress={navigator.pop}>{ route.leftButton }</Text>
+    )
+  },
+  Title: function( route, navigator, index, navState ){
+    return(
+      <Text style={styles.navBarText}>{ route.title }</Text>
+    )
+  },
+  RightButton: function( route, navigator, index, navState ){
+    return(
+      <Text style={styles.navBarText}>{ route.rightButton }</Text>
+    )
+  }
+}
+
 class penguin extends Component {
   render() {
+
     return (
-      <NavigatorIOS 
-        style={styles.container}
+      <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
           component: Main
         }}
-      />
+        configureScene={() => {
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        renderScene={(route, navigator) => {
+          // count the number of func calls
+          console.log(route, navigator); 
+
+          if (route.component) {
+            return React.createElement(route.component, { navigator });
+          }
+        }}
+        navigationBar={
+          <Navigator.NavigationBar 
+            routeMapper={ NavigationBarRouteMapper } 
+            style={styles.navBar}
+          />
+        } 
+     />
     );
   }
 }
@@ -48,6 +84,15 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  navBar: {
+    backgroundColor: 'transparent',
+  },
+  navBarText: {
+    fontSize: 16,
+    marginVertical: 10,
+    color: "white",
+    marginHorizontal: 15
+  }
 });
 
 AppRegistry.registerComponent('penguin', () => penguin);
