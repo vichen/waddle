@@ -4,6 +4,7 @@
 // once they've accepted it.
 
 var React = require('react-native');
+var IP_address = require('../../environment.js').IP_address;
 
 var {
   Component,
@@ -86,8 +87,8 @@ class LooksGood extends Component{
     formdata.append('email', this.props.email);
     formdata.append('photo', photo);
 
-
-    xhr.open('POST', 'http://159.203.254.178:8000/upload');
+    console.log('loading.js handleLookingGood end point: ', `${IP_address}/upload`)
+    xhr.open('POST', `${IP_address}/upload`);
     xhr.send(formdata);
 
     this.props.navigator.push({
