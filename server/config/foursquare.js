@@ -4,9 +4,16 @@
  */
 
 var request = require('request');
+var keys = {};
+try {
+  keys = require('./foursquarekeys.js');
+}
+catch(e) {
+  console.log('./foursquarekeys.js does not exist', e);
+}
 
-exports.client_id = '';
-exports.client_secret = '';
+exports.client_id = keys.client_id || '';
+exports.client_secret = keys.client_secret || '';
 
 exports.getRestaurant = function(longitude, latitude) {
   var maxResults = 50; // max # of results to return
@@ -31,12 +38,14 @@ exports.getRestaurant = function(longitude, latitude) {
       client_id: exports.client_id,
       client_secret: exports.client_secret,
       v: 20160405,
-      ll: longitude + ', ' + latitude,
+      ll: latitude + ', ' + longitude,
       limit: maxResults,
       categoryId: categoryId,
       radius: searchRadius
     }
   };
+
+  console.log('Getting restaurant with following request options', requestOptions);
 
   return new Promise(function(resolve, reject) {
     request(requestOptions, function(error, response, body) {

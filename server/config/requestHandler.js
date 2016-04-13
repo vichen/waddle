@@ -2,8 +2,7 @@ var fs = require('fs');
 var util = require('util');
 var formidable = require('formidable');
 var request = require('request');
-// TODO: The require statement on line 6 should be replaced with the file containing the real API keys.
-var foursquare = require('./foursquare.example.js');
+var foursquare = require('./foursquare.js');
 var db = require('../../db/db.js').db;
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
@@ -22,6 +21,49 @@ var SuccessfulMatch = require('../../db/config.js').SuccessfulMatch;
 var Promise = require('bluebird');
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
+
+// Function to calculate distance from longitude and latitude
+var getDistanceFromLatLonInM = function(lat1,lon1,lat2,lon2) {
+  var deg2rad = function(deg) {
+    return deg * (Math.PI/180);
+  };
+
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);
+  var dLon = deg2rad(lon2-lon1);
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in km
+  return d * 1000; // Return distance in meters
+};
+
+// Iterates through potential matches and returns the first valid one found.
+// userLocation is an object-literal with properties longitude and latitude
+var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
+  var validMatch;
+  var lat1 = userLocation.latitude;
+  var lon1 = userLocation.longitude;
+  var distanceCutoff = 500; // Only find potential matches within 500m
+
+  console.log('-----------------------');
+  console.log('Finding valid match for');
+  console.log('username', username);
+  console.log('latitude', lat1);
+  console.log('longitude', lon1);
+  console.log('-----------------------');
+
+  for (var i = 0; i < matchRequestsArray.length; i++) {
+    var lat2 = matchRequestsArray[i].latitude;
+    var lon2 = matchRequestsArray[i].longitude;
+    // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
+    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
+      validMatch = matchRequestsArray[i];
+      break;
+    }
+  }
+  return validMatch;
+};
+
 
 module.exports = {
   getHome: function(req, res) {
@@ -89,8 +131,16 @@ module.exports = {
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
 
+    console.log('---------------------------------------');
+    console.log('Received match request with options....');
+    console.log('Request Type', requestType);
+    console.log('Username', username);
+    console.log('latitude', latitude);
+    console.log('longitude', longitude);
+    console.log('---------------------------------------');
+
     // Send 400 if headers not provided
-    if (!longitude || !latitude || !username || !requestType) {
+    if ( ( (!longitude || !latitude || !username) && requestType === 'request-match') || !requestType) {
       res.status(400).send();
       return;
     }
@@ -101,31 +151,34 @@ module.exports = {
         if (exists) {
 
           /*
-           * Lines 108 through 119 are 'dummy code' that will allow us to pass the unit tests. It should be removed when we deploy.
+           * Lines 108 through 119 are 'dummy code' that will allow us to pass the unit tests.
            * This code is necessary because the continuous integration on Travis-CI does not have access to our Foursquare API keys. 
            * As such, the below vode (i.e., lines 120 onwards) will always fail the unit tests during continuous integration. 
            * Although all the code below has not been unit tested, it has been manually tested and is functional.
           */
-          if (requestType === 'retrieve-match'){
-            var responseJSON = {
-              restaurant: restaurant,
-              firstMatchedUser: firstMatchedUser,
-              secondMatchedUser: secondMatchedUser,
-              matchTime: new Date()
-            };
-            res.status(200).send(responseJSON);
-            return;
-          } else if (requestType === 'request-match') {
-            res.status(200).send();
+          if (foursquare.client_id === '') {
+            if (requestType === 'retrieve-match'){
+              var responseJSON = {
+                restaurant: restaurant,
+                firstMatchedUser: firstMatchedUser,
+                secondMatchedUser: secondMatchedUser,
+                matchTime: new Date()
+              };
+              res.status(200).send(responseJSON);
+              return;
+            } else if (requestType === 'request-match') {
+              res.status(200).send();
+            }
           }
 
           if (requestType === 'request-match') {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                if (matchRequests.length > 0) {
-                  // Match with the first available active request
-                  var matchedUser = matchRequests[0];
+                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
+              })
+              .then(function(matchedUser) {
+                if (matchedUser) {
                   matchedUser.isActive = false;
                   matchedUser.save(function(error) {
                     if (error) {
@@ -158,7 +211,7 @@ module.exports = {
                     }
                   });
                 } else {
-                  var newMatchRequest = new MatchRequest({ username: username });
+                  var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
                   newMatchRequest.save(function(error) {
                     if (error) {
                       console.log('Could not save user to MatchRequest table', username, error);
@@ -212,6 +265,18 @@ module.exports = {
         } else {
           res.status(401).send();
         }
+      });
+  },
+
+  getUserInfo: function(req, res) {
+    var username = req.params.username.toLowerCase();
+
+    db.getUsers(username)
+      .then(function(users) {
+        var user = users[0];
+        console.log(users);
+        res.setHeader('userInfo', JSON.stringify(users));
+        res.status(200).json(users[0]);
       });
   },
 
