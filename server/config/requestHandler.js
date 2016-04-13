@@ -22,18 +22,48 @@ var Promise = require('bluebird');
 // temporary fake users table
 var Users = {rahim: '', kevin: '', nathaniel: '', michelle: ''};
 
-// Iterates through potential matches and returns the first valid one found
-var getFirstValidMatch = function(username, matchRequestsArray) {
+// Function to calculate distance from longitude and latitude
+var getDistanceFromLatLonInM = function(lat1,lon1,lat2,lon2) {
+  var deg2rad = function(deg) {
+    return deg * (Math.PI/180);
+  };
+
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);
+  var dLon = deg2rad(lon2-lon1);
+  var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in km
+  return d * 1000; // Return distance in meters
+};
+
+// Iterates through potential matches and returns the first valid one found.
+// userLocation is an object-literal with properties longitude and latitude
+var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   var validMatch;
+  var lat1 = userLocation.latitude;
+  var lon1 = userLocation.longitude;
+  var distanceCutoff = 500; // Only find potential matches within 500m
+
+  console.log('-----------------------');
+  console.log('Finding valid match for');
+  console.log('username', username);
+  console.log('latitude', lat1);
+  console.log('longitude', lon1);
+  console.log('-----------------------');
+
   for (var i = 0; i < matchRequestsArray.length; i++) {
-    // Check if the match request was not made by the same user
-    if (matchRequestsArray[i].username !== username) {
+    var lat2 = matchRequestsArray[i].latitude;
+    var lon2 = matchRequestsArray[i].longitude;
+    // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
+    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
       validMatch = matchRequestsArray[i];
       break;
     }
   }
   return validMatch;
 };
+
 
 module.exports = {
   getHome: function(req, res) {
@@ -105,8 +135,8 @@ module.exports = {
     console.log('Received match request with options....');
     console.log('Request Type', requestType);
     console.log('Username', username);
-    console.log('longitude', longitude);
     console.log('latitude', latitude);
+    console.log('longitude', longitude);
     console.log('---------------------------------------');
 
     // Send 400 if headers not provided
@@ -145,7 +175,7 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                return getFirstValidMatch(username, matchRequests);
+                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
               })
               .then(function(matchedUser) {
                 if (matchedUser) {
@@ -181,7 +211,7 @@ module.exports = {
                     }
                   });
                 } else {
-                  var newMatchRequest = new MatchRequest({ username: username });
+                  var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
                   newMatchRequest.save(function(error) {
                     if (error) {
                       console.log('Could not save user to MatchRequest table', username, error);
