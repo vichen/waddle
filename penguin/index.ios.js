@@ -15,7 +15,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
-var Temp = require('./app/components/loading');
+var Temp = require('./app/components/results');
 
 class penguin extends Component {
   render() {

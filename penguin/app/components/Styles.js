@@ -80,6 +80,17 @@ module.exports = StyleSheet.create({
     fontSize: 40,
     fontFamily: 'Raleway-Light',
     color: 'white'
+  },
+  resultsText: {
+    marginTop: 5,
+    marginBottom: 5,
+    fontSize: 16,
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  },
+  map: {
+    height: 360,
+    marginTop: 50,
   }
 });
 
