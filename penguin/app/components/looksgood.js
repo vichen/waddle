@@ -17,6 +17,7 @@ var {
   Text
 } = React;
 
+
 class LooksGood extends Component{
   constructor(props){
     super(props);

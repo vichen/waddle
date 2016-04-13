@@ -49,9 +49,10 @@ var {
   TouchableHighlight
 } = React;
 
-import Video from 'react-native-video'
+import Video from 'react-native-video';
 var Welcome = require('./welcome');
 var Signup = require('./signup');
+
 
 class Main extends Component{
   constructor(props){
@@ -114,8 +115,9 @@ class Main extends Component{
         .then(function(response) {
           response.json().then(function(user) {
             console.log(user);
+            this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
             this.props.navigator.push({
-              title: "Welcome",
+              title: 'Welcome',
               component: Welcome,
               passProps: {
                 username: this.state.username,
@@ -133,11 +135,12 @@ class Main extends Component{
           error: 'Invalid Username\n Please only use alphanumeric characters'
         });
       } else {
+        this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
         this.props.navigator.push({
           title: 'Signup',
           component: Signup,
           passProps: {username: this.state.username}
-        })
+        });
       }
     }.bind(this));
 
