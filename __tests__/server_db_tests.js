@@ -182,7 +182,8 @@ describe('Username endpoint functionality', () => {
         console.log('Error sending GET request to /users/:username', error);
         done();
       } else {
-        expect(response.statusCode).toEqual(500);
+        expect(response.statusCode).toEqual(200);
+        expect(body.username).toBeUndefined();
         done();
       }
     });
