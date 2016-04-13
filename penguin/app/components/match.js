@@ -32,7 +32,8 @@ var styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Bold'
   },
   button: {
     height: 45,
