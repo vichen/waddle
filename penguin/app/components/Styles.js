@@ -74,5 +74,12 @@ module.exports = StyleSheet.create({
     fontFamily: 'Raleway-Light',
     color: 'white'
   },
+  loadingText: {
+    marginTop: 30,
+    marginBottom: 50,
+    fontSize: 40,
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  }
 });
 
