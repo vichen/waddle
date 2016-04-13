@@ -127,7 +127,7 @@ class Main extends Component{
         this.setState({
           error: false
         });
-        fetch('http://localhost:8000/users/' + this.state.username, {
+        fetch('http://159.203.254.178:8000/users/' + this.state.username, {
           method: 'GET'
         })
         .then(function(response) {
