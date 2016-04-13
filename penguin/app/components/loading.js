@@ -79,10 +79,10 @@ class Loading extends Component{
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log('this is the json:', json)
+        console.log('this is the json:', json);
         this.setState({restaurant: json.restaurant});
-        this.setState({match: json.firstMatchedUsername !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
-        console.log(json.firstMatchedUsername);
+        this.setState({match: json.firstMatchedUsername.username !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
+        console.log('the important thing:', this.state.match);
         this.handleMatch();
       })
       .catch((err) => {
