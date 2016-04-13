@@ -18,7 +18,8 @@ module.exports = StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     fontFamily: 'Raleway-Bold',
-    color: '#E89C51'
+    color: '#E89C51',
+    padding: 20
   },
   textInput: {
     height: 50,
@@ -56,6 +57,16 @@ module.exports = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0
-  }
+  },
+  image: {
+    alignSelf: 'center',
+    height: 240,
+    width: 240,
+    borderRadius: 120,
+    borderWidth: 3,
+    borderColor: 'white',
+    backgroundColor: "blue",
+    padding: 30
+  },
 });
 

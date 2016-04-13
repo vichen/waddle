@@ -1,5 +1,7 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
+var Selfie = require('./selfie');
+var styles = require('./Styles');
 
 var {
   View,
@@ -10,9 +12,6 @@ var {
   Image,
   TouchableHighlight
 } = React;
-
-var Selfie = require('./selfie');
-var styles = require('./Styles');
 
 class Signup extends Component {
   constructor(props) {
