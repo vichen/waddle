@@ -57,7 +57,7 @@ class Loading extends Component{
 
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('loading.js user current location is', position);
-      console.log('loading.js fetching a match end point: ',`${IP_address}/match`);
+      console.log('loading.js request a match end point: ',`${IP_address}/match`);
       fetch(`${IP_address}/match`, {
         headers: {
           requestType: 'request-match',
@@ -73,7 +73,8 @@ class Loading extends Component{
   }
 
   retrieveMatch() {
-    fetch('http://159.203.254.178:8000/match', {
+    console.log('loading.js retrieving a match end point: ',`${IP_address}/match`);
+    fetch(`${IP_address}/match`, {
       headers: {
         username: this.props.username,
         requestType: 'retrieve-match'
