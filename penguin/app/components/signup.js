@@ -13,6 +13,7 @@ var {
   TouchableHighlight
 } = React;
 
+
 class Signup extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +45,7 @@ class Signup extends Component {
       // TODO: handle duplicate usernames
       this.props.navigator.push({
         title: "Take a selfie!",
+        leftButton: "Signup",
         component: Selfie,
         passProps: {
           username: this.props.username,

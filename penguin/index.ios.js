@@ -9,6 +9,7 @@ import React, {
   StyleSheet,
   Text,
   NavigatorIOS,
+  Navigator,
   View
 } from 'react-native';
 
@@ -19,14 +20,27 @@ var Temp = require('./app/components/results');
 
 class penguin extends Component {
   render() {
+
     return (
-      <NavigatorIOS 
-        style={styles.container}
+      <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Main
+          component: Main,
+          passProps: {}
         }}
-      />
+        configureScene={() => {
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        renderScene={(route, navigator) => {
+          // count the number of func calls
+          const Component = route.component
+          return (
+            <View style={{flex: 1}}>
+              <Component navigator={navigator} route={route} {...route.passProps}/>
+            </View>
+          )
+        }}
+     />
     );
   }
 }
@@ -47,7 +61,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
+  }
 });
 
 AppRegistry.registerComponent('penguin', () => penguin);

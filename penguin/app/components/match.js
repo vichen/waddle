@@ -18,7 +18,6 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    marginTop: 65,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: '#48BBEC'
