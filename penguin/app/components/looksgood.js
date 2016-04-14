@@ -53,10 +53,11 @@ class LooksGood extends Component{
     formdata.append('email', this.props.email);
     formdata.append('photo', photo);
 
-    console.log('loading.js handleLookingGood end point: ', `${IP_address}/upload`)
+    console.log('loading.js handleLookingGood end point: ', `${IP_address}/upload`);
     xhr.open('POST', `${IP_address}/upload`);
     xhr.send(formdata);
 
+    this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
     this.props.navigator.push({
       title: 'Welcome!',
       component: Welcome,

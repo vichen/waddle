@@ -100,6 +100,7 @@ class Loading extends Component{
 
   handleMatch() {
       this.setState({isLoading: false});
+      this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
       this.props.navigator.push({
         title: 'Results',
         component: Results,
