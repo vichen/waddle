@@ -21,8 +21,7 @@ class Match extends Component{
   }
 
   render(){
-    // var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
-    var imageLink = 'http://previews.123rf.com/images/bigandt/bigandt1503/bigandt150300022/37059909-Purebred-welsh-corgi-dog-isolated-on-white-background-in-studio--Stock-Photo.jpg';
+    var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
     console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
