@@ -6,7 +6,7 @@ var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 
 var checkInterval;
-var finalInterval;
+var checkTimeout;
 
 var {
   ActivityIndicatorIOS,
@@ -36,7 +36,7 @@ class Loading extends Component{
     checkInterval = setInterval(() => {
       this.retrieveMatch(false);
     }, 10000);
-    finalInterval = setTimeout(() => {
+    checkTimeout = setTimeout(() => {
       this.retrieveMatch(true);
     }, 30000);
 
@@ -88,7 +88,7 @@ class Loading extends Component{
         // If this is the last time the client will check for a match, the user will be sent back to the welcome screen
         if (isLastCheck) {
           clearInterval(checkInterval);
-          clearInterval(finalInterval);
+          clearTimeout(checkTimeout);
           this.setState({isLoading: false});
           AlertIOS.alert('Sorry, we were unable to find a match for you');
           this.props.navigator.pop(); 
