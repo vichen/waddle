@@ -99,6 +99,7 @@ class Signup extends Component {
           <TextInput
             style={styles.textInput}
             autoCapitalize='none'
+            autoCorrect={false}
             placeholder='Email'
             placeholderTextColor={placeholderColor}
             onChange={this.handleEmailChange.bind(this)}/>          
