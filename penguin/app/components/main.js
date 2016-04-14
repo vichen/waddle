@@ -62,26 +62,6 @@ class Main extends Component{
     };
   }
 
-  onLoad() {
-    console.log('setting duration');
-  }
-
-  loadStart() {
-    console.log('loading');
-  }
-
-  setTime() {
-    console.log('making progress');
-  }
-
-  onEnd() {
-    console.log('ending');
-  }
-
-  videoError(e) {
-    console.log('error', e);
-  }
-
   handleChange(e) {
     this.setState({
       username: e.nativeEvent.text
@@ -149,11 +129,6 @@ class Main extends Component{
       <View style={styles.mainContainer}>
         <Video source={{uri:"background"}}
           style={styles.backgroundVideo}
-          onLoadStart={this.loadStart} // Callback when video starts to load
-          onLoad={this.setDuration}    // Callback when video loads
-          onProgress={this.setTime}    // Callback every ~250ms with currentTime
-          onEnd={this.onEnd}           // Callback when playback finishes
-          onError={this.videoError} 
           paused={false}
           rate={1} volume={1} muted={true}
           resizeMode="cover" repeat={true}
