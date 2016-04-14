@@ -18,7 +18,7 @@ module.exports = StyleSheet.create({
     fontSize: 26,
     textAlign: 'center',
     fontFamily: 'Raleway-Bold',
-    color: '#E89C51',
+    color: 'white',
     padding: 20
   },
   textInput: {
@@ -37,7 +37,7 @@ module.exports = StyleSheet.create({
     fontSize: 22,
     color: '#DD8342',
     alignSelf: 'center',
-    fontFamily: 'Raleway-Bold'
+    fontFamily: 'Raleway-Light'
   },
   button: {
     height: 45,
