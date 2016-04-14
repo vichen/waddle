@@ -25,18 +25,20 @@ class penguin extends Component {
       <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Main
+          component: Main,
+          passProps: {}
         }}
         configureScene={() => {
           return Navigator.SceneConfigs.FloatFromRight;
         }}
         renderScene={(route, navigator) => {
           // count the number of func calls
-          console.log(route, navigator); 
-
-          if (route.component) {
-            return React.createElement(route.component, { navigator });
-          }
+          const Component = route.component
+          return (
+            <View style={{flex: 1}}>
+              <Component navigator={navigator} route={route} {...route.passProps}/>
+            </View>
+          )
         }}
      />
     );
