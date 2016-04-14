@@ -61,15 +61,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
-  },
-  navBar: {
-    backgroundColor: 'transparent',
-  },
-  navBarText: {
-    fontSize: 16,
-    marginVertical: 10,
-    color: "white",
-    marginHorizontal: 15
   }
 });
 
