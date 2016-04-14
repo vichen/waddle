@@ -64,7 +64,7 @@ class Results extends Component{
           <TouchableHighlight
             disabled={this.state.onMyWay}
             style={styles.button}
-            underlayColor="purple"
+            underlayColor="#F3D9BF"
             onPress={this.submitHandler.bind(this)}>
             <Text style={styles.buttonText}>I'm here</Text>
           </TouchableHighlight>

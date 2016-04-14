@@ -148,7 +148,7 @@ class Main extends Component{
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor="rgba(255, 255, 255, 0.95)">
+          underlayColor="#F3D9BF">
           <Text style={styles.buttonText}>Sign in</Text>
         </TouchableHighlight>
         {showErr}
