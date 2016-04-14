@@ -4,4 +4,3 @@ server/config/foursquarekeys.js
 server/uploads/*
 !server/uploads/.gitkeep
 .DS_Store
-penguin/env.js
