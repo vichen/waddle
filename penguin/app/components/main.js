@@ -129,30 +129,31 @@ class Main extends Component{
   render(){
     var showErr = ( this.state.error ? <Text> {this.state.error} </Text> : <View></View> );
     return (
-      <View style={styles.mainContainer}>
-        <Video source={{uri:"background"}}
-          style={styles.backgroundVideo}
-          paused={false}
-          rate={1} volume={1} muted={true}
-          resizeMode="cover" repeat={true}
+        <View style={styles.mainContainer}>
+          <Video source={{uri:"background"}}
+            style={styles.backgroundVideo}
+            paused={false}
+            rate={1} volume={1} muted={true}
+            resizeMode="cover" repeat={true}
 
-        />
-        <TextInput
-          style={styles.textInput}
-          autoCapitalize='none'
-          autoCorrect={false}
-          placeholder='Username'
-          placeholderTextColor='white'
-          onChange={this.handleChange.bind(this)}
-        />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="#F3D9BF">
-          <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableHighlight>
-        {showErr}
-      </View>
+          />
+          <Text style={styles.mainTitle}>waddle</Text>
+          <TextInput
+            style={styles.textInput}
+            autoCapitalize='none'
+            autoCorrect={false}
+            placeholder='Username'
+            placeholderTextColor='white'
+            onChange={this.handleChange.bind(this)}
+          />
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.handleSubmit.bind(this)}
+            underlayColor="rgba(255, 255, 255, 0.95)">
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableHighlight>
+          {showErr}
+        </View>
     )
   }
 };
