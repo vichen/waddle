@@ -21,6 +21,17 @@ module.exports = StyleSheet.create({
     color: 'white',
     padding: 20
   },
+  mainTitle: {
+    position: 'absolute',
+    top: 25,
+    left: 155,
+    fontSize: 26,
+    textAlign: 'center',
+    fontFamily: 'Raleway-Bold',
+    color: 'white',
+
+    backgroundColor: 'transparent',
+  },
   textInput: {
     height: 50,
     padding: 10,
