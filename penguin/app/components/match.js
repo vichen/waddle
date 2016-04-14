@@ -4,6 +4,7 @@
 
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
+var styles = require('./Styles');
 
 var {
   Component,
@@ -14,49 +15,15 @@ var {
   TouchableHighlight
 } = React;
 
-var styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: '#48BBEC'
-  },
-  image: {
-    alignSelf: 'center',
-    height: 200,
-    width: 200,
-    borderRadius: 40
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
-    fontFamily: 'Raleway-Bold'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 0,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  }
-});
-
 class Match extends Component{
   constructor(props){
     super(props);
   }
 
   render(){
-    var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    // var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    var imageLink = 'http://previews.123rf.com/images/bigandt/bigandt1503/bigandt150300022/37059909-Purebred-welsh-corgi-dog-isolated-on-white-background-in-studio--Stock-Photo.jpg';
     console.log('match.js link to image: ', imageLink);
-    console.log(imageLink);
     return (
       <View style={styles.mainContainer}>
         <Image 
@@ -65,7 +32,7 @@ class Match extends Component{
         onLoadEnd={()=>{console.log('image actually loaded, so........')}}
         style={styles.image}
         />
-        <Text>Here's your match!</Text>
+        <Text style={styles.title}>Here's your match!</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={()=>{console.log('you found them!')}}

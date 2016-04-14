@@ -16,7 +16,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
-var Temp = require('./app/components/results');
+var Temp = require('./app/components/match'); // used temporarily for working on styling
 
 class penguin extends Component {
   render() {
@@ -40,7 +40,7 @@ class penguin extends Component {
             </View>
           )
         }}
-     />
+      />
     );
   }
 }
