@@ -8,8 +8,6 @@ var {
 module.exports = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -36,7 +34,8 @@ module.exports = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Raleway-Bold',
     color: 'white',
-    padding: 20
+    padding: 20,
+    backgroundColor: 'transparent',
   },
   mainTitle: {
     position: 'absolute',
@@ -46,7 +45,6 @@ module.exports = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Raleway-Bold',
     color: 'white',
-
     backgroundColor: 'transparent',
   },
   textInput: {
@@ -86,6 +84,14 @@ module.exports = StyleSheet.create({
     bottom: 0,
     right: 0
   },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    opacity: 0.20
+  },
   image: {
     alignSelf: 'center',
     height: 240,
@@ -104,6 +110,20 @@ module.exports = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     backgroundColor: "blue",
+    padding: 30
+  },
+  avatarContainer: {
+    flexWrap: 'wrap', 
+    alignItems: 'flex-start',
+    flexDirection:'row',
+    alignSelf: 'center'
+  },
+  avatarMatch: {
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: 'white',
     padding: 30
   },
   welcomeText: {

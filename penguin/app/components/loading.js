@@ -106,7 +106,8 @@ class Loading extends Component{
         component: Results,
         passProps: {
           restaurant: this.state.restaurant,
-          match: this.state.match
+          match: this.state.match,
+          username: this.props.username
         }
       });
   }
