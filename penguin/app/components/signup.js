@@ -5,11 +5,13 @@ var styles = require('./Styles');
 
 var {
   View,
+  Animated,
   Text,
   StyleSheet,
   Component,
   TextInput,
   Image,
+  DeviceEventEmitter,
   TouchableHighlight
 } = React;
 
@@ -21,8 +23,33 @@ class Signup extends Component {
       firstName: '',
       funFact: '',
       email: '',
+      keyboardOffset: new Animated.Value(0),
       error: false
     };
+  }
+
+  componentDidMount() {
+    _keyboardWillShowListener = DeviceEventEmitter.addListener('keyboardWillShow', (e) => this._keyboardWillShow(e));
+    _keyboardWillHideListener = DeviceEventEmitter.addListener('keyboardWillHide', (e) => this._keyboardWillHide(e));
+  }
+
+  componentWillUnmount() {
+    _keyboardWillShowListener.remove();
+    _keyboardWillHideListener.remove();
+  }
+
+  _keyboardWillShow(e) {
+    Animated.spring(this.state.keyboardOffset, {
+        toValue: e.endCoordinates.height,
+        friction: 6
+      }).start();
+  }
+
+  _keyboardWillHide(e) {
+    Animated.spring(this.state.keyboardOffset, {
+        toValue: 0,
+        friction: 6
+      }).start();
   }
 
   handleNewUser(){
@@ -81,7 +108,7 @@ class Signup extends Component {
     var placeholderColor = '#888FA7';
     console.log(styles.mainContainer);
     return (
-      <View style={styles.mainContainer}>
+      <Animated.View style={[styles.mainContainer, {marginBottom: this.state.keyboardOffset}]}>
         <Text style={styles.title}>Tell us a little about yourself</Text>
         <TextInput
           style={styles.textInput}
@@ -99,6 +126,7 @@ class Signup extends Component {
           <TextInput
             style={styles.textInput}
             autoCapitalize='none'
+            autoCorrect={false}
             placeholder='Email'
             placeholderTextColor={placeholderColor}
             onChange={this.handleEmailChange.bind(this)}/>          
@@ -108,7 +136,7 @@ class Signup extends Component {
           underlayColor="#F3D9BF">
           <Text style={styles.buttonText}>Take a selfie -></Text>
         </TouchableHighlight>
-      </View>
+      </Animated.View>
     );
   }
 }
