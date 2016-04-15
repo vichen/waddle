@@ -16,6 +16,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
+var styles = require('./app/components/Styles');
 var Temp = require('./app/components/welcome'); // used temporarily for working on styling
 
 class penguin extends Component {
@@ -25,7 +26,7 @@ class penguin extends Component {
       <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Temp,
+          component: Main,
           passProps: {}
         }}
         configureScene={() => {
@@ -44,24 +45,5 @@ class penguin extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  }
-});
 
 AppRegistry.registerComponent('penguin', () => penguin);
