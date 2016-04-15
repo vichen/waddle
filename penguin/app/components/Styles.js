@@ -91,7 +91,7 @@ module.exports = StyleSheet.create({
     height: 240,
     width: 240,
     borderRadius: 120,
-    borderWidth: 1,
+    borderWidth: 3,
     borderColor: 'white',
     backgroundColor: "blue",
     padding: 30

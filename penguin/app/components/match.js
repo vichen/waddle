@@ -21,7 +21,8 @@ class Match extends Component{
   }
 
   render(){
-    var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    // var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    var imageLink = 'https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s306x306/e15/10899304_1426072301036564_994441959_n.jpg';
     console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
@@ -32,6 +33,8 @@ class Match extends Component{
         style={styles.image}
         />
         <Text style={styles.title}>Here's your match!</Text>
+        <Text style={styles.resultsText}>First Name: Poncho</Text>
+        <Text style={styles.resultsText}>Fun Fact: is a foodie</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={()=>{console.log('you found them!')}}
