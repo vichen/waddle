@@ -9,7 +9,8 @@ var {
   View,
   Component,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } = React;
 
 class Welcome extends Component{
@@ -24,9 +25,17 @@ class Welcome extends Component{
   }
 
   render(){
+    // var imageLink = `${IP_address}/users/${this.props.username}/profilePhoto`;
+    // console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.welcomeText}>welcome, {this.props.firstName || 'rando'}</Text>
+        <Image 
+          style={styles.avatar} 
+          source={{uri: "https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s306x306/e15/10899304_1426072301036564_994441959_n.jpg"}} />
+        <Text style={styles.resultsText}>Username: {this.props.username}</Text>
+        <Text style={styles.resultsText}>Fun Fact: {this.props.funFact}</Text>
+        <Text style={styles.resultsText}>Email: {this.props.email}</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
