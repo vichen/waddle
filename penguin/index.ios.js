@@ -16,7 +16,7 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
-var Temp = require('./app/components/match'); // used temporarily for working on styling
+var Temp = require('./app/components/welcome'); // used temporarily for working on styling
 
 class penguin extends Component {
   render() {
@@ -25,7 +25,7 @@ class penguin extends Component {
       <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Main,
+          component: Temp,
           passProps: {}
         }}
         configureScene={() => {

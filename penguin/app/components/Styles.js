@@ -1,3 +1,4 @@
+/* This is the global style sheet file required in every component*/
 var React = require('react-native');
 
 var {
@@ -74,13 +75,24 @@ module.exports = StyleSheet.create({
     height: 240,
     width: 240,
     borderRadius: 120,
-    borderWidth: 3,
+    borderWidth: 1,
+    borderColor: 'white',
+    backgroundColor: "blue",
+    padding: 30
+  },
+  avatar: {
+    alignSelf: 'flex-start',
+    height: 80,
+    width: 80,
+    borderRadius: 40,
+    borderWidth: 1,
     borderColor: 'white',
     backgroundColor: "blue",
     padding: 30
   },
   welcomeText: {
     marginTop: 30, 
+    marginBottom: 30, 
     fontSize: 48,
     fontFamily: 'Raleway-Light',
     color: 'white'
