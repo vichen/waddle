@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var Loading = require('./loading');
+var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
 
 var {
