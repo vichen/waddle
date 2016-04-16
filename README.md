@@ -54,3 +54,15 @@ Jest/Jasmine are used as the unit testing suite for this app. All tests can be f
 
 ###Continuous Integration 
 ####TravisCI
+
+##Legacy Project Ideas
+- Integrate Facebook login / authentication
+- Geofencing | Disable / Hide 'I'm here' button until user is within a certain radius
+- Refactor app using Redux architecture
+- Write end to end tests
+- Add a user preferences / account settings / delete account / sign out section
+- Refine matching algorithm
+- Add push notifications (e.g. when match arrives)
+- Integrate other apis (e.g uber, twilio)
+- Make layout more responsive to handle different size screens
+- Port waddle to Android
