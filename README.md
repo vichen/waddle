@@ -61,6 +61,8 @@ Jest/Jasmine are used as the unit testing suite for this app. All tests can be f
 - Refactor app using Redux architecture
 - Write end to end tests
 - Add a user preferences / account settings / delete account / sign out section
+- Incorporate a user rating system
+- Expand service to coffee, dinner, workouts and more
 - Refine matching algorithm
 - Add push notifications (e.g. when match arrives)
 - Integrate other apis (e.g uber, twilio)
