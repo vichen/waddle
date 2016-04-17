@@ -55,6 +55,27 @@ Jest/Jasmine are used as the unit testing suite for this app. All tests can be f
 ###Continuous Integration 
 ####TravisCI
 
+![](https://dl.dropboxusercontent.com/s/0jc7f5kpegy6rsg/travisSignUp.gif?dl=0)
+
+Travis CI runs your test suite every time new code is pushed or a pull request is made, offering a sanity check before integrating any new code.
+
+It's easy to set up:
+  1. Go to [travis-ci.org](http://travis-ci.org) and have the admin for your organization sign in through Github
+  2. Once signed in, enable your target repo
+  3. Add a travis.yml file and specify your language and environment
+  4. Add tests
+  5. Push code or start making pull requests. Green builds are passing
+  6. To add a build status indicator on your repo, paste in
+  the following
+  ```
+  ![](https://travis-ci.org/path/to/repo.svg?branch=master)
+
+  * Your repo path if your github url is 
+  https://github.com/savory-penguin/savory-penguin
+  will be savory-penguin/savory-penguin
+
+  ```
+
 ##Legacy Project Ideas
 - Integrate Facebook login / authentication
 - Geofencing | Disable / Hide 'I'm here' button until user is within a certain radius
