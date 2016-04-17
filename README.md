@@ -1,22 +1,29 @@
-# savory-penguin
+# waddle
 ![](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
+
+Waddle is like a platonic version of Coffee Meets Bagel. The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
+
+Supported operating systems are >= iOS 7.0
+
+
+
 
 ##Introduction
 ======
+
   
 ##Technology Stack
 ======
 
-###Client Framework:
+##Client Framework: React Native
 ------
-####React Native
-#####Setup
+ 1. Install brew
+ 2. Install Node.js 4.0 or newer
+ 3. Run ```    
 
-
 ------
-###Server Setup:
+## Server Setup: Node & Express
 ------
-####Node.js & Express
 All files for the server can be found in the server folder. The server also makes use of the database helper functions in db/db.js.
   - server/sever.js: Configures the server and listens on port 8000.
   - server/config/requestHandler.js: Majority of server processes are handled by this file. It contains handler functions for all requests that come into the server.
@@ -27,9 +34,8 @@ All files for the server can be found in the server folder. The server also make
 The uploads folder is used to store users' profile images.
 
 ------
-###Database:
+## Database: MongoDB & Mongoose
 ------
-####Mongodb & Mongoose
 The Mongodb database has 3 tables: users, matchrequests, and successfulmatches (schema can be found in db/config.js). 
   - The users table has 5 columns: username, firstname, email, funfact, profileimage) which are set at the time of user signup.
   - The matchrequests table has 5 columns: username, latitude, longitude, isActive, and timestamp.
@@ -48,14 +54,12 @@ Database helper functions can be found in db/db.js. These helper functions are u
   - updateUser will update a user's database entry with the new values provided
 
 ------
-###Testing
+### Testing: Jest & Jasmine
 ------
-####Jest/Jasmine
 Jest/Jasmine are used as the unit testing suite for this app. All tests can be found in __tests__/server_db_tests.js. Run the tests with the command 'npm test'.
 ------
 
-###Continuous Integration 
-####TravisCI
+## Continuous Integration: Travis CI
 
 ![](https://dl.dropboxusercontent.com/s/0jc7f5kpegy6rsg/travisSignUp.gif?dl=0)
 
@@ -79,7 +83,7 @@ It's easy to set up:
 
   </pre>
 
-##Legacy Project Ideas
+## Legacy Project Ideas
 - Integrate Facebook login / authentication
 - Geofencing | Disable / Hide 'I'm here' button until user is within a certain radius
 - Refactor app using Redux architecture
@@ -92,3 +96,7 @@ It's easy to set up:
 - Integrate other apis (e.g uber, twilio)
 - Make layout more responsive to handle different size screens
 - Port waddle to Android
+
+## Tips
+- Install Xcode ASAP if you don't already have it installed.
+- 
