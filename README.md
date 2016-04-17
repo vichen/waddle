@@ -15,21 +15,35 @@ Supported operating systems are >= iOS 7.0
 - [Continuous Integration](#continuous-integration)
 - [Legacy Project Ideas](#legacy-project-ideas)
 - [Tips](#tips)
-
-
-
-## Introduction
-
-
   
-## Technology Stack
+## Technology Stack, APIs, and Third-party tools
+
+- [React Native](https://facebook.github.io/react-native/)
+- Node.js & [Express](http://expressjs.com/)
+- [MongoDB](https://www.mongodb.org/) and [Mongoose](http://mongoosejs.com/)
+- [Jasmine](http://jasmine.github.io/) & [Jest](https://facebook.github.io/jest/)
+- [Travis CI](https://travis-ci.org/)
+- [Digital Ocean](https://www.digitalocean.com/)
+- [Foursquare API](https://developer.foursquare.com/)
+- [react-native-video](https://github.com/brentvatne/react-native-video)
+- [react-native-camera](https://github.com/lwansbrough/react-native-camera)
 
 
 ## Client Framework: React Native
 
- 1. Install brew
- 2. Install Node.js 4.0 or newer
- 3. Run ```    
+To get started, follow these steps as needed.
+
+ 1. Install [brew](http://brew.sh/)
+ 2. [Install Node.js](https://nodejs.org/en/) 4.0 or newer
+ 3. Run `brew install watchman`
+ 4. Run `brew install flow`
+ 5. Install [Xcode](https://developer.apple.com/xcode/download/)
+ 5. Install the React native command line tools
+
+ ```
+ $ npm install -g react-native-cli
+ ```  
+ 6. Run `npm install` to install all dependencies
 
 
 ## Server Setup: Node & Express
@@ -109,5 +123,7 @@ It's easy to set up:
 - Make layout more responsive to handle different size screens
 - Port waddle to Android
 
-## Tips
+## Tips & Tricks
+
 - Install Xcode ASAP if you don't already have it installed.
+- 
