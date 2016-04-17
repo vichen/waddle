@@ -85,13 +85,12 @@ It's easy to set up:
   the following:
   
 
-  ```bash
-  ![](https://travis-ci.org/path/to/repo.svg?branch=master)
+  `![](https://travis-ci.org/path/to/repo.svg?branch=master)`
 
   * Your repo path if your github url is 
   https://github.com/savory-penguin/savory-penguin
   will be savory-penguin/savory-penguin
- ```
+
 
 
 ## Legacy Project Ideas
