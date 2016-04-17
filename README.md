@@ -1,29 +1,39 @@
-# waddle
-![](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
+![](https://dl.dropboxusercontent.com/s/5utw16rifv9cmqe/banner-128.png?dl=0) 
+---
+
+# waddle ![Build Status](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
 
 Waddle is like a platonic version of Coffee Meets Bagel. The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
 
 Supported operating systems are >= iOS 7.0
 
+- [Technology Stack](#technology-stack)
+- [Client Framework](#client-framework)
+- [Server Setup](#server-setup)
+- [Database](#database)
+- [Testing](#testing)
+- [Continuous Integration](#continuous-integration)
+- [Legacy Project Ideas](#legacy-project-ideas)
+- [Tips](#tips)
 
 
 
-##Introduction
-======
+## Introduction
+
 
   
-##Technology Stack
-======
+## Technology Stack
 
-##Client Framework: React Native
-------
+
+## Client Framework: React Native
+
  1. Install brew
  2. Install Node.js 4.0 or newer
  3. Run ```    
 
-------
+
 ## Server Setup: Node & Express
-------
+
 All files for the server can be found in the server folder. The server also makes use of the database helper functions in db/db.js.
   - server/sever.js: Configures the server and listens on port 8000.
   - server/config/requestHandler.js: Majority of server processes are handled by this file. It contains handler functions for all requests that come into the server.
@@ -33,9 +43,9 @@ All files for the server can be found in the server folder. The server also make
 
 The uploads folder is used to store users' profile images.
 
-------
+
 ## Database: MongoDB & Mongoose
-------
+
 The Mongodb database has 3 tables: users, matchrequests, and successfulmatches (schema can be found in db/config.js). 
   - The users table has 5 columns: username, firstname, email, funfact, profileimage) which are set at the time of user signup.
   - The matchrequests table has 5 columns: username, latitude, longitude, isActive, and timestamp.
@@ -53,11 +63,11 @@ Database helper functions can be found in db/db.js. These helper functions are u
   - getSuccessfulMatchForUser will return the successful match (if any) for a given user. Any match that is older than 1min will not be returned. This time cutoff has been included to prevent the system from accidentally returning old matches.
   - updateUser will update a user's database entry with the new values provided
 
-------
-### Testing: Jest & Jasmine
-------
+
+## Testing: Jest & Jasmine
+
 Jest/Jasmine are used as the unit testing suite for this app. All tests can be found in __tests__/server_db_tests.js. Run the tests with the command 'npm test'.
-------
+
 
 ## Continuous Integration: Travis CI
 
@@ -72,18 +82,20 @@ It's easy to set up:
   4. Add tests
   5. Push code or start making pull requests. Green builds are passing
   6. To add a build status indicator on your repo, paste in
-  the following
+  the following:
   
-  <pre>
+
+  ```bash
   ![](https://travis-ci.org/path/to/repo.svg?branch=master)
 
   * Your repo path if your github url is 
   https://github.com/savory-penguin/savory-penguin
   will be savory-penguin/savory-penguin
+ ```
 
-  </pre>
 
 ## Legacy Project Ideas
+
 - Integrate Facebook login / authentication
 - Geofencing | Disable / Hide 'I'm here' button until user is within a certain radius
 - Refactor app using Redux architecture
@@ -99,4 +111,3 @@ It's easy to set up:
 
 ## Tips
 - Install Xcode ASAP if you don't already have it installed.
-- 
