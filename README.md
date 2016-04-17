@@ -10,6 +10,8 @@
 ###Client Framework:
 ------
 ####React Native
+#####Setup
+
 
 ------
 ###Server Setup:
@@ -67,14 +69,15 @@ It's easy to set up:
   5. Push code or start making pull requests. Green builds are passing
   6. To add a build status indicator on your repo, paste in
   the following
-  ```
+  
+  <pre>
   ![](https://travis-ci.org/path/to/repo.svg?branch=master)
 
   * Your repo path if your github url is 
   https://github.com/savory-penguin/savory-penguin
   will be savory-penguin/savory-penguin
 
-  ```
+  </pre>
 
 ##Legacy Project Ideas
 - Integrate Facebook login / authentication
