@@ -3,10 +3,11 @@
 
 # waddle ![Build Status](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
 
-Waddle is like a platonic version of Coffee Meets Bagel. The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
+Waddle is like a platonic version of [Coffee Meets Bagel](https://coffeemeetsbagel.com/). The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
 
 Supported operating systems are >= iOS 7.0
 
+- [Team Members](#team-members)
 - [Technology Stack](#technology-stack)
 - [Client Framework](#client-framework)
 - [Server Setup](#server-setup)
@@ -14,7 +15,16 @@ Supported operating systems are >= iOS 7.0
 - [Testing](#testing)
 - [Continuous Integration](#continuous-integration)
 - [Legacy Project Ideas](#legacy-project-ideas)
-- [Tips](#tips)
+- [Tips & Tricks](#tips)
+
+## Team Members (v. 1.0)
+[![Nathaniel Edwards](https://dl.dropboxusercontent.com/s/9dzxid7ihg37c97/nthaniel.png?dl=0)](https://github.com/nthaniel)
+
+[![Michelle He](https://dl.dropboxusercontent.com/s/zecyw2vna8m56d3/michelleheh.png?dl=0)](https://github.com/michelleheh)
+
+[![Rahim Dharrsi](https://dl.dropboxusercontent.com/s/3typmiqn3wv8f8k/rahimftd.png?dl=0)](https://github.com/rahimftd)
+
+[![Kevin Nguyen](https://dl.dropboxusercontent.com/s/wyebxbavnc7ihk7/kevinwin.png?dl=0)](https://github.com/kevinwin)
   
 ## Technology Stack, APIs, and Third-party tools
 
@@ -111,7 +121,7 @@ It's easy to set up:
 ## Legacy Project Ideas
 
 - Integrate Facebook login / authentication
-- Geofencing | Disable / Hide 'I'm here' button until user is within a certain radius
+- Geofencing. Disable / Hide 'I'm here' button until user is within a certain radius
 - Refactor app using Redux architecture
 - Write end to end tests
 - Add a user preferences / account settings / delete account / sign out section
@@ -125,5 +135,8 @@ It's easy to set up:
 
 ## Tips & Tricks
 
-- Install Xcode ASAP if you don't already have it installed.
-- 
+- [Install Xcode](https://developer.apple.com/xcode/download/) ASAP if you don't already have it installed.
+- [How to add files to your Xcode project](https://developer.apple.com/library/ios/recipes/xcode_help-structure_navigator/articles/Adding_an_Existing_File_or_Folder.html)
+- [How to run your app on an iOS device](https://facebook.github.io/react-native/docs/running-on-device-ios.html)
+- [How to rename your app](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/RenamingaProject/RenamingaProject.html)
+
