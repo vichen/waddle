@@ -9,7 +9,7 @@ Supported operating systems are >= iOS 7.0
 
 - [Team Members](#team-members-v-10)
 - [Technology Stack](#technology-stack-apis-and-third-party-tools)
-- [Client Framework](#client-framework-react-native)
+- [Client Framework](#client-side-react-native)
 - [Server Setup](#server-setup-node--express)
 - [Database](#database-mongodb--mongoose)
 - [Testing](#testing-jest--jasmine)
