@@ -102,6 +102,9 @@ module.exports = StyleSheet.create({
     backgroundColor: "blue",
     padding: 30
   },
+  enjoyImage:{
+    resizeMode: 'contain'
+  },
   avatar: {
     alignSelf: 'flex-start',
     height: 120,
