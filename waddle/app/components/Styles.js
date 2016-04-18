@@ -104,9 +104,9 @@ module.exports = StyleSheet.create({
   },
   avatar: {
     alignSelf: 'flex-start',
-    height: 80,
-    width: 80,
-    borderRadius: 40,
+    height: 120,
+    width: 120,
+    borderRadius: 60,
     borderWidth: 1,
     borderColor: 'white',
     backgroundColor: "blue",

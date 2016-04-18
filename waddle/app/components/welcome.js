@@ -26,7 +26,7 @@ class Welcome extends Component{
   }
 
   render(){
-    var imageLink = `${IP_address}/users/${this.props.username}/profilePhoto`;
+    var imageLink = this.props.picture || `${IP_address}/users/${this.props.username}/profilePhoto`;
     console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
@@ -34,9 +34,6 @@ class Welcome extends Component{
         <Image 
           style={styles.avatar} 
           source={{uri: imageLink}} />
-        <Text style={styles.resultsText}>Username: {this.props.username}</Text>
-        <Text style={styles.resultsText}>Fun Fact: {this.props.funFact}</Text>
-        <Text style={styles.resultsText}>Email: {this.props.email}</Text>
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}

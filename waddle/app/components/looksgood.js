@@ -65,7 +65,8 @@ class LooksGood extends Component{
         username: this.props.username,
         firstName: this.props.firstName,
         funFact: this.props.funFact,
-        email: this.props.email
+        email: this.props.email,
+        picture: this.props.picture
       }
     });
   }

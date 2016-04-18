@@ -16,11 +16,13 @@ class Enjoy extends Component{
   }
 
   render(){
+    console.log('this.props.username', this.props.username);
+    console.log('this.props.match.username', this.props.match.username);
     var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto`;
     var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
     return (
       <View style={styles.mainContainer}>
-        <Image source={{uri:"http://blogs-images.forbes.com/briansolomon/files/2014/05/cmg_fd_steakbowl_300-e1400181721565.jpg"}}
+        <Image source={{uri:"enjoy"}}
           style={styles.backgroundImage}
         />
         <View style={styles.avatarContainer}>
