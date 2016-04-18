@@ -27,7 +27,7 @@ class Enjoy extends Component{
           <Image source={{uri: imageLinkMe}} style={styles.avatarMatch} />
           <Image source={{uri: imageLinkMatch}} style={styles.avatarMatch} />
         </View>
-        <Text style={styles.title}> Enjoy you lunch!</Text>
+        <Text style={styles.title}> Enjoy your lunch!</Text>
       </View>
     )
   }
