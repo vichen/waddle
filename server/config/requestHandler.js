@@ -365,6 +365,7 @@ module.exports = {
     var username =  req.body.username;
     var newRating = req.body.rating;
 
+    // Check if a valid rating was provided
     if (newRating < 1 || newRating > 3) {
       res.status(400).send();
       return;
@@ -372,6 +373,11 @@ module.exports = {
 
     db.getUsers(username)
       .then(function(users) {
+        // Check if user exists
+        if (users.length === 0) {
+          res.status(400).send();
+          return;
+        }
         var numMatches = users[0].matches;
         var currentRating = users[0].averageRating;
 
