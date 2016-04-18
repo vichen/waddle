@@ -124,6 +124,7 @@ It's easy to set up:
 - Geofencing. Disable / Hide 'I'm here' button until user is within a certain radius
 - Refactor app using Redux architecture
 - Write end to end tests
+- Email Validation
 - Add a user preferences / account settings / delete account / sign out section
 - Incorporate a user rating system
 - Expand service to coffee, dinner, workouts and more
