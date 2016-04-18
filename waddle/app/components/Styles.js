@@ -127,7 +127,7 @@ module.exports = StyleSheet.create({
     borderRadius: 80,
     borderWidth: 1,
     borderColor: 'white',
-    padding: 30
+    marginBottom:30
   },
   welcomeText: {
     marginTop: 30, 

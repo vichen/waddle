@@ -17,7 +17,7 @@ import React, {
 
 var Main = require('./app/components/main');
 var styles = require('./app/components/Styles');
-var Temp = require('./app/components/enjoy'); // used temporarily for working on styling
+var Temp = require('./app/components/rating'); // used temporarily for working on styling
 
 class penguin extends Component {
   render() {
