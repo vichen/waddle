@@ -359,5 +359,30 @@ module.exports = {
       res.writeHead(200, {'content-type': 'text/plain'});
       res.end(util.inspect({fields: fields, files: files})); // Like a console.dir
     });
+  },
+
+  rateUser: function(req, res) {
+    var username =  req.body.username;
+    var newRating = req.body.rating;
+
+    db.getUsers(username)
+      .then(function(users) {
+        var numMatches = users[0].matches;
+        var currentRating = users[0].averageRating;
+
+        var newNumMatches = ++numMatches;
+        var newAverageRating = ((currentRating * numMatches + newRating) / newNumMatches);
+
+        db.updateUser(username, {
+          matches: newNumMatches,
+          averageRating: newAverageRating
+        });
+
+        res.status(201).send();
+      })
+      .catch(function(error) {
+        console.log('Error calling getUsers from rateUser for ' + username, error);
+        res.status(500).send();
+      });
   }
 };
