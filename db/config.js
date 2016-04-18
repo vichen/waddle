@@ -21,7 +21,8 @@ var userSchema = mongoose.Schema({
   firstName: String,
   email: String,
   funFact: String,
-  profileImage: String
+  profileImage: String,
+  rating: Number
 });
 
 var matchRequestSchema = mongoose.Schema({
