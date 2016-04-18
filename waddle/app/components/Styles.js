@@ -150,11 +150,19 @@ module.exports = StyleSheet.create({
     fontFamily: 'Raleway-Light',
     color: 'white'
   },
+  feedbackText: {
+    marginTop: 5,
+    fontSize: 20,
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  },
   mapContainer: {
     height: screenHeight
   },
   map: {
     height: 360
-  }
+  },
+
 });
 

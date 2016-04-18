@@ -14,10 +14,32 @@ var {
 class Rating extends Component{
   constructor(props) {
     super(props);
+    this.state = {
+      feeback: ' '
+    };
   }
 
   ratingHandler(rating){
-    console.log(rating);
+    console.log('user gives this rating: ', rating);
+    // var url = `${IP_address}/rating`;
+
+    // fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     username: this.props.match.username,
+    //     rating: rating
+    //   })
+    // })
+    // .then(function(res){
+    //   console.log('this is the response', res);
+    // }.bind(this));
+
+    this.setState({
+      feedback: 'Thank you for your feedback!'
+    })
   }
 
   render(){
@@ -46,6 +68,7 @@ class Rating extends Component{
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>That was terrible! / No show...</Text>
         </TouchableHighlight>
+        <Text style={styles.feedbackText}>{this.state.feedback}</Text>
       </View>
     )
   }
