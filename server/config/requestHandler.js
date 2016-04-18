@@ -365,12 +365,17 @@ module.exports = {
     var username =  req.body.username;
     var newRating = req.body.rating;
 
+    if (newRating < 1 || newRating > 3) {
+      res.status(400).send();
+      return;
+    }
+
     db.getUsers(username)
       .then(function(users) {
         var numMatches = users[0].matches;
         var currentRating = users[0].averageRating;
 
-        var newNumMatches = ++numMatches;
+        var newNumMatches = numMatches + 1;
         var newAverageRating = ((currentRating * numMatches + newRating) / newNumMatches);
 
         db.updateUser(username, {
