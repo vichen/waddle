@@ -34,6 +34,12 @@
 //    +--v--+
 //    |Match|
 //    +-----+
+//       |
+//       |
+//       |
+//    +--v--+
+//    |Enjoy|
+//    +-----+
 
 
 var React = require('react-native');
@@ -101,7 +107,9 @@ class Main extends Component{
               component: Welcome,
               passProps: {
                 username: this.state.username,
-                firstName: user.firstName
+                firstName: user.firstName,
+                funFact: user.funFact,
+                email: user.email
               }
             });
           }.bind(this));

@@ -4,6 +4,7 @@
 
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
+var Enjoy = require('./enjoy');
 var styles = require('./Styles');
 
 var {
@@ -20,6 +21,17 @@ class Match extends Component{
     super(props);
   }
 
+  foundHandler(){
+    this.props.navigator.push({
+      title: 'Enjoy Your Lunch',
+      component: Enjoy,
+      passProps: {
+        username: this.props.username,
+        match: this.props.match
+      }
+    });
+  }
+
   render(){
     var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
     console.log('match.js link to image: ', imageLink);
@@ -32,9 +44,11 @@ class Match extends Component{
         style={styles.image}
         />
         <Text style={styles.title}>Here's your match!</Text>
+        <Text style={styles.resultsText}>First Name: {this.props.match.firstName}</Text>
+        <Text style={styles.resultsText}>Fun Fact: {this.props.match.funFact}</Text>
         <TouchableHighlight
           style={styles.button}
-          onPress={()=>{console.log('you found them!')}}
+          onPress={this.foundHandler.bind(this)}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>I found them!</Text>
         </TouchableHighlight>

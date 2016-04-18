@@ -16,7 +16,8 @@ import React, {
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
-var Temp = require('./app/components/match'); // used temporarily for working on styling
+var styles = require('./app/components/Styles');
+var Temp = require('./app/components/enjoy'); // used temporarily for working on styling
 
 class penguin extends Component {
   render() {
@@ -44,24 +45,5 @@ class penguin extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  }
-});
 
 AppRegistry.registerComponent('penguin', () => penguin);

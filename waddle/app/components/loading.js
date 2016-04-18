@@ -35,7 +35,7 @@ class Loading extends Component{
     // Will check for match every 10 seconds. If not match found after 30 seconds.
     checkInterval = setInterval(() => {
       this.retrieveMatch(false);
-    }, 10000);
+    }, 5000);
     checkTimeout = setTimeout(() => {
       this.retrieveMatch(true);
     }, 30000);
@@ -106,7 +106,8 @@ class Loading extends Component{
         component: Results,
         passProps: {
           restaurant: this.state.restaurant,
-          match: this.state.match
+          match: this.state.match,
+          username: this.props.username
         }
       });
   }

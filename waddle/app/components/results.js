@@ -40,13 +40,17 @@ class Results extends Component{
     this.props.navigator.push({
       title: 'Match made!',
       component: Match,
-      passProps: {match: this.props.match}
+      passProps: {
+        username: this.props.username,
+        match: this.props.match
+      }
     });
   }
 
   render() {
+    console.log('here is the restaurant info from server: ', this.props.restaurant);
     return (
-      <View>
+      <View style={styles.mapContainer}>
         <MapView 
         showsUserLocation={true}
         // followUserLocation={true} 

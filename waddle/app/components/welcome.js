@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var Loading = require('./loading');
+var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
 
 var {
@@ -9,7 +10,8 @@ var {
   View,
   Component,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } = React;
 
 class Welcome extends Component{
@@ -24,9 +26,14 @@ class Welcome extends Component{
   }
 
   render(){
+    var imageLink = this.props.picture || `${IP_address}/users/${this.props.username}/profilePhoto?nocache`;
+    console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.welcomeText}>welcome, {this.props.firstName || 'rando'}</Text>
+        <Image 
+          style={styles.avatar} 
+          source={{uri: imageLink}} />
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
