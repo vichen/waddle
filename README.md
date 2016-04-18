@@ -1,7 +1,7 @@
 ![](https://dl.dropboxusercontent.com/s/5utw16rifv9cmqe/banner-128.png?dl=0) 
 ---
 
-# waddle [![Build Status](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)](https://travis-ci.org/savory-penguin/savory-penguin)
+# waddle [![Build Status](https://travis-ci.org/savory-penguin/waddle.svg?branch=master)](https://travis-ci.org/savory-penguin/waddle)
 
 Waddle is like a platonic version of [Coffee Meets Bagel](https://coffeemeetsbagel.com/). The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
 
@@ -113,8 +113,8 @@ It's easy to set up:
   `![](https://travis-ci.org/path/to/repo.svg?branch=master)`
 
   ** Your repo path if your github url is 
-  https://github.com/savory-penguin/savory-penguin
-  will be savory-penguin/savory-penguin
+  https://github.com/savory-penguin/waddle
+  will be savory-penguin/waddle
 
 
 
@@ -140,4 +140,6 @@ It's easy to set up:
 - [How to add files to your Xcode project](https://developer.apple.com/library/ios/recipes/xcode_help-structure_navigator/articles/Adding_an_Existing_File_or_Folder.html)
 - [How to run your app on an iOS device](https://facebook.github.io/react-native/docs/running-on-device-ios.html)
 - [How to rename your app](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/RenamingaProject/RenamingaProject.html)
+- Running `npm install` in the inner project folder and restarting the launch packager & Xcode can resolve errors involving 'RCT' files.
+- If you receive a location error, go to your simulator, click debug -> location -> none. Then set a custom location to your current coordinates [debug -> location -> custom location]. Enabling location capabilites might also be necessary
 
