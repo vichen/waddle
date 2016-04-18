@@ -30,7 +30,7 @@ class Welcome extends Component{
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor="#F3D9BF">
+          underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>gimme a lunch buddy</Text>
         </TouchableHighlight>
       </View>

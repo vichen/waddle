@@ -77,11 +77,13 @@ class LooksGood extends Component{
         <Text style={styles.title}>How do you look?</Text>
         <TouchableHighlight
           style={styles.button}
+          underlayColor="#f9ecdf"
           onPress={this.handleLookingGood.bind(this)}>
           <Text style={styles.buttonText}>I look great!</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
+          underlayColor="#f9ecdf"
           onPress={this.handleNotLookingGood.bind(this)}>
           <Text style={styles.buttonText}>Let's try that again</Text>
         </TouchableHighlight>

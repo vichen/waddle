@@ -59,7 +59,7 @@ class Selfie extends Component{
           <TouchableHighlight 
             style={styles.capture} 
             onPress={this.takePicture.bind(this)}
-            underlayColor="#F3D9BF">
+            underlayColor="#f9ecdf">
             <Image 
               source={require('../assets/glyphicon-camera.png')}
             />
