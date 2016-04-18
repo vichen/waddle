@@ -3,7 +3,7 @@
 
 # waddle [![Build Status](https://travis-ci.org/savory-penguin/waddle.svg?branch=master)](https://travis-ci.org/savory-penguin/waddle)
 
-Waddle is like a platonic version of [Coffee Meets Bagel](https://coffeemeetsbagel.com/). The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
+Waddle is a way to meet new people. Grab lunch or coffee with a someone new – who knows, it may just be the start of a beautiful friendship.
 
 Supported operating systems are >= iOS 7.0
 
@@ -39,9 +39,9 @@ Supported operating systems are >= iOS 7.0
 - [react-native-camera](https://github.com/lwansbrough/react-native-camera)
 
 
-## Client Framework: React Native
+## Client Side: React Native
 
-To get started, follow these steps as needed.
+To get started with React Native, follow these steps as needed.
 
  1. Install [brew](http://brew.sh/)
  2. [Install Node.js](https://nodejs.org/en/) 4.0 or newer
@@ -55,6 +55,47 @@ To get started, follow these steps as needed.
  ```  
  6. Run `npm install` to install all dependencies
 
+You may also need to follow some additional steps for the react-native-camera component:
+
+ 1. Complete the mostly-automatic install instructions [here](https://github.com/lwansbrough/react-native-camera#mostly-automatic-install)
+ 2. Complete step 5 of the manual iOS section directly below the automatic install section
+
+Users flow through waddle like so:
+```
+         +------+
+         | Main |
+         +---+--+
+             |
+             |   new user   +------+
+             +-------------->Signup+--------+
+             |              +------+        |
+             |                              |
+         +---v---+                          |
++-------->Welcome<-----+                 +--v---+
+|        +---+----     |                 |Selfie|
+|            |         |                 +--+---+
+|            |         |   +---------+      |
+|        +---v---+     +---+LooksGood<------+
+|        |Loading|         +---------+
+|        +---+---+
+|            |
+|  no match  |
++------------+
+             |
+         +---v---+
+         |Results|
+         +---+---+
+             |
+             |
+          +--v--+
+          |Match|
+          +--+--+
+             |
+             |
+          +--v--+
+          |Enjoy|
+          +-----+
+```
 
 ## Server Setup: Node & Express
 

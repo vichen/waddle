@@ -1,3 +1,5 @@
+// A new user is asked for first name, fun fact, and email address, then told to take a selfie.
+
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var Selfie = require('./selfie');

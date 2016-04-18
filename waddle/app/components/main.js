@@ -1,46 +1,42 @@
-// The first page you see when you open the app. Lets you log in (eventually with facebook),
+// The first page you see when you open the app. Lets you log in,
 // then directs you to the welcome page (if you're already in our db) or through the new user flow.
 
 // Flowchart of scenes in the app:
 // (made on http://asciiflow.com/)
 
+//          +------+
+//          | Main |
+//          +---+--+
+//              |
+//              |   new user   +------+
+//              +-------------->Signup+--------+
+//              |              +------+        |
+//              |                              |
+//          +---v---+                          |
+// +-------->Welcome<-----+                 +--v---+
+// |        +---+----     |                 |Selfie|
+// |            |         |                 +--+---+
+// |            |         |   +---------+      |
+// |        +---v---+     +---+LooksGood<------+
+// |        |Loading|         +---------+
+// |        +---+---+
+// |            |
+// |  no match  |
 // +------------+
-// |Main / login|
-// +-----+------+
-//       |
-//       |   new user    +------------+
-//       +--------------->Tell us more+-----+
-//       |               +------------+     |
-//       |                                  |
-//       |                                  |
-//   +---v---+                           +--v---+
-//   |Welcome<-----+                     |Selfie|
-//   +---+---+     |                     +--+---+
-//       |         |      +---------+       |
-//       |         +------+LooksGood<-------+
-//       |                +---------+
-//   +---v---+
-//   |Loading|
-//   +---+---+
-//       |
-//       |
-//       |
-//   +---v---+
-//   |Results|
-//   +---+---+
-//       |
-//       |
-//       |
-//    +--v--+
-//    |Match|
-//    +-----+
-//       |
-//       |
-//       |
-//    +--v--+
-//    |Enjoy|
-//    +-----+
-
+//              |
+//          +---v---+
+//          |Results|
+//          +---+---+
+//              |
+//              |
+//           +--v--+
+//           |Match|
+//           +--+--+
+//              |
+//              |
+//           +--v--+
+//           |Enjoy|
+//           +-----+
 
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
