@@ -1,3 +1,5 @@
+// Display both users' images and an "Enjoy your lunch" message
+
 var React = require('react-native');
 var styles = require('./Styles');
 var IP_address = require('../../environment.js').IP_address;

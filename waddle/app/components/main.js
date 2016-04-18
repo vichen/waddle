@@ -23,44 +23,6 @@
 // |            |
 // |  no match  |
 // +------------+
-<<<<<<< a611875553b39f61bc2df1897e5db4d5b3a08433:waddle/app/components/main.js
-// |Main / login|
-// +-----+------+
-//       |
-//       |   new user    +------------+
-//       +--------------->Tell us more+-----+
-//       |               +------------+     |
-//       |                                  |
-//       |                                  |
-//   +---v---+                           +--v---+
-//   |Welcome<-----+                     |Selfie|
-//   +---+---+     |                     +--+---+
-//       |         |      +---------+       |
-//       |         +------+LooksGood<-------+
-//       |                +---------+
-//   +---v---+
-//   |Loading|
-//   +---+---+
-//       |
-//       |
-//       |
-//   +---v---+
-//   |Results|
-//   +---+---+
-//       |
-//       |
-//       |
-//    +--v--+
-//    |Match|
-//    +-----+
-//       |
-//       |
-//       |
-//    +--v--+
-//    |Enjoy|
-//    +-----+
-
-=======
 //              |
 //          +---v---+
 //          |Results|
@@ -75,7 +37,6 @@
 //           +--v--+
 //           |Enjoy|
 //           +-----+
->>>>>>> Update documentation:penguin/app/components/main.js
 
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
