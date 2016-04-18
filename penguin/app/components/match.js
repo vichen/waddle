@@ -35,7 +35,7 @@ class Match extends Component{
         <TouchableHighlight
           style={styles.button}
           onPress={()=>{console.log('you found them!')}}
-          underlayColor="#F3D9BF">
+          underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>I found them!</Text>
         </TouchableHighlight>
       </View>

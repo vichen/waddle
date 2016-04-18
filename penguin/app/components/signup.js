@@ -133,7 +133,7 @@ class Signup extends Component {
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleNewUser.bind(this)}
-          underlayColor="#F3D9BF">
+          underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>Take a selfie -></Text>
         </TouchableHighlight>
       </Animated.View>
