@@ -1,7 +1,7 @@
 ![](https://dl.dropboxusercontent.com/s/5utw16rifv9cmqe/banner-128.png?dl=0) 
 ---
 
-# waddle ![Build Status](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)
+# waddle [![Build Status](https://travis-ci.org/savory-penguin/savory-penguin.svg?branch=master)](https://travis-ci.org/savory-penguin/savory-penguin)
 
 Waddle is like a platonic version of [Coffee Meets Bagel](https://coffeemeetsbagel.com/). The focus of Waddle is on helping people meet new people who share common interests through a shared experience like lunch. 
 
