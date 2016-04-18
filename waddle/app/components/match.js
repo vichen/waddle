@@ -48,7 +48,7 @@ class Match extends Component{
         <Text style={styles.resultsText}>Fun Fact: {this.props.match.funFact}</Text>
         <TouchableHighlight
           style={styles.button}
-          onPress={()=>{console.log('you found them!')}}
+          onPress={this.foundHandler.bind(this)}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>I found them!</Text>
         </TouchableHighlight>
