@@ -107,13 +107,13 @@ module.exports = StyleSheet.create({
   },
   avatar: {
     alignSelf: 'flex-start',
-    height: 120,
-    width: 120,
-    borderRadius: 60,
+    height: 160,
+    width: 160,
+    borderRadius: 80,
     borderWidth: 1,
     borderColor: 'white',
     backgroundColor: "blue",
-    padding: 30
+    marginBottom:30
   },
   avatarContainer: {
     flexWrap: 'wrap', 
@@ -122,9 +122,9 @@ module.exports = StyleSheet.create({
     alignSelf: 'center'
   },
   avatarMatch: {
-    height: 80,
-    width: 80,
-    borderRadius: 40,
+    height: 160,
+    width: 160,
+    borderRadius: 80,
     borderWidth: 1,
     borderColor: 'white',
     padding: 30
