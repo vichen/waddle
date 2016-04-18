@@ -16,8 +16,8 @@ class Enjoy extends Component{
   }
 
   render(){
-    var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto`;
-    var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto?nocache`;
+    var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto?nocache`;
     return (
       <View style={styles.mainContainer}>
         <Image resizeMode="stretch" source={require('./../assets/enjoy.jpg')}
