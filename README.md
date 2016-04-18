@@ -61,7 +61,7 @@ You may also need to follow some additional steps for the react-native-camera co
  2. Complete step 5 of the manual iOS section directly below the automatic install section
 
 Users flow through waddle like so:
-
+```
          +------+
          | Main |
          +---+--+
@@ -95,6 +95,7 @@ Users flow through waddle like so:
           +--v--+
           |Enjoy|
           +-----+
+```
 
 ## Server Setup: Node & Express
 
