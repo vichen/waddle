@@ -26,7 +26,7 @@ class penguin extends Component {
       <Navigator
         initialRoute={{
           title: 'Sign in with Waddle',
-          component: Temp,
+          component: Main,
           passProps: {}
         }}
         configureScene={() => {

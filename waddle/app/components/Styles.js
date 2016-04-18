@@ -2,8 +2,11 @@
 var React = require('react-native');
 
 var {
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } = React;
+
+var screenHeight = Dimensions.get("window").height;
 
 module.exports = StyleSheet.create({
   container: {
@@ -102,9 +105,6 @@ module.exports = StyleSheet.create({
     backgroundColor: "blue",
     padding: 30
   },
-  enjoyImage:{
-    resizeMode: 'contain'
-  },
   avatar: {
     alignSelf: 'flex-start',
     height: 120,
@@ -150,9 +150,11 @@ module.exports = StyleSheet.create({
     fontFamily: 'Raleway-Light',
     color: 'white'
   },
+  mapContainer: {
+    height: screenHeight
+  },
   map: {
-    height: 360,
-    marginTop: 50,
+    height: 360
   }
 });
 

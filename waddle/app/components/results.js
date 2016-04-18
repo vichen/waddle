@@ -50,7 +50,7 @@ class Results extends Component{
   render() {
     console.log('here is the restaurant info from server: ', this.props.restaurant);
     return (
-      <View>
+      <View style={styles.mapContainer}>
         <MapView 
         showsUserLocation={true}
         // followUserLocation={true} 

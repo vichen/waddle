@@ -27,7 +27,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		2F273CF5F5F64BD09C205A8D /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F412AD502444B39B1BE6DD /* libRCTCamera.a */; };
-		5979D6D11CC554F300E5F7D6 /* enjoy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5979D6D01CC554F300E5F7D6 /* enjoy.jpg */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 /* End PBXBuildFile section */
 
@@ -150,7 +149,6 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = penguin/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		46F412AD502444B39B1BE6DD /* libRCTCamera.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTCamera.a; sourceTree = "<group>"; };
-		5979D6D01CC554F300E5F7D6 /* enjoy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = enjoy.jpg; path = ../../../../../../../Desktop/enjoy.jpg; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9111C4B312A6414BBF5AD7AF /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 0; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTCamera.xcodeproj; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				0AB1CE441CBF3BAD006820EB /* Launch.png */,
-				5979D6D01CC554F300E5F7D6 /* enjoy.jpg */,
 				0AB1CE1B1CBECCEE006820EB /* Fonts */,
 				0AB1CDCE1CBEBDAC006820EB /* background.mp4 */,
 				0AB1CDC71CBEA28A006820EB /* Resources */,
@@ -608,7 +605,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AB1CE451CBF3BAD006820EB /* Launch.png in Resources */,
-				5979D6D11CC554F300E5F7D6 /* enjoy.jpg in Resources */,
 				0AB1CDCF1CBEBDAC006820EB /* background.mp4 in Resources */,
 				0AB1CE2B1CBECD84006820EB /* Raleway-Light.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
