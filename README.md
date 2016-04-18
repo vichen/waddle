@@ -7,15 +7,15 @@ Waddle is like a platonic version of [Coffee Meets Bagel](https://coffeemeetsbag
 
 Supported operating systems are >= iOS 7.0
 
-- [Team Members](#team-members)
-- [Technology Stack](#technology-stack)
-- [Client Framework](#client-framework)
-- [Server Setup](#server-setup)
-- [Database](#database)
-- [Testing](#testing)
-- [Continuous Integration](#continuous-integration)
+- [Team Members](#team-members-v-10)
+- [Technology Stack](#technology-stack-apis-and-third-party-tools)
+- [Client Framework](#client-framework-react-native)
+- [Server Setup](#server-setup-node--express)
+- [Database](#database-mongodb--mongoose)
+- [Testing](#testing-jest--jasmine)
+- [Continuous Integration](#continuous-integration-travis-ci)
 - [Legacy Project Ideas](#legacy-project-ideas)
-- [Tips & Tricks](#tips)
+- [Tips & Tricks](#tips--tricks)
 
 ## Team Members (v. 1.0)
 [![Nathaniel Edwards](https://dl.dropboxusercontent.com/s/9dzxid7ihg37c97/nthaniel.png?dl=0)](https://github.com/nthaniel)
