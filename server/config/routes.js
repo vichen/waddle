@@ -9,6 +9,7 @@ module.exports = function (app, express) {
   app.get('/users/:username/profilePhoto', requestHandler.getProfilePhoto);
   app.get('/users/:username', requestHandler.getUserInfo);
   app.post('/upload', requestHandler.upload);
+  app.post('/rate', requestHandler.rateUser);
 
   // facebook authentication
   app.get('/auth/facebook',
