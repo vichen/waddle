@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var styles = require('./Styles');
+var Rating = require('./rating');
 var IP_address = require('../../environment.js').IP_address;
 
 
@@ -9,23 +10,25 @@ var {
   Component,
   View,
   Text,
-  Image
+  Image,
+  Navigator
 } = React;
 
 class Enjoy extends Component{
   constructor(props) {
     super(props);
+    setTimeout(this.nextPage.bind(this), 8000);
   }
 
-  // setTimeout(() => {
-  //   this.props.navigator.push({
-  //     title: 'Rate your lunch buddy',
-  //     component: Rating,
-  //     passProps: {
-  //       match: this.props.match
-  //     }
-  //   });
-  // }, 1000)
+  nextPage(){
+    this.props.navigator.push({
+      title: 'Rate your lunch buddy',
+      component: Rating,
+      passProps: {
+        match: this.props.match
+      }
+    });
+  }
 
   render(){
     var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto?date=${Date.now()}`;
