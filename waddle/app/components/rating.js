@@ -21,24 +21,26 @@ class Rating extends Component{
 
   ratingHandler(rating){
     console.log('user gives this rating: ', rating);
-    // var url = `${IP_address}/rating`;
+    var url = `${IP_address}/rate`;
+    console.log('post rating end point', url);
 
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: this.props.match.username,
-    //     rating: rating
-    //   })
-    // })
-    // .then(function(res){
-    //   console.log('this is the response', res);
-    // }.bind(this));
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: "test",
+        rating: rating
+      })
+    })
+    .then(function(res){
+      console.log('this is the response', res);
+    }.bind(this));
 
+    var response = ['','Sorry to hear that...', 'We\'ll do better!', 'Awesome!', ];
     this.setState({
-      feedback: 'Thank you for your feedback!'
+      feedback: `${response[rating]}\nThank you for your feedback!`
     })
   }
 

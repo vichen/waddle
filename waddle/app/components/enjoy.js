@@ -17,6 +17,16 @@ class Enjoy extends Component{
     super(props);
   }
 
+  // setTimeout(() => {
+  //   this.props.navigator.push({
+  //     title: 'Rate your lunch buddy',
+  //     component: Rating,
+  //     passProps: {
+  //       match: this.props.match
+  //     }
+  //   });
+  // }, 1000)
+
   render(){
     var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto?date=${Date.now()}`;
     var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto?date=${Date.now()}`;
