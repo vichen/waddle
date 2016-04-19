@@ -253,6 +253,7 @@ describe('User rating functionality', () => {
       } else {
         body = JSON.parse(body);
         expect(body.averageRating).toEqual(2.5);
+        done();
       }
     });
   });
