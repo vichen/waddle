@@ -206,7 +206,6 @@ describe('User rating functionality', () => {
         console.log('Error sending GET request to /rate', error);
         done();
       } else {
-        body = JSON.parse(body);
         expect(response.statusCode).toEqual(400);
         done();
       }
