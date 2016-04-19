@@ -127,7 +127,7 @@ module.exports = StyleSheet.create({
     borderRadius: 80,
     borderWidth: 1,
     borderColor: 'white',
-    padding: 30
+    marginBottom:30
   },
   welcomeText: {
     marginTop: 30, 
@@ -150,11 +150,19 @@ module.exports = StyleSheet.create({
     fontFamily: 'Raleway-Light',
     color: 'white'
   },
+  feedbackText: {
+    marginTop: 5,
+    fontSize: 20,
+    alignSelf: 'center',
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  },
   mapContainer: {
     height: screenHeight
   },
   map: {
     height: 360
-  }
+  },
+
 });
 
