@@ -190,5 +190,29 @@ describe('Username endpoint functionality', () => {
   });
 });
 
+describe('User rating functionality', () => {
+  it('Should respond with a 400 if user does not exist', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/rate',
+      json: true,
+      body: {
+        'username': 'arglebargle',
+        'rating': 2
+      }
+    };
+    request.post(requestOptions, function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending GET request to /rate', error);
+        done();
+      } else {
+        body = JSON.parse(body);
+        expect(response.statusCode).toEqual(400);
+        done();
+      }
+    });
+  });
+});
+
 
 
