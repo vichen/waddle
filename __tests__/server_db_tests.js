@@ -203,10 +203,56 @@ describe('User rating functionality', () => {
     request.post(requestOptions, function(error, response, body) {
       if(error) {
         expect(true).toEqual(false);
-        console.log('Error sending GET request to /rate', error);
+        console.log('Error sending POST request to /rate', error);
         done();
       } else {
         expect(response.statusCode).toEqual(400);
+        done();
+      }
+    });
+  });
+  it('Should respond with a 201 when a new rating is provided for a valid user', (done) => {
+    var requestOptions = {
+      url: 'http://127.0.0.1:8000/rate',
+      json: true,
+      body: {
+        'username': 'test',
+        'rating': 2
+      }
+    };
+    request.post(requestOptions, function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending POST request to /rate', error);
+        done();
+      } else {
+        expect(response.statusCode).toEqual(201);
+        requestOptions.body = {
+          'username': 'test',
+          'rating': 3
+        };
+        request.post(requestOptions, function(error, response, body) {
+          if(error) {
+            expect(true).toEqual(false);
+            console.log('Error sending POST request to /rate', error);
+            done();
+          } else {
+            expect(response.statusCode).toEqual(201);
+            done();
+          }
+        });
+      }
+    });
+  });
+  it('Should respond with an accurate user rating', (done) => {
+    request.get('http://127.0.0.1:8000/users/test', function(error, response, body) {
+      if(error) {
+        expect(true).toEqual(false);
+        console.log('Error sending POST request to /rate', error);
+        done();
+      } else {
+        body = JSON.parse(body);
+        expect(body.averageRating).toEqual(2.5);
         done();
       }
     });
