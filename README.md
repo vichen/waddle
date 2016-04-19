@@ -9,7 +9,7 @@ Supported operating systems are >= iOS 7.0
 
 - [Team Members](#team-members-v-10)
 - [Technology Stack](#technology-stack-apis-and-third-party-tools)
-- [Client Framework](#client-framework-react-native)
+- [Client Framework](#client-side-react-native)
 - [Server Setup](#server-setup-node--express)
 - [Database](#database-mongodb--mongoose)
 - [Testing](#testing-jest--jasmine)
@@ -183,4 +183,5 @@ It's easy to set up:
 - [How to rename your app](https://developer.apple.com/library/ios/recipes/xcode_help-project_editor/RenamingaProject/RenamingaProject.html)
 - Running `npm install` in the inner project folder and restarting the launch packager & Xcode can resolve errors involving 'RCT' files.
 - If you receive a location error, go to your simulator, click debug -> location -> none. Then set a custom location to your current coordinates [debug -> location -> custom location]. Enabling location capabilites might also be necessary
+- Environment.js and env.js allow you to switch between environments quickly. The default setting in env.js is 'production'. For development purposes swap out 'production' for 'development' and run `node server/server.js` from the root folder. Also, when developing, don't forget to start a mongodb instance by running `mongod` in your terminal. You can sub in your own production-ready server in environment.js. 
 
