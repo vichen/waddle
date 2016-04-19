@@ -21,7 +21,9 @@ var userSchema = mongoose.Schema({
   firstName: String,
   email: String,
   funFact: String,
-  profileImage: String
+  profileImage: String,
+  matches: { type: Number, default: 0 },
+  averageRating: { type: Number, default: 0 }
 });
 
 var matchRequestSchema = mongoose.Schema({
