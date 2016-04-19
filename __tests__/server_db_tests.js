@@ -245,7 +245,7 @@ describe('User rating functionality', () => {
     });
   });
   it('Should respond with an accurate user rating', (done) => {
-    request.get('127.0.0.1:8000/users/test', function(error, response, body) {
+    request.get('http://127.0.0.1:8000/users/test', function(error, response, body) {
       if(error) {
         expect(true).toEqual(false);
         console.log('Error sending POST request to /rate', error);
