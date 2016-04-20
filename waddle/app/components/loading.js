@@ -81,7 +81,7 @@ class Loading extends Component{
         clearTimeout(checkTimeout);
         console.log('this is the json:', json);
         this.setState({restaurant: json.restaurant});
-        this.setState({match: json.firstMatchedUsername.username !== this.props.username ? json.firstMatchedUsername : json.secondMatchedUsername});
+        this.setState({match: json.firstMatchedUser.username !== this.props.username ? json.firstMatchedUser : json.secondMatchedUser});
         console.log('the important thing:', this.state.match);
         this.handleMatch();
       })
@@ -101,13 +101,16 @@ class Loading extends Component{
   handleMatch() {
       this.setState({isLoading: false});
       this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
+      this.props.restaurant = this.state.restaurant;
+      this.props.match = this.state.match;
+
       this.props.navigator.push({
         title: 'Results',
         component: Results,
         passProps: {
           restaurant: this.state.restaurant,
           match: this.state.match,
-          username: this.props.username
+          ...this.props
         }
       });
   }

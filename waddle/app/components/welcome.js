@@ -15,13 +15,25 @@ var {
 } = React;
 
 class Welcome extends Component{
+
   handleSubmit(){
     console.log('you did it, you pushed the lunch buddy button');
     // do stuff w/ navigator
     this.props.navigator.push({
       title: "Finding you a match",
       component: Loading,
-      passProps: {username: this.props.username}
+      passProps: this.props
+    });
+  }
+
+  takeProfilePic() {
+    console.log('lets take a new profile pic')
+    var Selfie = require('./selfie');
+    this.props.navigator.push({
+      title: "Take a selfie!",
+      // leftButton: "Signup",
+      component: Selfie,
+      passProps: this.props
     });
   }
 
@@ -30,7 +42,7 @@ class Welcome extends Component{
     console.log('match.js link to image: ', imageLink);
     return (
       <View style={styles.mainContainer}>
-        <Text style={styles.welcomeText}>welcome, {this.props.firstName || 'rando'}</Text>
+        <Text style={styles.welcomeText}>hello, {this.props.firstName || 'rando'}</Text>
         <Image 
           style={styles.avatar} 
           source={{uri: imageLink}} />
@@ -39,6 +51,12 @@ class Welcome extends Component{
           onPress={this.handleSubmit.bind(this)}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>gimme a lunch buddy</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.takeProfilePic.bind(this)}
+          underlayColor="#f9ecdf">
+          <Text style={styles.buttonText}>retake my picture</Text>
         </TouchableHighlight>
       </View>
     );

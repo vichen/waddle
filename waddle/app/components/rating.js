@@ -2,7 +2,6 @@ var React = require('react-native');
 var styles = require('./Styles');
 var IP_address = require('../../environment.js').IP_address;
 
-
 var {
   Component,
   View,
@@ -44,8 +43,18 @@ class Rating extends Component{
     })
   }
 
+  goHome() {
+    console.log('passed props ', this.props)
+    var Welcome = require('./welcome.js');
+    this.props.navigator.push({
+      title: 'Welcome!',
+      component: Welcome,
+      passProps: this.props
+    });
+  }
+
   render(){
-    var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    var imageLinkMatch = this.props.match.profileImage || `${IP_address}/users/${this.props.match.username}/profilePhoto`;
     // var imageLinkMatch = 'https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s306x306/e15/10899304_1426072301036564_994441959_n.jpg';
     return (
       <View style={styles.mainContainer}>
@@ -70,7 +79,15 @@ class Rating extends Component{
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>That was terrible! / No show...</Text>
         </TouchableHighlight>
+
         <Text style={styles.feedbackText}>{this.state.feedback}</Text>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.goHome.bind(this)}
+          underlayColor="#f9ecdf">
+          <Text style={styles.buttonText}>Home</Text>
+        </TouchableHighlight>
       </View>
     )
   }
