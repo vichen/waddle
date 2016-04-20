@@ -3,9 +3,9 @@
  * The mongodb server is configured in db/config.js
 */
 
-var User = require('./config').User;
-var MatchRequest = require('./config').MatchRequest;
-var SuccessfulMatch = require('./config').SuccessfulMatch;
+var User = require('./models/user');
+var MatchRequest = require('./models/matchRequest');
+var SuccessfulMatch = require('./models/successfulMatch');
 var Promise = require('bluebird');
 
 exports.db = {
@@ -50,10 +50,11 @@ exports.db = {
     });
   },
 
-  addUser: function(username, firstName, email, funFact, profileImage) {
+  addUser: function(username, firstName, email, password, funFact, profileImage) {
     var newDbEntry = {
       username: username,
       email: email,
+      password: password,
       firstName: firstName,
       funFact: funFact,
       profileImage: profileImage
