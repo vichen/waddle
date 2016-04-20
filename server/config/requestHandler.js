@@ -177,107 +177,109 @@ module.exports = {
               return;
             } else if (requestType === 'request-match') {
               res.status(200);
+            } else {
+              res.status(200);
             }
           }
 
-          // if (requestType === 'request-match') {
-          //   // Check for active requests
-          //   db.getMatchRequests()
-          //     .then(function(matchRequests) {
-          //       return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
-          //     })
-          //     .then(function(matchedUser) {
-          //       if (matchedUser) {
-          //         matchedUser.isActive = false;
-          //         matchedUser.save(function(error) {
-          //           if (error) {
-          //             console.log('Could not update isActive status of matched user', matchedUser, error);
-          //             res.status(500).send();
-          //           } else {
-          //             foursquare.getRestaurant(longitude, latitude)
-          //               .then(function(restaurant) {
-          //                 // Save the new match to the SuccessfulMatch table
-          //                 var stringifiedRestaurant = JSON.stringify(restaurant);
+          if (requestType === 'request-match') {
+            // Check for active requests
+            db.getMatchRequests()
+              .then(function(matchRequests) {
+                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
+              })
+              .then(function(matchedUser) {
+                if (matchedUser) {
+                  matchedUser.isActive = false;
+                  matchedUser.save(function(error) {
+                    if (error) {
+                      console.log('Could not update isActive status of matched user', matchedUser, error);
+                      res.status(500).send();
+                    } else {
+                      foursquare.getRestaurant(longitude, latitude)
+                        .then(function(restaurant) {
+                          // Save the new match to the SuccessfulMatch table
+                          var stringifiedRestaurant = JSON.stringify(restaurant);
 
-          //                 var newMatch = new SuccessfulMatch({
-          //                   firstMatchedUsername: matchedUser.username,
-          //                   secondMatchedUsername: username,
-          //                   restaurant: stringifiedRestaurant
-          //                 });
-          //                 newMatch.save(function(error) {
-          //                   if (error) {
-          //                     console.log('Could not add match to SuccessfulMatch table', newMatch, error);
-          //                     res.status(500).send();
-          //                   } else {
-          //                     res.status(200).send();
-          //                   }
-          //                 });
-          //               })
-          //               .catch(function(error) {
-          //                 console.log('There was an error calling foursquare.getRestaurant from getMatch', error);
-          //                 res.status(500).send();
-          //               });
-          //           }
-          //         });
-          //       } else {
-          //         var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
-          //         newMatchRequest.save(function(error) {
-          //           if (error) {
-          //             console.log('Could not save user to MatchRequest table: ' + username, error);
-          //             res.status(500).send();
-          //           } else {
-          //             res.status(200).send();
-          //           }
-          //         });
-          //       }
-          //     })
-          //     .catch(function(error) {
-          //       console.log('There was an error calling db.getMatchRequests from getMatch for user: ' + username, error);
-          //       res.status(500).send();
-          //     });
+                          var newMatch = new SuccessfulMatch({
+                            firstMatchedUsername: matchedUser.username,
+                            secondMatchedUsername: username,
+                            restaurant: stringifiedRestaurant
+                          });
+                          newMatch.save(function(error) {
+                            if (error) {
+                              console.log('Could not add match to SuccessfulMatch table', newMatch, error);
+                              res.status(500).send();
+                            } else {
+                              res.status(200).send();
+                            }
+                          });
+                        })
+                        .catch(function(error) {
+                          console.log('There was an error calling foursquare.getRestaurant from getMatch', error);
+                          res.status(500).send();
+                        });
+                    }
+                  });
+                } else {
+                  var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
+                  newMatchRequest.save(function(error) {
+                    if (error) {
+                      console.log('Could not save user to MatchRequest table: ' + username, error);
+                      res.status(500).send();
+                    } else {
+                      res.status(200).send();
+                    }
+                  });
+                }
+              })
+              .catch(function(error) {
+                console.log('There was an error calling db.getMatchRequests from getMatch for user: ' + username, error);
+                res.status(500).send();
+              });
 
-          // } else if (requestType === 'retrieve-match') {
-          //   db.getSuccessfulMatchForUser(username)
-          //     .then(function(match) {
-          //       if (match) {
-          //         var firstMatchedUser; // Will store user object matching first user in match
-          //         var secondMatchedUser; // Will store user object matching second user in match
+          } else if (requestType === 'retrieve-match') {
+            db.getSuccessfulMatchForUser(username)
+              .then(function(match) {
+                if (match) {
+                  var firstMatchedUser; // Will store user object matching first user in match
+                  var secondMatchedUser; // Will store user object matching second user in match
 
-          //         db.getUsers(match.firstMatchedUsername)
-          //           .then(function(users) {
-          //             firstMatchedUser = users[0].toObject();
+                  db.getUsers(match.firstMatchedUsername)
+                    .then(function(users) {
+                      firstMatchedUser = users[0].toObject();
 
-          //             db.getUsers(match.secondMatchedUsername)
-          //               .then(function(users) {
-          //                 secondMatchedUser = users[0].toObject();
-          //                 var responseObject = {
-          //                   firstMatchedUsername: firstMatchedUser,
-          //                   secondMatchedUsername: secondMatchedUser,
-          //                   restaurant: JSON.parse(match.restaurant)
-          //                 };
-          //                 stringifiedResponseObject = JSON.stringify(responseObject);
-          //                 res.send(stringifiedResponseObject);
-          //               })
-          //               .catch(function(error) {
-          //                 console.log('There was an error calling db.getUsers from getMatch', error);
-          //                 res.status(500).send();
-          //               });
-          //           })
-          //           .catch(function(error) {
-          //             console.log('There was an error calling db.getUsers from getMatch', error);
-          //             res.status(500).send();
-          //           });
-          //       } else {
-          //         res.status(400).send();
-          //       }
-          //     })
-          //     .catch(function(error) {
-          //       console.log('There was an error calling db.getSuccessfulMatchForUser from getMatch for user: ' + username, error);
-          //       res.status(500).send();
-          //     });
-          // } else {
-          //   res.status(400).send();
-          // }
+                      db.getUsers(match.secondMatchedUsername)
+                        .then(function(users) {
+                          secondMatchedUser = users[0].toObject();
+                          var responseObject = {
+                            firstMatchedUsername: firstMatchedUser,
+                            secondMatchedUsername: secondMatchedUser,
+                            restaurant: JSON.parse(match.restaurant)
+                          };
+                          stringifiedResponseObject = JSON.stringify(responseObject);
+                          res.send(stringifiedResponseObject);
+                        })
+                        .catch(function(error) {
+                          console.log('There was an error calling db.getUsers from getMatch', error);
+                          res.status(500).send();
+                        });
+                    })
+                    .catch(function(error) {
+                      console.log('There was an error calling db.getUsers from getMatch', error);
+                      res.status(500).send();
+                    });
+                } else {
+                  res.status(400).send();
+                }
+              })
+              .catch(function(error) {
+                console.log('There was an error calling db.getSuccessfulMatchForUser from getMatch for user: ' + username, error);
+                res.status(500).send();
+              });
+          } else {
+            res.status(400).send();
+          }
         } else {
           res.status(401).send();
         }
