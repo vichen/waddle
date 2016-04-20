@@ -71,6 +71,13 @@ class Main extends Component{
     });
   }
 
+  handleGoToSignup() {
+    var url = `${IP_address}/signup`
+    fetch(url, {
+      method: 'GET',
+    })
+  }
+
   handleSubmit(){
     console.log('insert OAuth integration here');
     var url = `${IP_address}/signin`;
@@ -146,15 +153,33 @@ class Main extends Component{
             style={styles.textInput}
             autoCapitalize='none'
             autoCorrect={false}
-            placeholder='Username'
+            placeholder='Email'
             placeholderTextColor='white'
             onChange={this.handleChange.bind(this)}
           />
+          <TextInput
+            style={styles.textInput}
+            autoCapitalize='none'
+            autoCorrect={false}
+            placeholder='Password'
+            placeholderTextColor='white'
+            onChange={this.handleChange.bind(this)}
+          />
+          
           <TouchableHighlight
             style={styles.button}
             onPress={this.handleSubmit.bind(this)}
             underlayColor="#f9ecdf">
             <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableHighlight>
+
+          <Text style={styles.mainBottomText}>Don't have an account?</Text>
+
+          <TouchableHighlight
+            style={styles.signupButton}
+            onPress={this.handleSubmit.bind(this)}
+            underlayColor="#f9ecdf">
+            <Text style={styles.buttonText}>Sign up</Text>
           </TouchableHighlight>
           {showErr}
         </View>

@@ -50,6 +50,15 @@ module.exports = StyleSheet.create({
     color: 'white',
     backgroundColor: 'transparent',
   },
+  mainBottomText: {
+    position: 'absolute',
+    bottom: 125,
+    fontSize: 18,
+    textAlign: 'justify',
+    fontFamily: 'Raleway-Light',
+    color: 'white',
+    backgroundColor: 'transparent',
+  },
   textInput: {
     height: 50,
     padding: 10,
@@ -70,6 +79,21 @@ module.exports = StyleSheet.create({
   },
   button: {
     height: 45,
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: 'white',
+    borderWidth: 0,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  signupButton: {
+    position: 'absolute',
+    bottom: 75,
+    height: 45,
+    width: 315,
     flexDirection: 'row',
     backgroundColor: 'white',
     borderColor: 'white',
