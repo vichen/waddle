@@ -40,10 +40,7 @@ class Results extends Component{
     this.props.navigator.push({
       title: 'Match made!',
       component: Match,
-      passProps: {
-        username: this.props.username,
-        match: this.props.match
-      }
+      passProps: this.props
     });
   }
 
