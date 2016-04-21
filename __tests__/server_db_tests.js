@@ -178,11 +178,10 @@ describe('Username endpoint functionality', () => {
   it('Should not respond made to the /users/:email endpoint when the email is invalid', (done) => {
     request.get('http://127.0.0.1:8000/users/arglebargle@nonexistent.com', (error, response, body) => {
       if (error) {
-        expect(true).toEqual(false);
+        expect(response.statusCode).toEqual(500);
         console.log('Error sending GET request to /users/:email', error);
         done();
       } else {
-        expect(response.statusCode).toEqual(200);
         expect(body.username).toBeUndefined();
         done();
       }
