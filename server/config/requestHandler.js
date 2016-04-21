@@ -124,7 +124,7 @@ module.exports = {
         res.status(201).send('User Create!');
       })
       .catch(function(err){
-        console.log('There was an error calling db.addUser from postSignup for user: ', err);
+        console.log('There was an error calling db.addUser from postSignup: ', err);
         res.status(500).send();
       });
   },
@@ -284,7 +284,7 @@ module.exports = {
                 }
               })
               .catch(function(error) {
-                console.log('There was an error calling db.getSuccessfulMatchForUser from getMatch for user: ' + username, error);
+                console.log('There was an error calling db.getSuccessfulMatchForUser from getMatch: ', error);
                 res.status(500).send();
               });
           } else {
@@ -295,7 +295,7 @@ module.exports = {
         }
       })
       .catch(function(error) {
-        console.log('Error calling db.checkIfUserExists from getMatch for user: ', username, error);
+        console.log('Error calling db.checkIfUserExists from getMatch: ', error);
         res.status(500).send();
       });
   },
@@ -311,7 +311,7 @@ module.exports = {
         res.status(200).json(users[0]);
       })
       .catch(function(error) {
-        console.log('There was an error calling db.getUserByUsername from getUserInfo for user: ' + username, error);
+        console.log('There was an error calling db.getUserByUsername from getUserInfo: ', error);
         res.status(500).send();
       });
   },
@@ -340,7 +340,7 @@ module.exports = {
         
       })
       .catch(function(error) {
-        console.log('There was an error calling db.getUserByEmail from getProfilePhoto for user: ' + email, error);
+        console.log('There was an error calling db.getUserByEmail from getProfilePhoto: ', error);
         res.status(500).send();
       });
   },
@@ -379,7 +379,7 @@ module.exports = {
           console.log('user updated: ', user);
         })
         .catch(function(error) {
-          console.log('There was an error calling db.updateUser from upload for user: ' + username, error);
+          console.log('There was an error calling db.updateUser from upload: ', error);
           res.status(500).send();
         });
 
@@ -420,7 +420,7 @@ module.exports = {
         res.status(201).send();
       })
       .catch(function(error) {
-        console.log('Error calling getUsersByUsername from rateUser for ' + username, error);
+        console.log('Error calling getUsersByUsername from rateUser: ', error);
         res.status(500).send();
       });
   }
