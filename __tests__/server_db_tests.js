@@ -187,7 +187,7 @@ describe('Username endpoint functionality', () => {
         done();
       }
     });
-  });
+  }, 10000);
 });
 
 // describe('User rating functionality', () => {

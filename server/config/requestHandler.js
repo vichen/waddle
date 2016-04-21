@@ -301,8 +301,6 @@ module.exports = {
   },
 
   getUserInfo: function(req, res) {
-    console.log('req.params: ', req.params);
-    console.log('req.params.username: ', req.params.username);
     var email = req.params.email.toLowerCase();
 
     db.getUserByEmail(email)
