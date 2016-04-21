@@ -11,7 +11,8 @@ var {
   Text,
   MapView,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Linking
 } = React;
 
 var Match = require('./match');
@@ -44,6 +45,11 @@ class Results extends Component{
     });
   }
 
+  requestRide(){
+    var url = `uber://?client_id=P8BnVQYOltkIsc4-gTwfZCW-Qju74Kj5&action=setPickup&dropoff[latitude]=${this.props.restaurant.location.lat}&dropoff[longitude]=${this.props.restaurant.location.lng}&dropoff[nickname]=${this.props.restaurant.name}&dropoff[formatted_address]=${this.props.restaurant.address}`
+    Linking.openURL(url).catch(err => console.error('An error occurred', err));
+  }
+
   render() {
     console.log('here is the restaurant info from server: ', this.props.restaurant);
     return (
@@ -59,9 +65,16 @@ class Results extends Component{
         >
         </MapView>
         <View style={styles.mainContainer}>
-          <Text style={styles.title}>Here's the restaurant. Be there in 5 minutes, or else...</Text>
+          <Text style={styles.title}>Here's the restaurant</Text>
           <Text style={styles.resultsText}>Restaurant: {this.props.restaurant.name}</Text>
           <Text style={styles.resultsText}>Address: {this.props.restaurant.location.address}</Text>
+          <TouchableHighlight
+            disabled={this.state.onMyWay}
+            style={styles.button}
+            underlayColor="#f9ecdf"
+            onPress={this.requestRide.bind(this)}>
+            <Text style={styles.buttonText}>Uber me</Text>
+          </TouchableHighlight>
           <TouchableHighlight
             disabled={this.state.onMyWay}
             style={styles.button}
