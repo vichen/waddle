@@ -4,8 +4,8 @@
 */
 
 var User = require('./models/user');
-var MatchRequest = require('./models/matchRequest');
-var SuccessfulMatch = require('./models/successfulMatch');
+var MatchRequest = require('./models/matchRequest.js');
+var SuccessfulMatch = require('./models/successfulMatch.js');
 var Promise = require('bluebird');
 
 exports.db = {
