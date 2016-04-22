@@ -427,6 +427,10 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+<<<<<<< c42c4f6ee8568314f57fe7492607a99a8c205c28
+=======
+						DevelopmentTeam = 774C46R35Y;
+>>>>>>> change server config to test on phone
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -753,7 +757,11 @@
 				INFOPLIST_FILE = penguin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+<<<<<<< c42c4f6ee8568314f57fe7492607a99a8c205c28
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.waddle.fred;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.waddle.auth;
+>>>>>>> change server config to test on phone
 				PRODUCT_NAME = waddle;
 				PROVISIONING_PROFILE = "";
 			};
@@ -783,7 +791,11 @@
 				INFOPLIST_FILE = penguin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+<<<<<<< c42c4f6ee8568314f57fe7492607a99a8c205c28
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.waddle.fred;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.waddle.auth;
+>>>>>>> change server config to test on phone
 				PRODUCT_NAME = waddle;
 				PROVISIONING_PROFILE = "";
 			};
