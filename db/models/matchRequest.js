@@ -8,4 +8,4 @@ var matchRequestSchema = mongoose.Schema({
   isActive: { type: Boolean, default: true }
 });
 
-exports.MatchRequest = mongoose.model('MatchRequest', matchRequestSchema);
+module.exports = mongoose.model('MatchRequest', matchRequestSchema);

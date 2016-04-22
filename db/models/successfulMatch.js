@@ -7,4 +7,4 @@ var successfulMatchSchema = mongoose.Schema({
   matchTime: { type: Date, default: Date.now } // When did the match happen
 });
 
-exports.SuccessfulMatch = mongoose.model('SuccessfulMatch', successfulMatchSchema);
+module.exports = mongoose.model('SuccessfulMatch', successfulMatchSchema);

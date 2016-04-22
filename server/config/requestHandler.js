@@ -147,12 +147,12 @@ module.exports = {
      *              This will instruct the server to return the match, if available.
      */
 
-    // Request should contain the below headers
+    // Request should contain the below headers - REMEMBER THAT HTTP HEADERS ARE CONVERTED LOWERCASE!
     var longitude = req.headers.longitude;
     var latitude = req.headers.latitude;
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
-    var lunchOrCoffee = req.headers.lunchOrCoffee;
+    var lunchOrCoffee = req.headers.lunchorcoffee;
 
     console.log('---------------------------------------');
     console.log('Received match request with options....');
