@@ -14,9 +14,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "asyncstorage-down": "^2.4.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.3.5",
     "body-parser": "^1.15.0",
+    "crypto": "0.0.3",
     "express": "^4.13.4",
     "firebase": "^2.4.2",
     "formidable": "^1.0.17",
@@ -28,6 +30,7 @@
     "react": "^0.14.8",
     "react-native": "^0.23.0",
     "react-native-cookies": "^1.0.0",
+    "react-native-level-fs": "^2.0.1",
     "react-native-video": "^0.7.1",
     "request": "^2.70.0",
     "util": "^0.10.3"
