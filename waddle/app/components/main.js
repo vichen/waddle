@@ -109,6 +109,7 @@ class Main extends Component{
         //     this.props.onLogin();
         // }
 
+        console.log('fetching: ', results.success)
         if (results.success) {
           fetch(`${IP_address}/users/${this.state.email}`, {
             method: 'GET'

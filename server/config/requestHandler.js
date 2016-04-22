@@ -268,8 +268,8 @@ module.exports = {
                         .then(function(users) {
                           secondMatchedUser = users[0].toObject();
                           var responseObject = {
-                            firstMatchedUsername: firstMatchedUser,
-                            secondMatchedUsername: secondMatchedUser,
+                            firstMatchedUser: firstMatchedUser,
+                            secondMatchedUser: secondMatchedUser,
                             restaurant: JSON.parse(match.restaurant)
                           };
                           stringifiedResponseObject = JSON.stringify(responseObject);
