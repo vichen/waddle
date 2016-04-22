@@ -5,6 +5,8 @@ var request = require('request');
 var foursquare = require('./foursquare.js');
 var db = require('../../db/db.js').db;
 var bcrypt = require('bcrypt-nodejs');
+var express = require('express');
+var jwt = require('react-native-jwt');
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
 var restaurant = {"id":"513a4806c84c60d09153e2cc",
