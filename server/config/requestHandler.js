@@ -29,8 +29,8 @@ var secondMatchedUser = {"firstName":"Sloth",
 // Mongoose models
 var mongoose = require('mongoose');
 var db = require('../../db/db.js').db;
-var MatchRequest = require('../../db/config.js').MatchRequest;
-var SuccessfulMatch = require('../../db/config.js').SuccessfulMatch;
+var MatchRequest = require('../../db/models/matchRequest.js');
+var SuccessfulMatch = require('../../db/models/successfulMatch.js');
 
 
 // Bluebird promises used for interacting with database
@@ -55,7 +55,7 @@ var getDistanceFromLatLonInM = function(lat1,lon1,lat2,lon2) {
 
 // Iterates through potential matches and returns the first valid one found.
 // userLocation is an object-literal with properties longitude and latitude
-var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
+var getFirstValidMatch = function(username, lunchOrCoffee, matchRequestsArray, userLocation) {
   var validMatch;
   var lat1 = userLocation.latitude;
   var lon1 = userLocation.longitude;
@@ -66,13 +66,16 @@ var getFirstValidMatch = function(username, matchRequestsArray, userLocation) {
   console.log('username', username);
   console.log('latitude', lat1);
   console.log('longitude', lon1);
+  console.log('lunch or coffee: ', lunchOrCoffee);
   console.log('-----------------------');
 
   for (var i = 0; i < matchRequestsArray.length; i++) {
     var lat2 = matchRequestsArray[i].latitude;
     var lon2 = matchRequestsArray[i].longitude;
     // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
-    if (matchRequestsArray[i].username !== username && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
+    if ( (matchRequestsArray[i].username !== username
+      && matchRequestsArray[i].lunchOrCoffee === lunchOrCoffee)
+      && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
       validMatch = matchRequestsArray[i];
       break;
     }
@@ -198,7 +201,7 @@ module.exports = {
             // Check for active requests
             db.getMatchRequests()
               .then(function(matchRequests) {
-                return getFirstValidMatch(username, matchRequests, { latitude: latitude, longitude: longitude });
+                return getFirstValidMatch(username, lunchOrCoffee, matchRequests, { latitude: latitude, longitude: longitude });
               })
               .then(function(matchedUser) {
                 if (matchedUser) {
@@ -234,7 +237,7 @@ module.exports = {
                     }
                   });
                 } else {
-                  var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude });
+                  var newMatchRequest = new MatchRequest({ username: username, latitude: latitude, longitude: longitude, lunchOrCoffee: lunchOrCoffee });
                   newMatchRequest.save(function(error) {
                     if (error) {
                       console.log('Could not save user to MatchRequest table: ' + username, error);

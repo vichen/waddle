@@ -52,6 +52,7 @@ class Loading extends Component{
     navigator.geolocation.getCurrentPosition((position) => {
       console.log('loading.js user current location is', position);
       console.log('loading.js request a match end point: ',`${IP_address}/match`);
+      console.log('lunch or coffee is.... ', this.props.lunchOrCoffee)
       fetch(`${IP_address}/match`, {
         headers: {
           requestType: 'request-match',
