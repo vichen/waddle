@@ -30,7 +30,7 @@ class Enjoy extends Component{
 
   render(){
     var imageLinkMe = `${IP_address}/users/${this.props.username}/profilePhoto?date=${Date.now()}`;
-    var imageLinkMatch = this.props.match.profileImage || `${IP_address}/users/${this.props.match.username}/profilePhoto?date=${Date.now()}`;
+    var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto?date=${Date.now()}`;
     return (
       <View style={styles.mainContainer}>
         <Image resizeMode="stretch" source={require('./../assets/enjoy.jpg')}
@@ -40,7 +40,7 @@ class Enjoy extends Component{
           <Image source={{uri: imageLinkMe}} style={styles.avatarMatch} />
           <Image source={{uri: imageLinkMatch}} style={styles.avatarMatch} />
         </View>
-        <Text style={styles.title}> Enjoy your lunch!</Text>
+        <Text style={styles.title}> Enjoy your {this.props.lunchOrCoffee === 'lunch' ? 'lunch' : 'coffee'}!</Text>
       </View>
     )
   }

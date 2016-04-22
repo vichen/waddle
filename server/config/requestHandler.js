@@ -59,7 +59,7 @@ var getFirstValidMatch = function(username, lunchOrCoffee, matchRequestsArray, u
   var validMatch;
   var lat1 = userLocation.latitude;
   var lon1 = userLocation.longitude;
-  var distanceCutoff = 50000; // Only find potential matches within 500m
+  var distanceCutoff = 500; // Only find potential matches within 500m
 
   console.log('-----------------------');
   console.log('Finding valid match for');
@@ -74,7 +74,8 @@ var getFirstValidMatch = function(username, lunchOrCoffee, matchRequestsArray, u
     var lon2 = matchRequestsArray[i].longitude;
     // Check if the match request was not made by the same user and if the potential match is within the distance cutoff
     if ( (matchRequestsArray[i].username !== username
-      && matchRequestsArray[i].lunchOrCoffee === lunchOrCoffee)
+      && matchRequestsArray[i].lunchOrCoffee === lunchOrCoffee
+      )
       && getDistanceFromLatLonInM(lat1, lon1, lat2, lon2) <= distanceCutoff) {
       validMatch = matchRequestsArray[i];
       break;
@@ -322,9 +323,9 @@ module.exports = {
   },
 
   getProfilePhoto: function(req, res) {
-    var email = req.params.email.toLowerCase();
+    var username = req.params.username.toLowerCase();
 
-    db.getUserByEmail(email)
+    db.getUserByUsername(username)
       .then(function(users) {
         console.log(users[0]);
         var file  = users[0].profileImage;

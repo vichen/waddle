@@ -54,7 +54,7 @@ class Rating extends Component{
   }
 
   render(){
-    var imageLinkMatch = this.props.match.profileImage || `${IP_address}/users/${this.props.match.username}/profilePhoto`;
+    var imageLinkMatch = `${IP_address}/users/${this.props.match.username}/profilePhoto`;
     // var imageLinkMatch = 'https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/s306x306/e15/10899304_1426072301036564_994441959_n.jpg';
     return (
       <View style={styles.mainContainer}>

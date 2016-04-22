@@ -4,6 +4,7 @@ var matchRequestSchema = mongoose.Schema({
   username: String,
   latitude: Number,
   longitude: Number,
+  lunchOrCoffee: String,
   timeStamp: { type: Date, default: Date.now }, // When did this user start looking for a match
   isActive: { type: Boolean, default: true }
 });
