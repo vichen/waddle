@@ -1,6 +1,7 @@
 package com.penguin;
 
 import com.facebook.react.ReactActivity;
+import com.psykar.cookiemanager.CookieManagerPackage;
 import com.brentvatne.RCTVideo.ReactVideoPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.facebook.react.ReactPackage;
@@ -37,6 +38,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new CookieManagerPackage(),
             new ReactVideoPackage(),
             new RCTCameraPackage()
         );

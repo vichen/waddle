@@ -41,6 +41,7 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
+// var jwt = require('jwt-simple');
 
 var {
   View,
@@ -56,6 +57,7 @@ import Video from 'react-native-video';
 var Welcome = require('./welcome');
 var Signup = require('./signup');
 
+var token;
 
 class Main extends Component{
   constructor(props){
@@ -63,7 +65,7 @@ class Main extends Component{
     this.state = {
       // email: '',
       // password: '',
-      showProgress: false,
+      // showProgress: false,
       // error: null
     };
   }
