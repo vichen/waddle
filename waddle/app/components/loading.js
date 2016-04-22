@@ -57,7 +57,8 @@ class Loading extends Component{
           requestType: 'request-match',
           longitude: position.coords.longitude,
           latitude: position.coords.latitude,
-          username: this.props.username
+          username: this.props.username,
+          lunchOrCoffee: this.props.lunchOrCoffee
         }
       })
         .catch((err) => {

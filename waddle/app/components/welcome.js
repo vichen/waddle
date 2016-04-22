@@ -16,13 +16,16 @@ var {
 
 class Welcome extends Component{
 
-  handleSubmit(){
+  handleSubmit(lunchOrCoffee){
     console.log('you did it, you pushed the lunch buddy button');
     // do stuff w/ navigator
     this.props.navigator.push({
       title: "Finding you a match",
       component: Loading,
-      passProps: this.props
+      passProps: {
+        lunchOrCoffee: lunchOrCoffee,
+        ...this.props
+      }
     });
   }
 
@@ -43,21 +46,25 @@ class Welcome extends Component{
     return (
       <View style={styles.mainContainer}>
         <Text style={styles.welcomeText}>Welcome, { this.props.firstName || this.props.username}</Text>
-        <Image 
-          style={styles.avatar} 
-          source={{uri: imageLink}} />
+        <TouchableHighlight
+        onPress={this.takeProfilePic.bind(this)}>
+          <Image 
+            style={styles.avatar} 
+            source={{uri: imageLink}} />
+        </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
+          onPress={this.handleSubmit.bind(this, 'lunch')}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>gimme a lunch buddy</Text>
         </TouchableHighlight>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.takeProfilePic.bind(this)}
+          onPress={this.handleSubmit.bind(this, 'coffee')}
           underlayColor="#f9ecdf">
-          <Text style={styles.buttonText}>retake my picture</Text>
+          <Text style={styles.buttonText}>gimme a coffee buddy</Text>
         </TouchableHighlight>
+        
       </View>
     );
   }
