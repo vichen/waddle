@@ -51,7 +51,9 @@ var {
   Component,
   TextInput,
   TouchableHighlight,
-  ActivityIndicatorIOS
+  ActivityIndicatorIOS,
+  NavigatorIOS,
+  Navigator,
 } = React;
 
 import Video from 'react-native-video';

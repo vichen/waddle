@@ -194,7 +194,9 @@ module.exports = StyleSheet.create({
     paddingTop: 10,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
-    // backgroundColor: 'rgba(255, 255, 255, 0.5)'
+  },
+  loader: {
+    backgroundColor: 'transparent'
   }
 
 });
