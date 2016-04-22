@@ -42,6 +42,7 @@ var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
 // var jwt = require('jwt-simple');
+var jwt = require('react-native-jwt');
 
 var {
   View,
