@@ -149,6 +149,7 @@ module.exports = {
     var latitude = req.headers.latitude;
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
+    var lunchOrCoffee = req.headers.lunchOrCoffee;
 
     console.log('---------------------------------------');
     console.log('Received match request with options....');
@@ -156,6 +157,7 @@ module.exports = {
     console.log('Username', username);
     console.log('latitude', latitude);
     console.log('longitude', longitude);
+    console.log('lunch or coffee?', lunchOrCoffee);
     console.log('---------------------------------------');
 
     // Send 400 if headers not provided
@@ -206,7 +208,7 @@ module.exports = {
                       console.log('Could not update isActive status of matched user', matchedUser, error);
                       res.status(500).send();
                     } else {
-                      foursquare.getRestaurant(longitude, latitude)
+                      foursquare.getRestaurant(longitude, latitude, lunchOrCoffee)
                         .then(function(restaurant) {
                           // Save the new match to the SuccessfulMatch table
                           var stringifiedRestaurant = JSON.stringify(restaurant);
