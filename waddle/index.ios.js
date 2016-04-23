@@ -118,7 +118,7 @@ class penguin extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     AsyncStorage.getItem('token')
       .then((data)=> {
         var token = jwt.decode(data, 'llama waddle');
