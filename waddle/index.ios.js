@@ -118,12 +118,16 @@ class penguin extends Component {
     };
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem('token').then((data)=> {
-      var token = jwt.decode(data, 'llama waddle');
-      console.log(token);
-      this.setState({token: token});
-    })
+  componentWillMount() {
+    AsyncStorage.getItem('token')
+      .then((data)=> {
+        var token = jwt.decode(data, 'llama waddle');
+        console.log(token);
+        this.setState({token: token});
+      })
+      .catch((err)=> {
+        console.log('there is no token');
+      })
   }
 
 
