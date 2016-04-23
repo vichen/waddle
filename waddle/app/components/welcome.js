@@ -65,6 +65,7 @@ class Welcome extends Component{
           <Text style={styles.buttonText}>gimme a coffee buddy</Text>
         </TouchableHighlight>
         
+        
       </View>
     );
   }
