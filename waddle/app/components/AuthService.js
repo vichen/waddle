@@ -1,18 +1,12 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var AsyncStorage = require('react-native').AsyncStorage;
-var _ = require('lodash');
-// var buffer = require('buffer');
-// var _ = require('lodash');
-// var bcrypt = require('bcrypt');
-
-const authKey = 'auth';
-const userKey = 'user';
 
 class AuthService {
 
     login(creds, cb){
         var url = `${IP_address}/signin`
+        // var url = 'http://localhost:8000/signin';
         fetch(url,{
             method: 'POST',
             headers: {
@@ -26,7 +20,10 @@ class AuthService {
         .then((res)=> {
             if(res.status >= 200 && res.status < 300){
               console.log('login returns this res: ', res);
-                return cb({success: true});
+              console.log('res.token: ', res.token);
+
+              return res.json();
+                
             }
 
             throw {
@@ -34,9 +31,22 @@ class AuthService {
                 unknownError: res.status !== 401
             }
         })
+        .then((data)=> {
+          AsyncStorage.setItem('token', data.token);
+          return cb({success: true});
+        })
         .catch((err)=> {
             return cb(err);
         });
+    }
+
+    logout() {
+      var url = `${IP_address}/logout`
+      fetch(url, {
+        method: 'GET'
+      }).then(function () {
+        AsyncStorage.removeItem('token');
+      })
     }
 
 

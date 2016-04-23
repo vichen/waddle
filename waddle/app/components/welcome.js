@@ -1,6 +1,7 @@
 // The landing page after login / new user flow. Greets the user and lets them request a match.
 
 var React = require('react-native');
+var Main = require('./main');
 var Loading = require('./loading');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
@@ -11,7 +12,9 @@ var {
   Component,
   StyleSheet,
   TouchableHighlight,
-  Image
+  Image,
+  AsyncStorage,
+  Navigator
 } = React;
 
 class Welcome extends Component{
@@ -27,6 +30,11 @@ class Welcome extends Component{
         ...this.props
       }
     });
+  }
+
+  handleLogout() {
+    AsyncStorage.removeItem('token');
+    this.props.navigator.immediatelyResetRouteStack(this.props.navigator.getCurrentRoutes().slice(0, -1));
   }
 
   takeProfilePic() {
@@ -64,6 +72,13 @@ class Welcome extends Component{
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>gimme a coffee buddy</Text>
         </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleLogout.bind(this)}
+          underlayColor="#f9ecdf">
+          <Text style={styles.buttonText}>Logout</Text>
+        </TouchableHighlight>
+        
         
       </View>
     );

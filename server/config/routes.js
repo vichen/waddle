@@ -5,6 +5,8 @@ module.exports = function (app, express) {
 
   app.post('/signin', requestHandler.postSignin);
   app.post('/signup', requestHandler.postSignup);
+  app.get('/logout', function(req, res) { res.send('you have logged out'); });
+
   app.get('/match', requestHandler.getMatch);
   app.get('/users/:username/profilePhoto', requestHandler.getProfilePhoto);
   // app.get('/users/:username', requestHandler.getUserInfo);
