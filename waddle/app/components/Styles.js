@@ -205,6 +205,7 @@ module.exports = StyleSheet.create({
     paddingTop: 10,
     fontWeight: 'bold',
     backgroundColor: 'transparent'
+    // backgroundColor: 'rgba(255, 255, 255, 0.5)'
   },
   /* Messenger styles */
   messengerContainer: {
@@ -263,6 +264,6 @@ module.exports = StyleSheet.create({
     paddingLeft: 10,
     paddingBottom: 22,
     paddingTop: 2,
-  }
+  },
 });
 
