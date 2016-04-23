@@ -1,7 +1,9 @@
 node_modules/
 server/config/facebook.js
+server/config/auth.js
 server/config/foursquarekeys.js
 server/uploads/*
 !server/uploads/.gitkeep
 .DS_Store
 npm-debug.log
+/waddle/app/keys/*

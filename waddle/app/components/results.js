@@ -4,6 +4,7 @@
 // is close enough, or even automatically move on to the next screen).
 
 var React = require('react-native');
+var uberKey = require('../keys/uber.js').client_id; 
 
 var {
   Component,
@@ -51,7 +52,7 @@ class Results extends Component{
   }
 
   requestRide(){
-    var url = `uber://?client_id=P8BnVQYOltkIsc4-gTwfZCW-Qju74Kj5&action=setPickup&dropoff[latitude]=${this.props.restaurant.location.lat}&dropoff[longitude]=${this.props.restaurant.location.lng}&dropoff[nickname]=${this.props.restaurant.name}&dropoff[formatted_address]=${this.props.restaurant.address}`
+    var url = `uber://?client_id=${uberKey}&action=setPickup&dropoff[latitude]=${this.props.restaurant.location.lat}&dropoff[longitude]=${this.props.restaurant.location.lng}&dropoff[nickname]=${this.props.restaurant.name}&dropoff[formatted_address]=${this.props.restaurant.address}`
     Linking.openURL(url).catch(err => console.error('An error occurred', err));
   }
 
