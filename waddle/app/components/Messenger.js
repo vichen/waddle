@@ -28,7 +28,7 @@ class Messenger extends React.Component {
     var timestamp = this.props.dbNameTimestamp;
     console.log('timestamp: ', timestamp);
 
-    var dbNameChat = this.props.userLeft + this.props.userRight + ' ' + timestamp;
+    var dbNameChat = timestamp;
     console.log('dbNameChat: ', dbNameChat);
     
     this.db = new Firebase(`https://native-messenger.firebaseio.com/${dbNameChat}`);
@@ -69,6 +69,9 @@ class Messenger extends React.Component {
         this.setState({error}) //same as {error: error} - ES6 thing
       });
   }
+  handleBack() {
+    this.props.navigator.pop();
+  }
   footer(){
     return (
       <View style={styles.footerContainer}>
@@ -83,6 +86,12 @@ class Messenger extends React.Component {
           onPress={this.handleSubmit.bind(this)}
           underlayColor="white">
             <Text style={styles.buttonText}> Submit </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleBack.bind(this)}
+          underlayColor="white">
+            <Text style={styles.buttonText}> Back </Text>
         </TouchableHighlight>
       </View>
     )

@@ -214,7 +214,7 @@ module.exports = StyleSheet.create({
   searchInput: {
     height: 50,
     padding: 12,
-    marginRight: 5,
+    marginBottom: 10,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'white',
