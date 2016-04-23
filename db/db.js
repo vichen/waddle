@@ -27,7 +27,7 @@ exports.db = {
     });
   },
 
-  getUserByUsername: function(username) {
+  getUsersByUsername: function(username) {
 
     return new Promise(function(resolve, reject) {
       User.find({username: username}, function(error, user) {

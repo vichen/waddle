@@ -15,15 +15,17 @@ var restaurant = {"id":"513a4806c84c60d09153e2cc",
 };
 var firstMatchedUser = {"firstName":"Nathan",
 "username":"Nathaniel",
+"averageRating": 3.5,
 "email":"nedwards@gmail.com",
 "funFact":"I can code all the things",
-"profileImage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"
+"testprofileImage":"https://avatars1.githubusercontent.com/u/5132757?v=3&s=400"
 };
 var secondMatchedUser = {"firstName":"Sloth",
 "username":"Sloth",
+"averageRating": 2.5,
 "email":"sloth@slothmail.com",
 "funFact":"I am a sloth",
-"profileImage":"https://i.ytimg.com/vi/x6VgzTsToyY/hqdefault.jpg"
+"testprofileImage":"https://i.ytimg.com/vi/x6VgzTsToyY/hqdefault.jpg"
 };
 
 // Mongoose models
@@ -199,9 +201,10 @@ module.exports = {
           }
 
           if (requestType === 'request-match') {
-            // Check for active requests
+            // Check for active requests based on time alone
             db.getMatchRequests()
               .then(function(matchRequests) {
+                // filter out requests based on location and lunch/coffee
                 return getFirstValidMatch(username, lunchOrCoffee, matchRequests, { latitude: latitude, longitude: longitude });
               })
               .then(function(matchedUser) {
@@ -261,11 +264,11 @@ module.exports = {
                   var firstMatchedUser; // Will store user object matching first user in match
                   var secondMatchedUser; // Will store user object matching second user in match
 
-                  db.getUserByUsername(match.firstMatchedUsername)
+                  db.getUsersByUsername(match.firstMatchedUsername)
                     .then(function(users) {
                       firstMatchedUser = users[0].toObject();
 
-                      db.getUserByUsername(match.secondMatchedUsername)
+                      db.getUsersByUsername(match.secondMatchedUsername)
                         .then(function(users) {
                           secondMatchedUser = users[0].toObject();
                           var responseObject = {
@@ -277,12 +280,12 @@ module.exports = {
                           res.send(stringifiedResponseObject);
                         })
                         .catch(function(error) {
-                          console.log('There was an error calling db.getUserByUsername from getMatch', error);
+                          console.log('There was an error calling db.getUsersByUsername from getMatch', error);
                           res.status(500).send();
                         });
                     })
                     .catch(function(error) {
-                      console.log('There was an error calling db.getUserByUsername from getMatch', error);
+                      console.log('There was an error calling db.getUsersByUsername from getMatch', error);
                       res.status(500).send();
                     });
                 } else {
@@ -317,7 +320,7 @@ module.exports = {
         res.status(200).json(users[0]);
       })
       .catch(function(error) {
-        console.log('There was an error calling db.getUserByUsername from getUserInfo: ', error);
+        console.log('There was an error calling db.getUsersByUsername from getUserInfo: ', error);
         res.status(500).send();
       });
   },
@@ -325,7 +328,7 @@ module.exports = {
   getProfilePhoto: function(req, res) {
     var username = req.params.username.toLowerCase();
 
-    db.getUserByUsername(username)
+    db.getUsersByUsername(username)
       .then(function(users) {
         console.log(users[0]);
         var file  = users[0].profileImage;
@@ -399,7 +402,7 @@ module.exports = {
     var newRating = req.body.rating;
 
     // Check if a valid rating was provided
-    if (newRating < 1 || newRating > 3) {
+    if (newRating < 1 || newRating > 5) {
       res.status(400).send();
       return;
     }

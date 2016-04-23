@@ -30,7 +30,7 @@ class Match extends Component{
   }
 
   render(){
-    var imageLink = `${IP_address}/users/${this.props.match.username}/profilePhoto?$date={Date.now()}`;
+    var imageLink = this.props.match.testprofileImage || `${IP_address}/users/${this.props.match.username}/profilePhoto?$date={Date.now()}`;
     console.log('match.js link to image: ', imageLink);
     console.log('match information: ', this.props.match);
     return (
