@@ -84,8 +84,13 @@ class Loading extends Component{
         console.log('this is the json:', json);
         this.setState({restaurant: json.restaurant});
         this.setState({match: json.firstMatchedUser.username !== this.props.username ? json.firstMatchedUser : json.secondMatchedUser});
+        console.log('json.timestamp:', json.timestamp);
+        this.setState({dbNameTimestamp: json.timestamp});
         console.log('the important thing:', this.state.match);
         this.handleMatch();
+        // for chat DB name:
+       
+        
       })
       .catch((err) => {
         console.log('error retrieving match', err);
@@ -112,6 +117,10 @@ class Loading extends Component{
         passProps: {
           restaurant: this.state.restaurant,
           match: this.state.match,
+          // chat variables
+          userLeft: this.props.username,
+          userRight: this.state.match,
+          dbNameTimestamp: this.state.dbNameTimestamp,
           ...this.props
         }
       });

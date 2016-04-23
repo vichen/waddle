@@ -206,7 +206,64 @@ module.exports = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'transparent'
     // backgroundColor: 'rgba(255, 255, 255, 0.5)'
-  }
-
+  },
+  /* Messenger styles */
+  messengerContainer: {
+    flex: 1,
+  },
+  searchInput: {
+    height: 50,
+    padding: 12,
+    marginRight: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 8,
+    color: 'white',
+  },
+  rowContainer: {
+    padding: 10,
+  },
+  footerContainer: {
+    alignItems: 'center',
+    flexDirection: 'column'
+  },
+  messageText: {
+    marginTop: 5,
+    fontSize: 20,
+    alignSelf: 'auto',
+    fontFamily: 'Raleway-Light',
+    color: 'white'
+  },
+  messageTextLeft: {
+    marginTop: 5,
+    fontSize: 25,
+    alignSelf: 'flex-start',
+    fontFamily: 'Raleway-Light',
+    color: 'white',
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 15,
+    height: 35,
+    paddingRight: 10,
+    paddingLeft: 10,
+    paddingBottom: 22,
+    paddingTop: 2,
+  },
+  messageTextRight: {
+    marginTop: 5,
+    fontSize: 25,
+    alignSelf: 'flex-end',
+    fontFamily: 'Raleway-Light',
+    color: 'white',
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 15,
+    height: 35,
+    paddingRight: 10,
+    paddingLeft: 10,
+    paddingBottom: 22,
+    paddingTop: 2,
+  },
 });
 

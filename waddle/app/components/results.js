@@ -17,6 +17,9 @@ var {
 
 var Match = require('./match');
 var styles = require('./Styles');
+var api = require('../utils/api');
+var Messenger = require('./Messenger');
+var Firebase = require('firebase');
 
 class Results extends Component{
   constructor(props) {
@@ -27,7 +30,9 @@ class Results extends Component{
         latitude: this.props.restaurant.location.lat,
         longitude: this.props.restaurant.location.lng
       },
-      match: this.props.match
+      match: this.props.match,
+      userLeft: this.props.userLeft,
+      userRight: this.props.userRight
     };
 
     setTimeout(() => {
@@ -48,6 +53,23 @@ class Results extends Component{
   requestRide(){
     var url = `uber://?client_id=P8BnVQYOltkIsc4-gTwfZCW-Qju74Kj5&action=setPickup&dropoff[latitude]=${this.props.restaurant.location.lat}&dropoff[longitude]=${this.props.restaurant.location.lng}&dropoff[nickname]=${this.props.restaurant.name}&dropoff[formatted_address]=${this.props.restaurant.address}`
     Linking.openURL(url).catch(err => console.error('An error occurred', err));
+  }
+
+  chatHandler() {
+    this.props.navigator.push({
+      title: 'Chat',
+      component: Messenger,
+      passProps: {
+        //userInfo: this.state.username // TODO: change to userLeft + find username in props...
+        userLeft: this.state.userLeft,
+        userRight: this.state.userRight.username,
+        dbNameTimestamp: this.props.dbNameTimestamp
+      }
+    });
+    // this.setState({
+    //   isLoading: false,
+    //   error: false,
+    // });
   }
 
   render() {
@@ -81,6 +103,12 @@ class Results extends Component{
             underlayColor="#f9ecdf"
             onPress={this.submitHandler.bind(this)}>
             <Text style={styles.buttonText}>I'm here</Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            underlayColor="#f9ecdf"
+            onPress={this.chatHandler.bind(this)}>
+              <Text style={styles.buttonText}>Chat</Text>
           </TouchableHighlight>
         </View>
       </View>

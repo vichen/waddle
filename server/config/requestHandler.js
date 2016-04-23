@@ -156,6 +156,7 @@ module.exports = {
     var username = req.headers.username;
     var requestType = req.headers.requesttype;
     var lunchOrCoffee = req.headers.lunchorcoffee;
+    var timestamp = (new Date()).toString();
 
     console.log('---------------------------------------');
     console.log('Received match request with options....');
@@ -164,6 +165,7 @@ module.exports = {
     console.log('latitude', latitude);
     console.log('longitude', longitude);
     console.log('lunch or coffee?', lunchOrCoffee);
+    console.log('timestamp', timestamp);
     console.log('---------------------------------------');
 
     // Send 400 if headers not provided
@@ -185,11 +187,13 @@ module.exports = {
           */
           if (!foursquare.client_id) {
             if (requestType === 'retrieve-match'){
+              console.log('Here in ...retrieve-match... withOUT foursqure / timestamp: ', timestamp);
               var responseJSON = {
                 restaurant: restaurant,
                 firstMatchedUser: firstMatchedUser,
                 secondMatchedUser: secondMatchedUser,
-                matchTime: new Date()
+                matchTime: new Date(),
+                timestamp: timestamp,
               };
               res.status(200).send(responseJSON);
               return;
@@ -263,6 +267,7 @@ module.exports = {
                 if (match) {
                   var firstMatchedUser; // Will store user object matching first user in match
                   var secondMatchedUser; // Will store user object matching second user in match
+                  console.log('Here in ...retrieve-match... with foursqure / timestamp: ', timestamp);
 
                   db.getUsersByUsername(match.firstMatchedUsername)
                     .then(function(users) {
@@ -274,7 +279,9 @@ module.exports = {
                           var responseObject = {
                             firstMatchedUser: firstMatchedUser,
                             secondMatchedUser: secondMatchedUser,
-                            restaurant: JSON.parse(match.restaurant)
+                            restaurant: JSON.parse(match.restaurant),
+                            // For dbNameChat:
+                            timestamp: timestamp,
                           };
                           stringifiedResponseObject = JSON.stringify(responseObject);
                           res.send(stringifiedResponseObject);
