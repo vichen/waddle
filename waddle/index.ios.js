@@ -89,6 +89,27 @@
 
  // AppRegistry.registerComponent('penguin', () => penguin);
 
+ /*  <Navigator
+          initialRoute={{
+            title: 'Welcome',
+            component: Welcome,
+            passProps: this.state.token
+          }}
+          configureScene={() => {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {
+            // count the number of func calls
+            const Component = route.component
+            return (
+              <View style={{flex: 1}}>
+                <Component navigator={navigator} route={route} {...route.passProps}/>
+              </View>
+            )
+          }}
+        />
+        */
+
 
 import React, {
   AppRegistry,
@@ -134,15 +155,11 @@ class penguin extends Component {
   render() {
     if (!this.state.token) {
       return (
-        <Main />
-      );
-    } else {
-      return (
         <Navigator
           initialRoute={{
-            title: 'Welcome',
-            component: Welcome,
-            passProps: this.state.token
+            title: 'Main',
+            component: Main,
+            passProps: {}
           }}
           configureScene={() => {
             return Navigator.SceneConfigs.FloatFromRight;
@@ -153,6 +170,22 @@ class penguin extends Component {
             return (
               <View style={{flex: 1}}>
                 <Component navigator={navigator} route={route} {...route.passProps}/>
+              </View>
+            )
+          }}
+        />
+      );
+    } else {
+      return (
+         <Navigator
+          configureScene={() => {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {
+            // count the number of func calls
+            return (
+              <View style={{flex: 1}}>
+                <Welcome navigator={navigator} route={route} {...this.state.token} {...route.passProps}/>
               </View>
             )
           }}
