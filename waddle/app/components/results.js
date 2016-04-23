@@ -66,10 +66,6 @@ class Results extends Component{
         dbNameTimestamp: this.props.dbNameTimestamp
       }
     });
-    // this.setState({
-    //   isLoading: false,
-    //   error: false,
-    // });
   }
 
   render() {
