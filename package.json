@@ -28,6 +28,11 @@
     "react": "^0.14.8",
     "react-native": "^0.23.0",
     "react-native-cookies": "^1.0.0",
+    "react-native-http": "github:tradle/react-native-http#834492d",
+    "react-native-level-fs": "^2.0.1",
+    "react-native-randombytes": "^2.0.0",
+    "react-native-tcp": "^1.0.1",
+    "react-native-udp": "^1.2.4",
     "react-native-video": "^0.7.1",
     "request": "^2.70.0",
     "util": "^0.10.3"
