@@ -31,7 +31,11 @@
    * on the same Wi-Fi network.
    */
 
+<<<<<<< edab7cd5e98987f8dd69dff6d04422918f6a6b6a
   jsCodeLocation = [NSURL URLWithString:@"http://192.168.0.102:8081/index.ios.bundle?platform=ios&dev=true"];
+=======
+   jsCodeLocation = [NSURL URLWithString:@"http://10.6.31.155:8081/index.ios.bundle?platform=ios&dev=true"];
+>>>>>>> more changes for heroku
 
   /**
    * OPTION 2
