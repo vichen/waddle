@@ -4,7 +4,7 @@
 // is close enough, or even automatically move on to the next screen).
 
 var React = require('react-native');
-var uberKey = require('../keys/uber.js').client_id; 
+var uberKey = require('../clientKeys/uber.js').client_id || ''; 
 
 var {
   Component,

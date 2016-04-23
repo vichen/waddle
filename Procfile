@@ -1,0 +1,1 @@
+web: pm2 start server/server.js && pm2 logs all
