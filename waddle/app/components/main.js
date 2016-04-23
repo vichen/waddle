@@ -54,24 +54,31 @@ var {
   ActivityIndicatorIOS,
   NavigatorIOS,
   Navigator,
+  AsyncStorage
 } = React;
 
 import Video from 'react-native-video';
 var Welcome = require('./welcome');
 var Signup = require('./signup');
 
-var token;
 
 class Main extends Component{
   constructor(props){
     super(props);
     this.state = {
-      // email: '',
-      // password: '',
-      // showProgress: false,
-      // error: null
+      token: null
     };
   }
+
+  // getInitialState() {
+  //   return {
+  //     token: null, 
+  //     user: null,
+  //     badLogin: null
+  //   }
+  // }
+
+
 
   handleChangeEmail(e) {
     this.setState({
@@ -151,6 +158,19 @@ class Main extends Component{
       });
   }
 
+  componentWillMount() {
+    var token;
+    AsyncStorage.multiGet(['token', 'email']).then((data)=> {
+      // if (data[0][1]) {
+      //   token = data[0][1];
+      //   this.setState({token: token})
+      // }
+      console.log(data);
+    })
+  }
+
+
+
   // handleSubmit(){
   //   console.log('insert OAuth integration here');
   //   var url = `${IP_address}/signin`;
@@ -228,52 +248,59 @@ class Main extends Component{
         </Text>;
     }
 
-    return (
-        <View style={styles.mainContainer}>
-          <Video source={{uri:"background"}}
-            style={styles.backgroundVideo}
-            paused={false}
-            rate={1} volume={1} muted={true}
-            resizeMode="cover" repeat={true}
+    if (!this.state.token) {
 
-          />
-          <Text style={styles.mainTitle}>waddle</Text>
-          <TextInput
-            style={styles.textInput}
-            autoCapitalize='none'
-            autoCorrect={false}
-            placeholder='Email'
-            placeholderTextColor='white'
-            onChange={this.handleChangeEmail.bind(this)}
-          />
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            autoCapitalize='none'
-            autoCorrect={false}
-            placeholder='Password'
-            placeholderTextColor='white'
-            onChange={this.handleChangePassword.bind(this)}
-          />
-          
-          <TouchableHighlight
-            style={styles.button}
-            onPress={this.onLoginPress.bind(this)}
-            underlayColor="#f9ecdf">
-            <Text style={styles.buttonText}>Sign in</Text>
-          </TouchableHighlight>
-          {errorCtrl}
+      return (
+          <View style={styles.mainContainer}>
+            <Video source={{uri:"background"}}
+              style={styles.backgroundVideo}
+              paused={false}
+              rate={1} volume={1} muted={true}
+              resizeMode="cover" repeat={true}
 
-          <Text style={styles.mainBottomText}>Don't have an account?</Text>
+            />
+            <Text style={styles.mainTitle}>waddle</Text>
+            <TextInput
+              style={styles.textInput}
+              autoCapitalize='none'
+              autoCorrect={false}
+              placeholder='Email'
+              placeholderTextColor='white'
+              onChange={this.handleChangeEmail.bind(this)}
+            />
+            <TextInput
+              style={styles.textInput}
+              secureTextEntry={true}
+              autoCapitalize='none'
+              autoCorrect={false}
+              placeholder='Password'
+              placeholderTextColor='white'
+              onChange={this.handleChangePassword.bind(this)}
+            />
+            
+            <TouchableHighlight
+              style={styles.button}
+              onPress={this.onLoginPress.bind(this)}
+              underlayColor="#f9ecdf">
+              <Text style={styles.buttonText}>Sign in</Text>
+            </TouchableHighlight>
+            {errorCtrl}
 
-          <TouchableHighlight
-            style={styles.signupButton}
-            onPress={this.handleGoToSignup.bind(this)}
-            underlayColor="#f9ecdf">
-            <Text style={styles.buttonText}>Sign up</Text>
-          </TouchableHighlight>
-        </View>
-    )
+            <Text style={styles.mainBottomText}>Don't have an account?</Text>
+
+            <TouchableHighlight
+              style={styles.signupButton}
+              onPress={this.handleGoToSignup.bind(this)}
+              underlayColor="#f9ecdf">
+              <Text style={styles.buttonText}>Sign up</Text>
+            </TouchableHighlight>
+          </View>
+      )
+    } else {
+      return (
+         <Welcome />
+       );
+    }
   }
 };
 
