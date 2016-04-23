@@ -174,6 +174,17 @@ module.exports = StyleSheet.create({
     fontFamily: 'Raleway-Light',
     color: 'white'
   },
+  starbox: {
+    marginTop: 30,
+    marginBottom: 30,
+    alignSelf: 'center',
+    width: 220,
+    height: 40,
+    overflow: 'hidden'
+  },
+  starButton: {
+    flexDirection: 'row'
+  },
   feedbackText: {
     marginTop: 5,
     fontSize: 20,

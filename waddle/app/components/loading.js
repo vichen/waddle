@@ -125,7 +125,7 @@ class Loading extends Component{
           animating={this.state.isLoading}
           color="black"
           size="large"
-          style={{transform: [{scale: 3}]}}>
+          style={{transform: [{scale: 2}]}}>
         </ActivityIndicatorIOS>
       </View>
     )    
