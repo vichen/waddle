@@ -5,7 +5,7 @@ module.exports = function (app, express) {
 
   app.post('/signin', requestHandler.postSignin);
   app.post('/signup', requestHandler.postSignup);
-  app.get('/logout');
+  app.get('/logout', function(req, res) { res.redirect('/')});
 
   app.get('/match', requestHandler.getMatch);
   app.get('/users/:username/profilePhoto', requestHandler.getProfilePhoto);

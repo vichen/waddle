@@ -41,7 +41,7 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
-// var jwt = require('jwt-simple');
+var authService = require('./AuthService');
 var jwt = require('react-native-jwt');
 
 var {
@@ -106,7 +106,6 @@ class Main extends Component{
     console.log('Attempting to log in with username ' + this.state.email);
     this.setState({showProgress: true});
 
-    var authService = require('./AuthService');
     authService.login({
         email: this.state.email,
         password: this.state.password

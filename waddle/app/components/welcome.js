@@ -4,6 +4,7 @@ var React = require('react-native');
 var Loading = require('./loading');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
+var authService = require('./AuthService');
 
 var {
   Text,
@@ -27,6 +28,10 @@ class Welcome extends Component{
         ...this.props
       }
     });
+  }
+
+  handleLogout() {
+    authService.logout();
   }
 
   takeProfilePic() {
@@ -63,6 +68,12 @@ class Welcome extends Component{
           onPress={this.handleSubmit.bind(this, 'coffee')}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>gimme a coffee buddy</Text>
+        </TouchableHighlight>
+         <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleLogout()}
+          underlayColor="#f9ecdf">
+          <Text style={styles.buttonText}>Logout</Text>
         </TouchableHighlight>
         
         
