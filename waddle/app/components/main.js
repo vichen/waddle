@@ -41,8 +41,6 @@
 var React = require('react-native');
 var IP_address = require('../../environment.js').IP_address;
 var styles = require('./Styles');
-// var jwt = require('jwt-simple');
-var jwt = require('react-native-jwt');
 
 var {
   View,
@@ -51,10 +49,7 @@ var {
   Component,
   TextInput,
   TouchableHighlight,
-  ActivityIndicatorIOS,
-  NavigatorIOS,
-  Navigator,
-  AsyncStorage
+  ActivityIndicatorIOS
 } = React;
 
 import Video from 'react-native-video';
@@ -66,19 +61,12 @@ class Main extends Component{
   constructor(props){
     super(props);
     this.state = {
-      token: null
+      // email: '',
+      // password: '',
+      showProgress: false,
+      // error: null
     };
   }
-
-  // getInitialState() {
-  //   return {
-  //     token: null, 
-  //     user: null,
-  //     badLogin: null
-  //   }
-  // }
-
-
 
   handleChangeEmail(e) {
     this.setState({
@@ -158,15 +146,6 @@ class Main extends Component{
       });
   }
 
-  // componentWillMount() {
-  //   AsyncStorage.getItem('token').then((data)=> {
-  //     var token = jwt.decode(data, 'llama waddle');
-  //     this.setState({token: token});
-  //   })
-  // }
-
-
-
   // handleSubmit(){
   //   console.log('insert OAuth integration here');
   //   var url = `${IP_address}/signin`;
@@ -244,52 +223,52 @@ class Main extends Component{
         </Text>;
     }
 
-      return (
-          <View style={styles.mainContainer}>
-            <Video source={{uri:"background"}}
-              style={styles.backgroundVideo}
-              paused={false}
-              rate={1} volume={1} muted={true}
-              resizeMode="cover" repeat={true}
+    return (
+        <View style={styles.mainContainer}>
+          <Video source={{uri:"background"}}
+            style={styles.backgroundVideo}
+            paused={false}
+            rate={1} volume={1} muted={true}
+            resizeMode="cover" repeat={true}
 
-            />
-            <Text style={styles.mainTitle}>waddle</Text>
-            <TextInput
-              style={styles.textInput}
-              autoCapitalize='none'
-              autoCorrect={false}
-              placeholder='Email'
-              placeholderTextColor='white'
-              onChange={this.handleChangeEmail.bind(this)}
-            />
-            <TextInput
-              style={styles.textInput}
-              secureTextEntry={true}
-              autoCapitalize='none'
-              autoCorrect={false}
-              placeholder='Password'
-              placeholderTextColor='white'
-              onChange={this.handleChangePassword.bind(this)}
-            />
-            
-            <TouchableHighlight
-              style={styles.button}
-              onPress={this.onLoginPress.bind(this)}
-              underlayColor="#f9ecdf">
-              <Text style={styles.buttonText}>Sign in</Text>
-            </TouchableHighlight>
-            {errorCtrl}
+          />
+          <Text style={styles.mainTitle}>waddle</Text>
+          <TextInput
+            style={styles.textInput}
+            autoCapitalize='none'
+            autoCorrect={false}
+            placeholder='Email'
+            placeholderTextColor='white'
+            onChange={this.handleChangeEmail.bind(this)}
+          />
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            autoCapitalize='none'
+            autoCorrect={false}
+            placeholder='Password'
+            placeholderTextColor='white'
+            onChange={this.handleChangePassword.bind(this)}
+          />
+          
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.onLoginPress.bind(this)}
+            underlayColor="#f9ecdf">
+            <Text style={styles.buttonText}>Sign in</Text>
+          </TouchableHighlight>
+          {errorCtrl}
 
-            <Text style={styles.mainBottomText}>Don't have an account?</Text>
+          <Text style={styles.mainBottomText}>Don't have an account?</Text>
 
-            <TouchableHighlight
-              style={styles.signupButton}
-              onPress={this.handleGoToSignup.bind(this)}
-              underlayColor="#f9ecdf">
-              <Text style={styles.buttonText}>Sign up</Text>
-            </TouchableHighlight>
-          </View>
-      )
+          <TouchableHighlight
+            style={styles.signupButton}
+            onPress={this.handleGoToSignup.bind(this)}
+            underlayColor="#f9ecdf">
+            <Text style={styles.buttonText}>Sign up</Text>
+          </TouchableHighlight>
+        </View>
+    )
   }
 };
 

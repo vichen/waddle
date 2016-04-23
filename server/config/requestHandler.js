@@ -5,8 +5,6 @@ var request = require('request');
 var foursquare = require('./foursquare.js');
 var db = require('../../db/db.js').db;
 var bcrypt = require('bcrypt-nodejs');
-var express = require('express');
-var jwt = require('jwt-simple');
 
 // The below hard-coded examples are for testing purposes. Will be removed once Foursquare API is in place.
 var restaurant = {"id":"513a4806c84c60d09153e2cc",
@@ -104,19 +102,7 @@ module.exports = {
             .then(function(success) {
               if (success) {
                 console.log('postSignin: getUser sign in successful ', success);
-                var token = jwt.encode(
-                  { username: user[0].username,
-                    firstName: user[0].firstName,
-                    email: user[0].email,
-                    funFact: user[0].funFact,
-                    profileImage: user[0].profileImage,
-                    averageRating: user[0].averageRating,
-                    matches: user[0].matches
-                  }, 
-                  'llama waddle');
-                console.log('here is the token that got created: ', token);
-                res.json({token: token});
-                // res.status(200).send('sign in successful');
+                res.status(200).send('sign in successful');
               } 
             })
             .catch(function(err) {
