@@ -42,11 +42,11 @@ class AuthService {
 
     logout() {
       var url = `${IP_address}/logout`
-      fetch(LOGOUT_REQUEST_URL, {
+      fetch(url, {
         method: 'GET'
       }).then(function () {
-        AsyncStorage.remove('token');
-      });
+        AsyncStorage.removeItem('token');
+      })
     }
 
 
