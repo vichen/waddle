@@ -119,18 +119,40 @@ class penguin extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('token').then((data)=> {
-      var token = jwt.decode(data, 'llama waddle');
-      console.log(token);
-      this.setState({token: token});
-    })
+    AsyncStorage.getItem('token')
+      .then((data)=> {
+        var token = jwt.decode(data, 'llama waddle');
+        console.log(token);
+        this.setState({token: token});
+      })
+      .catch((err)=> {
+        console.log('there is no token');
+      })
   }
 
 
   render() {
     if (!this.state.token) {
-      return (
-        <Main />
+       return (
+        <Navigator
+          initialRoute={{
+            title: 'Main',
+            component: Main,
+            passProps: {}
+          }}
+          configureScene={() => {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {
+            // count the number of func calls
+            const Component = route.component
+            return (
+              <View style={{flex: 1}}>
+                <Component navigator={navigator} route={route} {...route.passProps}/>
+              </View>
+            )
+          }}
+        />
       );
     } else {
       return (

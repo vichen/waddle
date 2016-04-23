@@ -71,7 +71,7 @@ class Welcome extends Component{
         </TouchableHighlight>
          <TouchableHighlight
           style={styles.button}
-          onPress={this.handleLogout()}
+          onPress={this.handleLogout}
           underlayColor="#f9ecdf">
           <Text style={styles.buttonText}>Logout</Text>
         </TouchableHighlight>
