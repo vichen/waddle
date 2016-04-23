@@ -6,4 +6,4 @@ server/uploads/*
 !server/uploads/.gitkeep
 .DS_Store
 npm-debug.log
-waddle/app/keys/*
+waddle/app/clientKeys/*

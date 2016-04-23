@@ -8,11 +8,12 @@
 var mongoose = require('mongoose');
 
 // DB connection/configuration
-mongoose.connect('mongodb://127.0.0.1:27017/penguin');
+var mongodbUrl = process.env.NODE_ENV === 'production' ? 'mongodb://heroku_tn73kz3m:76lljuuop4jp4bjpvpmtcsc70h@ds019101.mlab.com:19101/heroku_tn73kz3m' : 'mongodb://127.0.0.1:27017/penguin';
+mongoose.connect(mongodbUrl);
 var dbConnection = mongoose.connection;
 dbConnection.on('error', console.error.bind(console, 'connection error:'));
 dbConnection.once('open', function() {
-  console.log('Successfully connected to mongodb at mongodb://127.0.0.1:27017/penguin');
+  console.log('Successfully connected to mongodb at ', mongodbUrl);
 });
 
 // Database schema
