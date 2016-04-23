@@ -97,39 +97,64 @@ import React, {
   Text,
   NavigatorIOS,
   Navigator,
-  View
+  View,
+  AsyncStorage
 } from 'react-native';
 
 // import * as Main from './app/components/main';
 
 var Main = require('./app/components/main');
+var Welcome = require('./app/components/welcome');
 var styles = require('./app/components/Styles');
 var Temp = require('./app/components/enjoy'); // used temporarily for working on styling
+var jwt = require('react-native-jwt');
 
 class penguin extends Component {
-  render() {
 
-    return (
-      <Navigator
-        initialRoute={{
-          title: 'Sign in with Waddle',
-          component: Main,
-          passProps: {}
-        }}
-        configureScene={() => {
-          return Navigator.SceneConfigs.FloatFromRight;
-        }}
-        renderScene={(route, navigator) => {
-          // count the number of func calls
-          const Component = route.component
-          return (
-            <View style={{flex: 1}}>
-              <Component navigator={navigator} route={route} {...route.passProps}/>
-            </View>
-          )
-        }}
-      />
-    );
+  constructor(props){
+    super(props);
+    this.state = {
+      token: null
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('token').then((data)=> {
+      var token = jwt.decode(data, 'llama waddle');
+      console.log(token);
+      this.setState({token: token});
+    })
+  }
+
+
+  render() {
+    if (!this.state.token) {
+      return (
+        <Main />
+      );
+    } else {
+      return (
+        <Navigator
+          initialRoute={{
+            title: 'Welcome',
+            component: Welcome,
+            passProps: this.state.token
+          }}
+          configureScene={() => {
+            return Navigator.SceneConfigs.FloatFromRight;
+          }}
+          renderScene={(route, navigator) => {
+            // count the number of func calls
+            const Component = route.component
+            return (
+              <View style={{flex: 1}}>
+                <Component navigator={navigator} route={route} {...route.passProps}/>
+              </View>
+            )
+          }}
+        />
+      );
+    }
   }
 }
 

@@ -104,6 +104,7 @@ module.exports = {
                 console.log('postSignin: getUser sign in successful ', success);
                 var token = jwt.encode(
                   { username: user[0].username,
+                    firstName: user[0].firstName,
                     email: user[0].email,
                     funFact: user[0].funFact,
                     profileImage: user[0].profileImage,

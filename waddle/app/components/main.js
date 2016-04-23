@@ -158,16 +158,12 @@ class Main extends Component{
       });
   }
 
-  componentWillMount() {
-    var token;
-    AsyncStorage.multiGet(['token', 'email']).then((data)=> {
-      // if (data[0][1]) {
-      //   token = data[0][1];
-      //   this.setState({token: token})
-      // }
-      console.log(data);
-    })
-  }
+  // componentWillMount() {
+  //   AsyncStorage.getItem('token').then((data)=> {
+  //     var token = jwt.decode(data, 'llama waddle');
+  //     this.setState({token: token});
+  //   })
+  // }
 
 
 
@@ -248,8 +244,6 @@ class Main extends Component{
         </Text>;
     }
 
-    if (!this.state.token) {
-
       return (
           <View style={styles.mainContainer}>
             <Video source={{uri:"background"}}
@@ -296,11 +290,6 @@ class Main extends Component{
             </TouchableHighlight>
           </View>
       )
-    } else {
-      return (
-         <Welcome />
-       );
-    }
   }
 };
 

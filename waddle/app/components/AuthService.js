@@ -45,7 +45,7 @@ class AuthService {
       fetch(LOGOUT_REQUEST_URL, {
         method: 'GET'
       }).then(function () {
-        AsyncStorage.multiRemove(['token','email']);
+        AsyncStorage.remove('token');
       });
     }
 
