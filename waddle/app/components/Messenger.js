@@ -53,10 +53,10 @@ class Messenger extends React.Component {
     if (message) {
       api.addMessage(this.props.username, message, this.state.db)
         
-        .catch((err) => {
-          console.log('Request failed', err);
-          this.setState({error}) //same as {error: error} - ES6 thing
-        });
+        // .catch((err) => {
+        //   console.log('Request failed', err);
+        //   this.setState({error}) //same as {error: error} - ES6 thing
+        // });
     }
    
     this.setState({

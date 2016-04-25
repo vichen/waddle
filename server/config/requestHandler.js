@@ -224,7 +224,8 @@ module.exports = {
                           var newMatch = new SuccessfulMatch({
                             firstMatchedUsername: matchedUser.username,
                             secondMatchedUsername: username,
-                            restaurant: stringifiedRestaurant
+                            restaurant: stringifiedRestaurant,
+                            timestamp: (new Date()).toString()
                           });
                           newMatch.save(function(error) {
                             if (error) {
@@ -278,7 +279,7 @@ module.exports = {
                             secondMatchedUser: secondMatchedUser,
                             restaurant: JSON.parse(match.restaurant),
                             // For dbNameChat:
-                            timestamp: (new Date()).toString(),
+                            timestamp: match.timestamp
                           };
                           console.log('TIMESTAMP GENERATED: ', match._id.getTimestamp())
                           stringifiedResponseObject = JSON.stringify(responseObject);

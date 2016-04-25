@@ -5,7 +5,7 @@ console.log('Node environment is... ', env)
 
 var _Environments = {
   development: {
-      IP_address: 'http://localhost:8000'
+      IP_address: 'http://10.6.31.155:8000'
       /* change 'localhost' to your local IP if you want to test
        with either an ios device or simulator on the same LAN. Leave 
        as 'localhost' if you are just testing an xcode simulator 
