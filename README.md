@@ -27,13 +27,13 @@ Supported operating systems are >= iOS 7.0
 [![Kevin Nguyen](https://dl.dropboxusercontent.com/s/wyebxbavnc7ihk7/kevinwin.png?dl=0)](https://github.com/kevinwin)
 
 ## Team Members (v. 2.0)
-[![Roland Fung]](https://github.com/rolandfung)
+[Roland Fung](https://github.com/rolandfung)
 
-[![Vivian Chen]](https://github.com/vichen)
+[Vivian Chen](https://github.com/vichen)
 
-[![Fred Ryder]](https://github.com/fredryder)
+[Fred Ryder](https://github.com/fredryder)
 
-[![Adam Isom]](https://github.com/adamrgisom)
+[Adam Isom](https://github.com/adamrgisom)
   
 ## Technology Stack, APIs, and Third-party tools
 
