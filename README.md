@@ -25,6 +25,15 @@ Supported operating systems are >= iOS 7.0
 [![Rahim Dharrsi](https://dl.dropboxusercontent.com/s/3typmiqn3wv8f8k/rahimftd.png?dl=0)](https://github.com/rahimftd)
 
 [![Kevin Nguyen](https://dl.dropboxusercontent.com/s/wyebxbavnc7ihk7/kevinwin.png?dl=0)](https://github.com/kevinwin)
+
+## Team Members (v. 2.0)
+[![Roland Fung]](https://github.com/rolandfung)
+
+[![Vivian Chen]](https://github.com/vichen)
+
+[![Fred Ryder]](https://github.com/fredryder)
+
+[![Adam Isom]](https://github.com/adamrgisom)
   
 ## Technology Stack, APIs, and Third-party tools
 
@@ -158,9 +167,16 @@ It's easy to set up:
   https://github.com/savory-penguin/waddle
   will be savory-penguin/waddle
 
+## Version 2.0 Features
+
+- Email / password authentication
+- Firebase chat messenger
+- Star rating system
+- Expand to include coffee
+- Integrate Uber API
 
 
-## Legacy Project Ideas
+## Future Project Ideas
 
 - Integrate Facebook login / authentication
 - Geofencing. Disable / Hide 'I'm here' button until user is within a certain radius
@@ -168,11 +184,9 @@ It's easy to set up:
 - Write end to end tests
 - Email Validation
 - Add a user preferences / account settings / delete account / sign out section
-- Incorporate a user rating system
-- Expand service to coffee, dinner, workouts and more
+- Expand service to dinner, workouts, and more
 - Refine matching algorithm
 - Add push notifications (e.g. when match arrives)
-- Integrate other apis (e.g uber, twilio)
 - Make layout more responsive to handle different size screens
 - Port waddle to Android
 
