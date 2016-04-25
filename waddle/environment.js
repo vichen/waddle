@@ -2,6 +2,7 @@
 =======
 // var env = 'production';
 var env = require('./env.js');
+console.log('Node environment is... ', env)
 
 >>>>>>> add back uber client key
 // this file specifies the address to the app server serving http requests
