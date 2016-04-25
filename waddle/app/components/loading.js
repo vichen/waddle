@@ -88,9 +88,6 @@ class Loading extends Component{
         this.setState({dbNameTimestamp: json.timestamp});
         console.log('the important thing:', this.state.match);
         this.handleMatch();
-        // for chat DB name:
-       
-        
       })
       .catch((err) => {
         console.log('error retrieving match', err);
@@ -118,8 +115,8 @@ class Loading extends Component{
           restaurant: this.state.restaurant,
           match: this.state.match,
           // chat variables
-          userLeft: this.props.username,
-          userRight: this.state.match,
+          // userLeft: this.props.username,
+          // userRight: this.state.match,
           dbNameTimestamp: this.state.dbNameTimestamp,
           ...this.props
         }
