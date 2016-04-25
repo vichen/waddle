@@ -278,8 +278,9 @@ module.exports = {
                             secondMatchedUser: secondMatchedUser,
                             restaurant: JSON.parse(match.restaurant),
                             // For dbNameChat:
-                            timestamp: match._id.getTimestamp(),
+                            timestamp: (new Date()).toString(),
                           };
+                          console.log('TIMESTAMP GENERATED: ', match._id.getTimestamp())
                           stringifiedResponseObject = JSON.stringify(responseObject);
                           res.send(stringifiedResponseObject);
                         })

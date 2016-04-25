@@ -51,7 +51,7 @@ class Messenger extends React.Component {
   handleSubmit(){
     var message = this.state.message.trim();
     if (message) {
-      api.addMessage(this.props.userLeft, message, this.state.db)
+      api.addMessage(this.props.username, message, this.state.db)
         
         .catch((err) => {
           console.log('Request failed', err);
@@ -94,7 +94,7 @@ class Messenger extends React.Component {
   }
 
   messageViewer(rowData) {
-    if (rowData.username === this.props.userLeft.toLowerCase()) {
+    if (rowData.username === this.props.username.toLowerCase()) {
       return (
         <Text style={styles.messageTextLeft}>{rowData.message}</Text>
       )
@@ -121,7 +121,7 @@ class Messenger extends React.Component {
 };
 
 Messenger.propTypes = {
-  userLeft: React.PropTypes.string.isRequired,
+  username: React.PropTypes.string.isRequired,
   // messages: React.PropTypes.string.isRequired
 };
 

@@ -115,8 +115,8 @@ class Loading extends Component{
           restaurant: this.state.restaurant,
           match: this.state.match,
           // chat variables
-          userLeft: this.props.username,
-          userRight: this.state.match,
+          // userLeft: this.props.username,
+          // userRight: this.state.match,
           dbNameTimestamp: this.state.dbNameTimestamp,
           ...this.props
         }

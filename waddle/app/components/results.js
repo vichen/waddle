@@ -31,9 +31,6 @@ class Results extends Component{
         latitude: this.props.restaurant.location.lat,
         longitude: this.props.restaurant.location.lng
       },
-      match: this.props.match,
-      userLeft: this.props.userLeft,
-      userRight: this.props.userRight
     };
 
     setTimeout(() => {
@@ -61,10 +58,7 @@ class Results extends Component{
       title: 'Chat',
       component: Messenger,
       passProps: {
-        //userInfo: this.state.username // TODO: change to userLeft + find username in props...
-        userLeft: this.state.userLeft,
-        userRight: this.state.userRight.username,
-        dbNameTimestamp: this.props.dbNameTimestamp
+        ...this.props
       }
     });
   }
