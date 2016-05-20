@@ -9,11 +9,12 @@ try {
   keys = require('./foursquarekeys.js');
 }
 catch(e) {
-  console.log('./foursquarekeys.js does not exist', e);
+  console.log('./foursquarekeys.js does not exist or running in production mode. ' + 
+    'Will use empty strings as keys to trigger mock data if keys are not defined on process.env', e);
 }
 
-exports.client_id = keys.client_id || '';
-exports.client_secret = keys.client_secret || '';
+exports.client_id = process.env.foursquareCLIENTID || (keys.client_id || '');
+exports.client_secret = process.env.foursquareCLIENTSECRET || (keys.client_secret || '');
 
 exports.getRestaurant = function(longitude, latitude, lunchOrCoffee) {
   var maxResults = 50; // max # of results to return

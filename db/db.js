@@ -159,7 +159,7 @@ exports.db = {
           reject(error);
         } else {
           // Gets latest match from array of results
-          var latestMatch = matches[0];
+          var latestMatch = matches[matches.length-1];
           for (var i = 1; i < matches.length; i++) {
             if (matches[i].matchTime > latestMatch.matchTime) {
               latestMatch = matches[i];
