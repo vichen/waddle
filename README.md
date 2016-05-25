@@ -190,7 +190,7 @@ It's easy to set up:
 - Make layout more responsive to handle different size screens
 - Port waddle to Android
 
-## Tips & Tricks
+## Tips & Tricks 
 
 - [Install Xcode](https://developer.apple.com/xcode/download/) ASAP if you don't already have it installed.
 - [How to add files to your Xcode project](https://developer.apple.com/library/ios/recipes/xcode_help-structure_navigator/articles/Adding_an_Existing_File_or_Folder.html)
